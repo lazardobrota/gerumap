@@ -1,4 +1,4 @@
 package raf.dsw.gerumap.core;
 
-public abstract class ApplicationFramework {
+public abstract class ApplicationFramework{
 }
