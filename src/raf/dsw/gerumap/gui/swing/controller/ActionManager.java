@@ -2,7 +2,7 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 public class ActionManager {
 
-    private ExitAction exitAction;
+    private EditAction editAction;
     private NewProjectAction newProjectAction;
 
     public ActionManager() {
@@ -10,16 +10,16 @@ public class ActionManager {
     }
 
     private void initActions() {
-        exitAction = new ExitAction();
+        editAction = new EditAction();
         newProjectAction = new NewProjectAction();
     }
 
-    public ExitAction getExitAction() {
-        return exitAction;
+    public EditAction getExitAction() {
+        return editAction;
     }
 
-    public void setExitAction(ExitAction exitAction) {
-        this.exitAction = exitAction;
+    public void setExitAction(EditAction exitAction) {
+        this.editAction = exitAction;
     }
 
     public NewProjectAction getNewProjectAction() {
