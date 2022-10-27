@@ -9,7 +9,7 @@ public class EditAction extends AbstractGerumapAction{
 
     public EditAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images/x.png"));// dodaj u images sliku pa promenu lokaciju do slike koja treba da bude
+        putValue(SMALL_ICON, loadIcon("images/info.png"));// dodaj u images sliku pa promenu lokaciju do slike koja treba da bude
         putValue(NAME, "Info");
         putValue(SHORT_DESCRIPTION, "Informacije");
     }
