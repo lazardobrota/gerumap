@@ -9,7 +9,7 @@ public class Toolbar extends JToolBar {
         setFloatable(false);//da li moze da se pomera
 
         this.add(MainFrame.getInstance().getActionManager().getNewProjectAction());
-        this.add(MainFrame.getInstance().getActionManager().getEditAction());
+        this.add(MainFrame.getInstance().getActionManager().getInfoAction());
 
     }
 }
