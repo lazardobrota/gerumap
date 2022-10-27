@@ -14,11 +14,11 @@ public class ActionManager {
         newProjectAction = new NewProjectAction();
     }
 
-    public EditAction getExitAction() {
+    public EditAction getEditAction() {
         return editAction;
     }
 
-    public void setExitAction(EditAction exitAction) {
+    public void setEditAction(EditAction exitAction) {
         this.editAction = exitAction;
     }
 
