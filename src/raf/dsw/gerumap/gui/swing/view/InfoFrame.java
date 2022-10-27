@@ -8,10 +8,6 @@ public class InfoFrame extends JDialog {
 
     private static InfoFrame instance;
 
-    private BoxLayout blhStudent1;
-    private BoxLayout blhStudent2;
-    private BoxLayout blhDugme;
-
     private JLabel lblInfoStudenta1;
     private JLabel lblInfoStudenta2;
 
@@ -24,33 +20,39 @@ public class InfoFrame extends JDialog {
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = (int) screenSize.getHeight();
         int screenWidth = (int) screenSize.getWidth();
-        this.setSize(screenWidth / 3, screenHeight / 2);
+        this.setSize(screenWidth / 3, screenHeight / 3);
         this.setLocationRelativeTo(MainFrame.getInstance());
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setTitle("Informacije studenata");
 
-
         lblInfoStudenta1 = new JLabel("Lazar Dobrota RN74/21");
         lblInfoStudenta2 = new JLabel("Ana Sakotic RN68/21");
-
         JButton btnOk = new JButton("Ok");
 
-        //Pravimo panel i dodajemo ga na JDialog
-        JPanel panel = new JPanel();
-        //panel.setBackground(Color.YELLOW);//todo skloni ovo
-        this.add(panel, BorderLayout.NORTH);
-        this.add(btnOk, BorderLayout.SOUTH);
+        //Postavlja glavni vertikalni layout
+        BoxLayout blGlaviV = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);//Ovako bangavo se stavlja BoxLayout na prozor klase
+        this.getContentPane().setLayout(blGlaviV);//Ovako bangavo se stavlja BoxLayout na prozor klase
 
-        //TODO: Dodaj slike i raspodeli lepo komponente
+        JPanel panelStudent1 = new JPanel();
+        panelStudent1.setBorder(new EmptyBorder(30, 0, 0,0));
+        panelStudent1.add(lblInfoStudenta1);
 
-        //Dodajemo layout za panel
-        BoxLayout blVertikalan = new BoxLayout(panel, BoxLayout.Y_AXIS);
-        panel.setLayout(blVertikalan);
-        panel.setBorder(new EmptyBorder(50, 20, 0, 0));
+        JPanel panelStudent2 = new JPanel();
+        panelStudent2.setBorder(new EmptyBorder(30, 0, 0,0));
+        panelStudent2.add(lblInfoStudenta2);
 
-        //Dodajemo komponente u panel
-        panel.add(lblInfoStudenta1);
-        panel.add(lblInfoStudenta2);
+        JPanel panelDonji = new JPanel();
+        panelDonji.setBorder(new EmptyBorder(30, 0, 0,0));
+        panelDonji.add(btnOk);
+
+        //panele dodajemo u JDialog
+        panelStudent1.setBackground(Color.YELLOW);//todo skloni ovo
+        this.add(Box.createGlue());
+        this.add(panelStudent1);
+        this.add(panelStudent2);
+        this.add(panelDonji);
+
+        //TODO: Dodaj slike
     }
 
 
