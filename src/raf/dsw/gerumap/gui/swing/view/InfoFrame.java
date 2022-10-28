@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -9,7 +10,9 @@ public class InfoFrame extends JDialog {
     private static InfoFrame instance;
 
     private JLabel lblInfoStudenta1;
+    private JLabel lblSlikaStudenta1;
     private JLabel lblInfoStudenta2;
+    private JLabel lblSlikaStudenta2;
 
     public InfoFrame() {
     }
@@ -20,39 +23,49 @@ public class InfoFrame extends JDialog {
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = (int) screenSize.getHeight();
         int screenWidth = (int) screenSize.getWidth();
-        this.setSize(screenWidth / 3, screenHeight / 3);
+        this.setSize(screenWidth / 5 + 20, screenHeight / 2 - 50);
         this.setLocationRelativeTo(MainFrame.getInstance());
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setTitle("Informacije studenata");
 
         lblInfoStudenta1 = new JLabel("Lazar Dobrota RN74/21");
+        //InfoAction nasledjuje(extends) abstraktnu klasu AbstractGerumapAction koji u sebi ima vec metodu loadIcon
+        lblSlikaStudenta1 = new JLabel(MainFrame.getInstance().getActionManager().getInfoAction().loadIcon("images/lazar.png"));
         lblInfoStudenta2 = new JLabel("Ana Sakotic RN68/21");
+        lblSlikaStudenta2 = new JLabel(MainFrame.getInstance().getActionManager().getInfoAction().loadIcon("images/ana.png"));
         JButton btnOk = new JButton("Ok");
 
         //Postavlja glavni vertikalni layout
-        BoxLayout blGlaviV = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);//Ovako bangavo se stavlja BoxLayout na prozor klase
-        this.getContentPane().setLayout(blGlaviV);//Ovako bangavo se stavlja BoxLayout na prozor klase
+        //Ovako bangavo se stavlja BoxLayout na prozor klase
+        BoxLayout blGlaviV = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
+        this.getContentPane().setLayout(blGlaviV);
+
+        //FlowLayout za oba panela
+        FlowLayout flowLayout = new FlowLayout();
+        flowLayout.setAlignment(FlowLayout.TRAILING);
+        flowLayout.setHgap(50);
 
         JPanel panelStudent1 = new JPanel();
+        panelStudent1.setLayout(flowLayout);
         panelStudent1.setBorder(new EmptyBorder(30, 0, 0,0));
         panelStudent1.add(lblInfoStudenta1);
+        panelStudent1.add(lblSlikaStudenta1);
 
         JPanel panelStudent2 = new JPanel();
+        panelStudent2.setLayout(flowLayout);
         panelStudent2.setBorder(new EmptyBorder(30, 0, 0,0));
         panelStudent2.add(lblInfoStudenta2);
+        panelStudent2.add(lblSlikaStudenta2);
 
         JPanel panelDonji = new JPanel();
         panelDonji.setBorder(new EmptyBorder(30, 0, 0,0));
         panelDonji.add(btnOk);
 
         //panele dodajemo u JDialog
-        panelStudent1.setBackground(Color.YELLOW);//todo skloni ovo
         this.add(Box.createGlue());
         this.add(panelStudent1);
         this.add(panelStudent2);
         this.add(panelDonji);
-
-        //TODO: Dodaj slike
     }
 
 
@@ -83,5 +96,21 @@ public class InfoFrame extends JDialog {
 
     public void setLblInfoStudenta2(JLabel lblInfoStudenta2) {
         this.lblInfoStudenta2 = lblInfoStudenta2;
+    }
+
+    public JLabel getLblSlikaStudenta1() {
+        return lblSlikaStudenta1;
+    }
+
+    public void setLblSlikaStudenta1(JLabel lblSlikaStudenta1) {
+        this.lblSlikaStudenta1 = lblSlikaStudenta1;
+    }
+
+    public JLabel getLblSlikaStudenta2() {
+        return lblSlikaStudenta2;
+    }
+
+    public void setLblSlikaStudenta2(JLabel lblSlikaStudenta2) {
+        this.lblSlikaStudenta2 = lblSlikaStudenta2;
     }
 }
