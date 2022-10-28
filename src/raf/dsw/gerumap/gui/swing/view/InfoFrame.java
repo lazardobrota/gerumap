@@ -14,7 +14,7 @@ public class InfoFrame extends JDialog {
     private JLabel lblInfoStudenta2;
     private JLabel lblSlikaStudenta2;
 
-    public InfoFrame() {
+    private InfoFrame() {
     }
 
     private void initialise() {
@@ -37,8 +37,8 @@ public class InfoFrame extends JDialog {
 
         //Postavlja glavni vertikalni layout
         //Ovako bangavo se stavlja BoxLayout na prozor klase
-        BoxLayout blGlaviV = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
-        this.getContentPane().setLayout(blGlaviV);
+        BoxLayout blGlavniV = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
+        this.getContentPane().setLayout(blGlavniV);
 
         //FlowLayout za studenta1
         FlowLayout flowLayout = new FlowLayout();
