@@ -33,17 +33,22 @@ public class InfoFrame extends JDialog {
         lblSlikaStudenta1 = new JLabel(MainFrame.getInstance().getActionManager().getInfoAction().loadIcon("images/lazar.png"));
         lblInfoStudenta2 = new JLabel("Ana Sakotic RN68/21");
         lblSlikaStudenta2 = new JLabel(MainFrame.getInstance().getActionManager().getInfoAction().loadIcon("images/ana.png"));
-        JButton btnOk = new JButton("Ok");
+        JButton btnOk = new JButton("Ok");//TODO: Nekako treba za dugme da se doda akcije da izadje iz pop up
 
         //Postavlja glavni vertikalni layout
         //Ovako bangavo se stavlja BoxLayout na prozor klase
         BoxLayout blGlaviV = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
         this.getContentPane().setLayout(blGlaviV);
 
-        //FlowLayout za oba panela
+        //FlowLayout za studenta1
         FlowLayout flowLayout = new FlowLayout();
-        flowLayout.setAlignment(FlowLayout.TRAILING);
+        flowLayout.setAlignment(FlowLayout.CENTER);
         flowLayout.setHgap(50);
+
+        //FlowLayout za studenta2
+        FlowLayout flowLayout2 = new FlowLayout();
+        flowLayout2.setAlignment(FlowLayout.CENTER);
+        flowLayout2.setHgap(60);
 
         JPanel panelStudent1 = new JPanel();
         panelStudent1.setLayout(flowLayout);
@@ -52,7 +57,7 @@ public class InfoFrame extends JDialog {
         panelStudent1.add(lblSlikaStudenta1);
 
         JPanel panelStudent2 = new JPanel();
-        panelStudent2.setLayout(flowLayout);
+        panelStudent2.setLayout(flowLayout2);
         panelStudent2.setBorder(new EmptyBorder(30, 0, 0,0));
         panelStudent2.add(lblInfoStudenta2);
         panelStudent2.add(lblSlikaStudenta2);
