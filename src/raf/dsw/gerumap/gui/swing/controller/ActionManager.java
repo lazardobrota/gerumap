@@ -4,6 +4,7 @@ public class ActionManager {
 
     private InfoAction infoAction;
     private NewProjectAction newProjectAction;
+    private EditAction editAction;
 
     public ActionManager() {
         initActions();
@@ -12,6 +13,7 @@ public class ActionManager {
     private void initActions() {
         infoAction = new InfoAction();
         newProjectAction = new NewProjectAction();
+        editAction = new EditAction();
     }
 
     public InfoAction getInfoAction() {
@@ -28,5 +30,13 @@ public class ActionManager {
 
     public void setNewProjectAction(NewProjectAction newProjectAction) {
         this.newProjectAction = newProjectAction;
+    }
+
+    public EditAction getEditAction() {
+        return editAction;
+    }
+
+    public void setEditAction(EditAction editAction) {
+        this.editAction = editAction;
     }
 }
