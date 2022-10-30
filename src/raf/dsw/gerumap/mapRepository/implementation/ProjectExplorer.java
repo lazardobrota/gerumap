@@ -1,4 +1,11 @@
 package raf.dsw.gerumap.mapRepository.implementation;
 
-public class ProjectExplorer {
+import raf.dsw.gerumap.mapRepository.composite.MapNode;
+import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
+
+public class ProjectExplorer extends MapNodeComposite {
+
+    public ProjectExplorer(String ime, MapNode parent) {
+        super(ime, parent);
+    }
 }
