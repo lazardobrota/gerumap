@@ -30,9 +30,9 @@ public class InfoFrame extends JDialog {
 
         lblInfoStudenta1 = new JLabel("Lazar Dobrota RN74/21");
         //InfoAction nasledjuje(extends) abstraktnu klasu AbstractGerumapAction koji u sebi ima vec metodu loadIcon
-        lblSlikaStudenta1 = new JLabel(MainFrame.getInstance().getActionManager().getInfoAction().loadIcon("images/lazar.png"));
+        lblSlikaStudenta1 = new JLabel(MainFrame.getInstance().getActionManager().getInfoAction().loadIcon("/images/lazar.png"));
         lblInfoStudenta2 = new JLabel("Ana Sakotic RN68/21");
-        lblSlikaStudenta2 = new JLabel(MainFrame.getInstance().getActionManager().getInfoAction().loadIcon("images/ana.png"));
+        lblSlikaStudenta2 = new JLabel(MainFrame.getInstance().getActionManager().getInfoAction().loadIcon("/images/ana.png"));
         JButton btnOk = new JButton("Ok");//TODO: Nekako treba za dugme da se doda akcije da izadje iz pop up
 
         //Postavlja glavni vertikalni layout
