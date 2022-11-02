@@ -1,10 +1,14 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
 
 import javax.swing.*;
 import java.awt.*;
 
+@Getter
+@Setter
 public class MainFrame extends JFrame {
 
     private static MainFrame instance;//pravimo jednu instancu glavnog prozora??
