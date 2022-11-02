@@ -1,10 +1,16 @@
 package raf.dsw.gerumap.gui.swing.view;
 
 
+import lombok.Getter;
+import lombok.Setter;
+import raf.dsw.gerumap.gui.swing.controller.OkAction;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+@Getter
+@Setter
 public class InfoFrame extends JDialog {
 
     private static InfoFrame instance;
@@ -33,7 +39,8 @@ public class InfoFrame extends JDialog {
         lblSlikaStudenta1 = new JLabel(MainFrame.getInstance().getActionManager().getInfoAction().loadIcon("/images/lazar.png"));
         lblInfoStudenta2 = new JLabel("Ana Sakotic RN68/21");
         lblSlikaStudenta2 = new JLabel(MainFrame.getInstance().getActionManager().getInfoAction().loadIcon("/images/ana.png"));
-        JButton btnOk = new JButton("Ok");//TODO: Nekako treba za dugme da se doda akcije da izadje iz pop up
+        JButton btnOk = new JButton("Ok");
+        btnOk.addActionListener(MainFrame.getInstance().getActionManager().getOkAction());
 
         //Postavlja glavni vertikalni layout
         //Ovako bangavo se stavlja BoxLayout na prozor klase
@@ -83,39 +90,5 @@ public class InfoFrame extends JDialog {
         return instance;
     }
 
-    public static void setInstance(InfoFrame instance) {
-        InfoFrame.instance = instance;
-    }
 
-    public JLabel getLblInfoStudenta1() {
-        return lblInfoStudenta1;
-    }
-
-    public void setLblInfoStudenta1(JLabel lblInfoStudenta1) {
-        this.lblInfoStudenta1 = lblInfoStudenta1;
-    }
-
-    public JLabel getLblInfoStudenta2() {
-        return lblInfoStudenta2;
-    }
-
-    public void setLblInfoStudenta2(JLabel lblInfoStudenta2) {
-        this.lblInfoStudenta2 = lblInfoStudenta2;
-    }
-
-    public JLabel getLblSlikaStudenta1() {
-        return lblSlikaStudenta1;
-    }
-
-    public void setLblSlikaStudenta1(JLabel lblSlikaStudenta1) {
-        this.lblSlikaStudenta1 = lblSlikaStudenta1;
-    }
-
-    public JLabel getLblSlikaStudenta2() {
-        return lblSlikaStudenta2;
-    }
-
-    public void setLblSlikaStudenta2(JLabel lblSlikaStudenta2) {
-        this.lblSlikaStudenta2 = lblSlikaStudenta2;
-    }
 }

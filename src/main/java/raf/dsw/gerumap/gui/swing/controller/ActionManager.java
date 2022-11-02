@@ -1,10 +1,18 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import lombok.Getter;
+import lombok.Setter;
+import raf.dsw.gerumap.gui.swing.view.InfoFrame;
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
+
+@Getter
+@Setter
 public class ActionManager {
 
     private InfoAction infoAction;
     private NewProjectAction newProjectAction;
     private EditAction editAction;
+    private OkAction okAction;
 
     public ActionManager() {
         initActions();
@@ -14,29 +22,7 @@ public class ActionManager {
         infoAction = new InfoAction();
         newProjectAction = new NewProjectAction();
         editAction = new EditAction();
+        okAction = new OkAction();
     }
 
-    public InfoAction getInfoAction() {
-        return infoAction;
-    }
-
-    public void setInfoAction(InfoAction exitAction) {
-        this.infoAction = exitAction;
-    }
-
-    public NewProjectAction getNewProjectAction() {
-        return newProjectAction;
-    }
-
-    public void setNewProjectAction(NewProjectAction newProjectAction) {
-        this.newProjectAction = newProjectAction;
-    }
-
-    public EditAction getEditAction() {
-        return editAction;
-    }
-
-    public void setEditAction(EditAction editAction) {
-        this.editAction = editAction;
-    }
 }
