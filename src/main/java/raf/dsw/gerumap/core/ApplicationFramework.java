@@ -1,5 +1,10 @@
 package raf.dsw.gerumap.core;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public abstract class ApplicationFramework {
 
     protected Gui gui;
@@ -10,8 +15,9 @@ public abstract class ApplicationFramework {
 
     public abstract void run();
 
-    public void initialise(Gui gui) {
+    public void initialise(Gui gui, MapRepository mapRepository) {
         this.gui = gui;
+        this.mapRepository = mapRepository;
     }
 
     public void setMapRepository(MapRepository mapRepository) {
