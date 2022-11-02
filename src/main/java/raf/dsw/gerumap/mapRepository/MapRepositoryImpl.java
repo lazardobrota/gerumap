@@ -9,8 +9,8 @@ public class MapRepositoryImpl implements MapRepository {
 
     private ProjectExplorer projectExplorer;
 
-    public MapRepositoryImpl(ProjectExplorer projectExplorer) {
-        this.projectExplorer = projectExplorer;
+    public MapRepositoryImpl() {
+        this.projectExplorer = new ProjectExplorer("My Project Explorer");
     }
 
     @Override
