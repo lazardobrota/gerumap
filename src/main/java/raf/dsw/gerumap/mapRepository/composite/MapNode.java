@@ -1,7 +1,14 @@
 package raf.dsw.gerumap.mapRepository.composite;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+/**
+ * MapNode su svi elemeti: Project Explorer(on jedini nema roditelja), Projekat, mapa uma i pojmovi
+ */
 public abstract class MapNode {
-    //MapNode su svi elemeti: Project Explorer(on jedini nema roditelja), Projekat, mapa uma i pojmovi
 
     private String ime;
     private MapNode parent;//svaki mapNode ima svog roditelja
@@ -11,19 +18,13 @@ public abstract class MapNode {
         this.parent = parent;
     }
 
-    public String getIme() {
-        return ime;
-    }
+    //Da li su ista imena
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof MapNode))
+            return false;
 
-    public void setIme(String ime) {
-        this.ime = ime;
-    }
-
-    public MapNode getParent() {
-        return parent;
-    }
-
-    public void setParent(MapNode parent) {
-        this.parent = parent;
+        MapNode mapNode = (MapNode) obj;
+        return this.getIme().equals(mapNode.getIme());
     }
 }
