@@ -5,22 +5,30 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class ApplicationFramework {
+public class ApplicationFramework {
 
+    private static ApplicationFramework instance;
     protected Gui gui;
     protected MapRepository mapRepository;
 
-    public ApplicationFramework() {
+    private ApplicationFramework() {
     }
 
-    public abstract void run();
+    public  void run(){
+        this.gui.start();
+    }
 
     public void initialise(Gui gui, MapRepository mapRepository) {
         this.gui = gui;
         this.mapRepository = mapRepository;
     }
 
-    public void setMapRepository(MapRepository mapRepository) {
-        this.mapRepository = mapRepository;
+    public static ApplicationFramework getInstance(){
+        if(instance == null){
+            instance = new ApplicationFramework();
+        }
+        return instance;
     }
+
+
 }

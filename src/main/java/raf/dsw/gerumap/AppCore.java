@@ -5,36 +5,21 @@ import raf.dsw.gerumap.core.Gui;
 import raf.dsw.gerumap.core.MapRepository;
 import raf.dsw.gerumap.gui.swing.SwingGui;
 import raf.dsw.gerumap.mapRepository.MapRepositoryImpl;
+import raf.dsw.gerumap.mapRepository.composite.MapNode;
+import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
+import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
-public class AppCore extends ApplicationFramework{
-
-    private static AppCore instance;
-
-    private AppCore() {
-
-    }
+public class AppCore {
 
     public static void main(String[] args) {
+
+        ApplicationFramework applicationFramework = ApplicationFramework.getInstance();
         Gui gui = new SwingGui();
         MapRepository mapRepository = new MapRepositoryImpl();
-        ApplicationFramework appCore = AppCore.getInstance();
-        appCore.initialise(gui, mapRepository);
-        appCore.run();
+        applicationFramework.initialise(gui,mapRepository);
+        applicationFramework.run();
     }
 
-    public void run() {
-        this.gui.start();
-    }
 
-    public static AppCore getInstance() {
-        if (instance == null) {
-            instance = new AppCore();
-        }
 
-        return instance;
-    }
-
-    public static void setInstance(AppCore instance) {
-        AppCore.instance = instance;
-    }
 }
