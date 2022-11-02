@@ -3,6 +3,7 @@ package raf.dsw.gerumap.core;
 public abstract class ApplicationFramework {
 
     protected Gui gui;
+    protected MapRepository mapRepository;
 
     public ApplicationFramework() {
     }
@@ -13,7 +14,7 @@ public abstract class ApplicationFramework {
         this.gui = gui;
     }
 
-    public void setGui(Gui gui) {
-        this.gui = gui;
+    public void setMapRepository(MapRepository mapRepository) {
+        this.mapRepository = mapRepository;
     }
 }
