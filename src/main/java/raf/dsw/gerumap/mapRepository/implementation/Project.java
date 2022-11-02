@@ -31,9 +31,4 @@ public class Project extends MapNodeComposite {
         this.getChildren().add(mindMap);
         return true;
     }
-
-    @Override
-    public void deleteChild(MapNode mapNode) {
-        super.deleteChild(mapNode);
-    }
 }

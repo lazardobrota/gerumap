@@ -30,8 +30,4 @@ public class MindMap extends MapNodeComposite {
         return true;
     }
 
-    @Override
-    public void deleteChild(MapNode mapNode) {
-        super.deleteChild(mapNode);
-    }
 }
