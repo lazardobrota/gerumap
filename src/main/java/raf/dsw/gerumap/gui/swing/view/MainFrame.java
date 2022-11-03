@@ -65,32 +65,4 @@ public class MainFrame extends JFrame {
         return instance;
     }
 
-    public static void setInstance(MainFrame instance) {
-
-        MainFrame.instance = instance;
-    }
-
-    public ActionManager getActionManager() {
-        return actionManager;
-    }
-
-    public void setActionManager(ActionManager actionManager) {
-        this.actionManager = actionManager;
-    }
-
-    public JMenuBar getMenu() {
-        return menu;
-    }
-
-    public void setMenu(JMenuBar menu) {
-        this.menu = menu;
-    }
-
-    public JToolBar getToolBar() {
-        return toolBar;
-    }
-
-    public void setToolBar(JToolBar toolBar) {
-        this.toolBar = toolBar;
-    }
 }

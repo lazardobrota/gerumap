@@ -20,16 +20,16 @@ public class MapTreeCellRenderer extends DefaultTreeCellRenderer {
         URL imageURL = null;
         //TODO: Dodaj slike
         if (((MapTreeItem)value).getMapNode() instanceof ProjectExplorer) {
-            imageURL = this.getClass().getResource("");
+            imageURL = this.getClass().getResource("/images/projectexplorer.ico");
         }
         else if (((MapTreeItem)value).getMapNode() instanceof Project) {
-            imageURL = this.getClass().getResource("");
+            imageURL = this.getClass().getResource("/images/project.jpg");
         }
         else if (((MapTreeItem)value).getMapNode() instanceof MindMap) {
-            imageURL = this.getClass().getResource("");
+            imageURL = this.getClass().getResource("/images/mindmap.jpg");
         }
         else if (((MapTreeItem)value).getMapNode() instanceof Element) {
-            imageURL = this.getClass().getResource("");
+            imageURL = this.getClass().getResource("/images/element.png");
         }
 
         Icon icon = null;
