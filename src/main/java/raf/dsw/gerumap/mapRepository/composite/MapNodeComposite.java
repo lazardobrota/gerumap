@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class MapNodeComposite extends MapNode{
 
     //kompozicija gde je OVO onaj crni romb a strelica je kod MapNode
-    private List<MapNode> children;//todo: Ne znam koji paket da implementiram za listu
+    private List<MapNode> children;
 
     public MapNodeComposite(String ime, MapNode parent) {
         super(ime, parent);
@@ -28,7 +28,6 @@ public abstract class MapNodeComposite extends MapNode{
     }
 
     public abstract boolean addChild(MapNode mapNode);
-    //todo: deleteChild() nije verovatno dobar
 
     public void deleteChild(MapNode mapNode) {
         children.remove(mapNode);
