@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
 
-public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionListener {
+public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionListener {
 
     private Object clickedOn = null;//Objekat na koji se kliknulo
 

@@ -2,7 +2,11 @@ package raf.dsw.gerumap.gui.swing.view;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
+import raf.dsw.gerumap.gui.swing.tree.MapTree;
+import raf.dsw.gerumap.gui.swing.tree.MapTreeImplementation;
+import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +19,16 @@ public class MainFrame extends JFrame {
     private ActionManager actionManager;//imamo sve moguce akcije za dugmice na jednom mestu
     private JMenuBar menu;
     private JToolBar toolBar;
+    private MapTree mapTree;
+    private MapTreeView projectExplorer;
 
     private MainFrame() {
     }
 
     private void initialise() {
         actionManager = new ActionManager();
+        mapTree = new MapTreeImplementation();
+        projectExplorer = mapTree.generateTree(ApplicationFramework.getInstance().getMapRepository().getProjectExplorer());
         initGui();
     }
 
@@ -45,9 +53,10 @@ public class MainFrame extends JFrame {
         toolBar = new Toolbar();
         this.add(toolBar, BorderLayout.NORTH);
 
+
         JPanel panel = new JPanel();
 
-        JScrollPane scroll = new JScrollPane();
+        JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
 
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, panel); // ono sto deli project explorer i radnu tablu

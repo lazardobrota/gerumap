@@ -27,4 +27,9 @@ public abstract class MapNode {
         MapNode mapNode = (MapNode) obj;
         return this.getIme().equals(mapNode.getIme());
     }
+
+    @Override
+    public String toString() {
+        return this.ime;
+    }
 }

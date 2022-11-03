@@ -17,6 +17,9 @@ public class Project extends MapNodeComposite {
         this.autor = autor;
         this.putanja = putanja;
     }
+    public Project(String ime, MapNode parent){
+        super(ime,parent);
+    }
 
     //Dodaje mapu uma u Project
     @Override
