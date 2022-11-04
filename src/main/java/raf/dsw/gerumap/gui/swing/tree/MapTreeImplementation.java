@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.gui.swing.tree;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
+import raf.dsw.gerumap.gui.swing.tree.model.MapTreeModel;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
@@ -10,18 +11,17 @@ import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultTreeModel;
 
 public class MapTreeImplementation implements MapTree{
 
     private MapTreeView mapTreeView;
-    private DefaultTreeModel treeModel;
+    private MapTreeModel treeModel;
 
     @Override
     public MapTreeView generateTree(ProjectExplorer projectExplorer) {
         MapTreeItem root = new MapTreeItem(projectExplorer);
-        treeModel = new DefaultTreeModel(root);//Cvor koji postavlja kao glavni(root) i ovde je to projectExplorer
-        mapTreeView = new MapTreeView(treeModel);//Na aplikaciji sta ce se prikazati
+        treeModel = new MapTreeModel(root);//Cvor koji se postavlja kao glavni(root) od cega sve sve racva i ovde je to projectExplorer
+        mapTreeView = new MapTreeView(treeModel);//Povezuje sve klase u jednu
 
         return mapTreeView;
     }
