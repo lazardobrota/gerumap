@@ -7,5 +7,4 @@ import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 public interface MapRepository {
 
     ProjectExplorer getProjectExplorer();
-    void addChild(MapNodeComposite parent,MapNode child );
 }
