@@ -28,28 +28,21 @@ public class MapTreeImplementation implements MapTree{
 
     private MapNode createChild(MapNodeComposite parent){
 
-        MapNode child;
+        MapNode child = null;
 
         if(parent instanceof ProjectExplorer){
-            child = new Project("Project" + parent.getChildren().size(), parent);
-            if (!parent.getChildren().contains(child)) {
-                parent.addChild(child);
-                return child;
-            }
+            child = new Project("Project" + (parent.getChildren().size() + 1), parent);
         }
         else if (parent instanceof Project) {
-            child = new MindMap("MindMap" + parent.getChildren().size(), parent, false);
-            if (!parent.getChildren().contains(child)) {
-                parent.addChild(child);
-                return child;
-            }
+            child = new MindMap("MindMap" + (parent.getChildren().size() + 1), parent, false);
         }
         else if (parent instanceof MindMap) {
-            child = new Element("Element" + parent.getChildren().size(), parent);
-            if (!parent.getChildren().contains(child)) {
-                parent.addChild(child);
-                return child;
-            }
+            child = new Element("Element" + (parent.getChildren().size() + 1), parent);
+        }
+
+        if (!parent.getChildren().contains(child)) {
+            parent.addChild(child);
+            return child;
         }
 
         return null;

@@ -40,6 +40,7 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
         return false;
     }
 
+    //TODO: Ne mogu deca sa istim imenom da postoje kod jednog roditelja
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.clickedOn instanceof MapTreeItem) {
