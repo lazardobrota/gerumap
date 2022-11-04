@@ -4,6 +4,8 @@ import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
+import raf.dsw.gerumap.mapRepository.implementation.Element;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
@@ -18,8 +20,8 @@ public class MapTreeImplementation implements MapTree{
     @Override
     public MapTreeView generateTree(ProjectExplorer projectExplorer) {
         MapTreeItem root = new MapTreeItem(projectExplorer);
-        treeModel = new DefaultTreeModel(root);
-        mapTreeView = new MapTreeView(treeModel);
+        treeModel = new DefaultTreeModel(root);//Cvor koji postavlja kao glavni(root) i ovde je to projectExplorer
+        mapTreeView = new MapTreeView(treeModel);//Na aplikaciji sta ce se prikazati
 
         return mapTreeView;
     }
@@ -28,7 +30,12 @@ public class MapTreeImplementation implements MapTree{
         if(parent instanceof ProjectExplorer){
             return new Project("Project", parent);
         }
-        return null;
+        else if (parent instanceof Project) {
+            return new MindMap("MindMap", parent, false);
+        }
+        else {
+            return new Element("Element", parent);
+        }
     }
 
     @Override
