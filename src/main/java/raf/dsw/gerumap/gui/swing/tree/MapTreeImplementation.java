@@ -26,33 +26,28 @@ public class MapTreeImplementation implements MapTree{
         return mapTreeView;
     }
 
-    private MapNode createChild(MapNode parent){
+    private MapNode createChild(MapNodeComposite parent){
 
-        MapNodeComposite p = null;
         MapNode child;
 
-        //Da bi mogli da koristimo addChild() metodu koja sama proverava ako ima decu sa istim imenima
-        if (parent instanceof MapNodeComposite)
-            p = (MapNodeComposite) parent;
-
         if(parent instanceof ProjectExplorer){
-            child = new Project("Project" + p.getChildren().size(), parent);
-            if (!p.getChildren().contains(child)) {
-                p.addChild(child);
+            child = new Project("Project" + parent.getChildren().size(), parent);
+            if (!parent.getChildren().contains(child)) {
+                parent.addChild(child);
                 return child;
             }
         }
         else if (parent instanceof Project) {
-            child = new MindMap("MindMap" + p.getChildren().size(), parent, false);
-            if (!p.getChildren().contains(child)) {
-                p.addChild(child);
+            child = new MindMap("MindMap" + parent.getChildren().size(), parent, false);
+            if (!parent.getChildren().contains(child)) {
+                parent.addChild(child);
                 return child;
             }
         }
         else if (parent instanceof MindMap) {
-            child = new Element("Element" + p.getChildren().size(), parent);
-            if (!p.getChildren().contains(child)) {
-                p.addChild(child);
+            child = new Element("Element" + parent.getChildren().size(), parent);
+            if (!parent.getChildren().contains(child)) {
+                parent.addChild(child);
                 return child;
             }
         }
@@ -63,10 +58,13 @@ public class MapTreeImplementation implements MapTree{
     @Override
     public void addChild(MapTreeItem parent) {
         if(parent.getMapNode() instanceof MapNodeComposite){
-            MapNode child = this.createChild(parent.getMapNode());
+            //Da bi mogli da koristimo addChild() metodu koja sama proverava ako ima decu sa istim imenima
+            MapNodeComposite p = (MapNodeComposite) parent.getMapNode();
+            MapNode child = this.createChild(p);
             //child je null kada vec postoji MapNode sa tim imenom kod tog parenta
             if (child == null)
                 return;
+            
             //proverava jel to project explorer npr i dodaje dete
             parent.add(new MapTreeItem(child));//ovde dodaje novu decu i to vidimo
             mapTreeView.expandPath(mapTreeView.getSelectionPath());//i osvezavamo
