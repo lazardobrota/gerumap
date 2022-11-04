@@ -19,7 +19,11 @@ public class NewProjectAction extends AbstractGerumapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MapTreeItem selektovan = (MapTreeItem) MainFrame.getInstance().getMapTree().getSelectedNode();
+        //Ako nista nije selektovano da nema crash
+        if (MainFrame.getInstance().getMapTree().getSelectedNode() == null)
+            return;
+        //Bira cvor koji smo selektovali
+        MapTreeItem selektovan = MainFrame.getInstance().getMapTree().getSelectedNode(); //getSelectedNode() vraca MapTreeItem pa ne treba cast
         MainFrame.getInstance().getMapTree().addChild(selektovan);
     }
 }
