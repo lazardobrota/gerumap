@@ -63,9 +63,8 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
     public void actionPerformed(ActionEvent e) {
         if (this.clickedOn instanceof MapTreeItem) {
             MapTreeItem clicked = (MapTreeItem) this.clickedOn;
-            MapNodeComposite parent = (MapNodeComposite) clicked.getMapNode().getParent();
 
-            if (isCellNameUnique(parent, e))
+            if (isCellNameUnique((MapNodeComposite) clicked.getMapNode().getParent(), e))
                 clicked.setName(e.getActionCommand());//ono sto se ukuca u aplikaciji ide ovde kao e.getActionCommand(), string je
         }
     }
