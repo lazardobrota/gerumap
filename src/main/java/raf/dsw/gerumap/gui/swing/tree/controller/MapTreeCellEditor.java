@@ -1,6 +1,12 @@
 package raf.dsw.gerumap.gui.swing.tree.controller;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
+import raf.dsw.gerumap.mapRepository.composite.MapNode;
+import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
+import raf.dsw.gerumap.mapRepository.implementation.Element;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
+import raf.dsw.gerumap.mapRepository.implementation.Project;
+import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellEditor;
@@ -40,12 +46,27 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
         return false;
     }
 
-    //TODO: Ne mogu deca sa istim imenom da postoje kod jednog roditelja
+    public boolean isCellNameUnique(MapNodeComposite parent, ActionEvent e) {
+
+        if (parent == null)//roditelj ProjectExplorer-a ne postoji
+            return true;
+
+        for (MapNode child : parent.getChildren()) {
+            if (child.getIme().equals(e.getActionCommand()))
+                return false;
+        }
+
+        return true;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.clickedOn instanceof MapTreeItem) {
             MapTreeItem clicked = (MapTreeItem) this.clickedOn;
-            clicked.setName(e.getActionCommand());//ono sto se ukuca u aplikaciji ide ovde kao e.getActionCommand()
+            MapNodeComposite parent = (MapNodeComposite) clicked.getMapNode().getParent();
+
+            if (isCellNameUnique(parent, e))
+                clicked.setName(e.getActionCommand());//ono sto se ukuca u aplikaciji ide ovde kao e.getActionCommand(), string je
         }
     }
 }
