@@ -10,5 +10,6 @@ public interface MapTree {
     MapTreeView generateTree(ProjectExplorer projectExplorer);
     //na parenta dodaje dete
     void addChild(MapTreeItem parent);
+    void deleteChild(MapTreeItem child);
     MapTreeItem getSelectedNode();
 }

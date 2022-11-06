@@ -31,13 +31,13 @@ public class MapTreeImplementation implements MapTree{
         MapNode child = null;
 
         if(parent instanceof ProjectExplorer){
-            child = new Project("Project" + (parent.getChildren().size() + 1), parent);
+            child = new Project("Project" + parent.getNumberingChildren(), parent);
         }
         else if (parent instanceof Project) {
-            child = new MindMap("MindMap" + (parent.getChildren().size() + 1), parent, false);
+            child = new MindMap("MindMap" + parent.getNumberingChildren(), parent, false);
         }
         else if (parent instanceof MindMap) {
-            child = new Element("Element" + (parent.getChildren().size() + 1), parent);
+            child = new Element("Element" + parent.getNumberingChildren(), parent);
         }
 
         if (!parent.getChildren().contains(child)) {
@@ -64,6 +64,21 @@ public class MapTreeImplementation implements MapTree{
             SwingUtilities.updateComponentTreeUI(mapTreeView);
         }
     }
+
+    @Override
+    public void deleteChild(MapTreeItem child) {
+        if (child == null)//Ako nista nije selektovano
+            return;
+
+        MapNodeComposite parent = (MapNodeComposite) child.getMapNode().getParent();
+        if (parent == null)//Ne mozemo projectExplorer da brisemo
+            return;
+
+        parent.deleteChild(child.getMapNode());
+        System.out.println(parent.getChildren());
+        treeModel.removeNodeFromParent(child);
+    }
+
 
     @Override
     public MapTreeItem getSelectedNode(){
