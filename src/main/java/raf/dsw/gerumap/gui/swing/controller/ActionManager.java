@@ -14,6 +14,7 @@ public class ActionManager {
     private EditAction editAction;
     private OkAction okAction;
     private DeleteChildAction deleteChildAction;
+    private AutorAction autorAction;
 
     public ActionManager() {
         initActions();
@@ -25,6 +26,7 @@ public class ActionManager {
         editAction = new EditAction();
         okAction = new OkAction();
         deleteChildAction = new DeleteChildAction();
+        autorAction = new AutorAction();
     }
 
 }
