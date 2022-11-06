@@ -55,6 +55,11 @@ public class MainFrame extends JFrame {
 
 
         JPanel panel = new JPanel();
+        panel.setLayout(null);
+
+        JLabel labelaImenaProjekta = new JLabel("String");
+        labelaImenaProjekta.setBounds(0,0,100,30);
+        panel.add(labelaImenaProjekta);
 
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
