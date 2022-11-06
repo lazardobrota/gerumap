@@ -13,6 +13,7 @@ public class ActionManager {
     private NewProjectAction newProjectAction;
     private EditAction editAction;
     private OkAction okAction;
+    private DeleteChildAction deleteChildAction;
 
     public ActionManager() {
         initActions();
@@ -23,6 +24,7 @@ public class ActionManager {
         newProjectAction = new NewProjectAction();
         editAction = new EditAction();
         okAction = new OkAction();
+        deleteChildAction = new DeleteChildAction();
     }
 
 }
