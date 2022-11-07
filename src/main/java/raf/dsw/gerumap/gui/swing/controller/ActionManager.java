@@ -2,8 +2,6 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.gui.swing.view.InfoFrame;
-import raf.dsw.gerumap.gui.swing.view.MainFrame;
 
 @Getter
 @Setter
@@ -11,10 +9,10 @@ public class ActionManager {
 
     private InfoAction infoAction;
     private NewProjectAction newProjectAction;
-    private EditAction editAction;
+    private AutorAction editAction;
     private OkAction okAction;
     private DeleteChildAction deleteChildAction;
-    private AutorAction autorAction;
+    private SaveAction autorAction;
 
     public ActionManager() {
         initActions();
@@ -23,10 +21,10 @@ public class ActionManager {
     private void initActions() {
         infoAction = new InfoAction();
         newProjectAction = new NewProjectAction();
-        editAction = new EditAction();
+        editAction = new AutorAction();
         okAction = new OkAction();
         deleteChildAction = new DeleteChildAction();
-        autorAction = new AutorAction();
+        autorAction = new SaveAction();
     }
 
 }

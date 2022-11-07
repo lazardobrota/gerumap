@@ -1,27 +1,30 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
-import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.EditFrame;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
-import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
-public class AutorAction implements ActionListener {
+public class AutorAction extends AbstractGerumapAction{
 
-    private MapNode projekat;
+
+
+    public AutorAction(){
+
+        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E,ActionEvent.CTRL_MASK));
+        putValue(SMALL_ICON,loadIcon("/images/autor.png"));
+        putValue(NAME,"Autor");
+        putValue(SHORT_DESCRIPTION,"Promeni autora");
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MapTreeItem selektovan = MainFrame.getInstance().getMapTree().getSelectedNode();
-        projekat = selektovan.getMapNode();
-
-        if(selektovan!= null && projekat instanceof Project){
-            ((Project) projekat).setAutor(EditFrame.getInstance().getTfNazivAutora().getText());
-            EditFrame.getInstance().getTfNazivAutora().setText("");
-        }
-        EditFrame.getInstance().dispose();
+        if (MainFrame.getInstance().getMapTree().getSelectedNode() == null)
+            return;
+        if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)
+        EditFrame.getInstance().setVisible(true);
     }
 }

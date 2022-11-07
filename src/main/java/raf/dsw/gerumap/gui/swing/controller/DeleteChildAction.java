@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 
 public class DeleteChildAction extends AbstractGerumapAction{
 
-    //TODO: Ne radi skracenica za brisanje
     public DeleteChildAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
         putValue(SMALL_ICON,loadIcon("/images/delete.png"));
