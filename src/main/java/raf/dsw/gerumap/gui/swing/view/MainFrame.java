@@ -4,16 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
+import raf.dsw.gerumap.gui.swing.observer.Subscriber;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.MapTreeImplementation;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
+import raf.dsw.gerumap.mapRepository.implementation.Project;
 
 import javax.swing.*;
 import java.awt.*;
 
 @Getter
 @Setter
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Subscriber {
 
     private static MainFrame instance;//pravimo jednu instancu glavnog prozora??
     private ActionManager actionManager;//imamo sve moguce akcije za dugmice na jednom mestu
@@ -21,6 +23,8 @@ public class MainFrame extends JFrame {
     private JToolBar toolBar;
     private MapTree mapTree;
     private MapTreeView projectExplorer;
+
+    private JLabel lblImenaProjekta;
 
     private MainFrame() {
     }
@@ -55,11 +59,12 @@ public class MainFrame extends JFrame {
 
 
         JPanel panel = new JPanel();
-        panel.setLayout(null);
+        FlowLayout flowLayout = new FlowLayout();
+        flowLayout.setAlignment(FlowLayout.LEFT);
+        panel.setLayout(flowLayout);
 
-        JLabel labelaImenaProjekta = new JLabel("String");
-        labelaImenaProjekta.setBounds(0,0,100,30);
-        panel.add(labelaImenaProjekta);
+        lblImenaProjekta = new JLabel(" ");
+        panel.add(lblImenaProjekta);
 
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
@@ -79,4 +84,11 @@ public class MainFrame extends JFrame {
         return instance;
     }
 
+
+    @Override
+    public void update(Object notification) {
+        if (notification instanceof Project) {
+            lblImenaProjekta.setText(notification.toString());
+        }
+    }
 }

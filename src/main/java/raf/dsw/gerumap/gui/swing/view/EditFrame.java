@@ -15,7 +15,7 @@ public class EditFrame extends JDialog {
     private static EditFrame instance = null;
     private JLabel lblNazivAutora;
     private JTextField tfNazivAutora;
-    private JButton btnSacuvaj;
+    private JButton btnSave;
 
     private EditFrame(){}
 
@@ -32,7 +32,7 @@ public class EditFrame extends JDialog {
         lblNazivAutora = new JLabel("Unesite naziv autora: ");
         tfNazivAutora = new JTextField("");
         tfNazivAutora.setPreferredSize(new Dimension(70,20));
-        btnSacuvaj = new JButton("Sacuvaj");
+        btnSave = new JButton("Save");
 
 
         BoxLayout blVertikalni = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
@@ -44,13 +44,13 @@ public class EditFrame extends JDialog {
         panelZaBox.setBorder(new EmptyBorder(30, 0, 0,0));
 
         JPanel panelZaDugme = new JPanel();
-        panelZaDugme.add(btnSacuvaj);
+        panelZaDugme.add(btnSave);
         panelZaDugme.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         this.add(panelZaBox);
         this.add(panelZaDugme);
 
-        btnSacuvaj.addActionListener(MainFrame.getInstance().getActionManager().getAutorAction());
+        btnSave.addActionListener(MainFrame.getInstance().getActionManager().getAutorAction());
 
     }
 

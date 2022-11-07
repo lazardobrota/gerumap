@@ -17,7 +17,7 @@ public class MapTreeItem extends DefaultMutableTreeNode {
 
     @Override
     public String toString() {
-        return this.mapNode.toString();
+        return this.mapNode.getIme();
     }
 
     public void setName(String name) {
