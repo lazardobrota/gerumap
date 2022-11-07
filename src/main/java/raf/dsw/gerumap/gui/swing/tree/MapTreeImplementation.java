@@ -50,6 +50,8 @@ public class MapTreeImplementation implements MapTree{
 
     @Override
     public void addChild(MapTreeItem parent) {
+        if (parent == null)//Nista nije selektovano
+            return;
         if(parent.getMapNode() instanceof MapNodeComposite){
             //Da bi mogli da koristimo addChild() metodu koja sama proverava ako ima decu sa istim imenima
             MapNodeComposite p = (MapNodeComposite) parent.getMapNode();
