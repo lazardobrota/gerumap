@@ -24,7 +24,7 @@ public class EditFrame extends JDialog {
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = (int) screenSize.getHeight();
         int screenWidth = (int) screenSize.getWidth();
-        this.setSize(screenWidth / 5 + 20, screenHeight / 2 - 50);
+        this.setSize(screenWidth / 5 + 20, screenHeight / 4);
         this.setLocationRelativeTo(MainFrame.getInstance());
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setTitle("Izaberite ime autora");
