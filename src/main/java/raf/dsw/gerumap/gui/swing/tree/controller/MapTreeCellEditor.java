@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.gui.swing.tree.controller;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 import raf.dsw.gerumap.mapRepository.implementation.Element;
@@ -40,7 +41,15 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
     @Override
     public boolean isCellEditable(EventObject event) {
         if (event instanceof MouseEvent) {
-            return ((MouseEvent) event).getClickCount() == 3;
+            if (((MouseEvent) event).getClickCount() == 3)
+                return  true;
+            else if (((MouseEvent) event).getClickCount() == 2) {
+                MapTreeItem clicked = MainFrame.getInstance().getMapTree().getSelectedNode();
+                if (clicked.getMapNode() instanceof Project) {
+                    Project project = (Project) clicked.getMapNode();
+                    project.doubleClick();
+                }
+            }
         }
 
         return false;

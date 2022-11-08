@@ -31,6 +31,10 @@ public abstract class MapNode implements Publisher {
         this.notifySubs(this);
     }
 
+    public void doubleClick() {
+        this.notifySubs(this);
+    }
+
     //Da li su ista imena
     @Override
     public boolean equals(Object obj) {
