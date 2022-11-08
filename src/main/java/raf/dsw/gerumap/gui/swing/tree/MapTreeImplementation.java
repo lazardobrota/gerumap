@@ -4,6 +4,7 @@ import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeModel;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 import raf.dsw.gerumap.mapRepository.implementation.Element;
@@ -61,7 +62,7 @@ public class MapTreeImplementation implements MapTree{
             if (child == null)
                 return;
 
-            child.addSubs(MainFrame.getInstance());//Svakom detetu dodaje kao sub MainFrame
+            child.addSubs(ProjectView.getInstance());//Svakom detetu dodaje kao sub MainFrame
 
             //proverava jel to project explorer npr i dodaje dete
             parent.add(new MapTreeItem(child));//ovde dodaje novu decu i to vidimo
@@ -80,7 +81,7 @@ public class MapTreeImplementation implements MapTree{
             return;
 
         parent.deleteChild(child.getMapNode());
-        System.out.println(parent.getChildren());
+        //System.out.println(parent.getChildren());
         treeModel.removeNodeFromParent(child);
     }
 

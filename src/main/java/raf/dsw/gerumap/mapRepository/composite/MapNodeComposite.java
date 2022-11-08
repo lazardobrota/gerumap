@@ -2,6 +2,7 @@ package raf.dsw.gerumap.mapRepository.composite;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.gerumap.gui.swing.view.ProjectView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,8 @@ public abstract class MapNodeComposite extends MapNode{
     public abstract boolean addChild(MapNode mapNode);
 
     public void deleteChild(MapNode mapNode) {
+        mapNode.removeSubs(ProjectView.getInstance());//TODO da li je ovo dobar observer???
+        //mapNode.getParent().doubleClicked();
         children.remove(mapNode);
     }
 

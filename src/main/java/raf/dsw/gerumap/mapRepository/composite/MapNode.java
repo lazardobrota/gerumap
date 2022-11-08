@@ -1,7 +1,6 @@
 package raf.dsw.gerumap.mapRepository.composite;
 
 import lombok.Getter;
-import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.observer.Publisher;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
 
@@ -31,7 +30,12 @@ public abstract class MapNode implements Publisher {
         this.notifySubs(this);
     }
 
-    public void doubleClick() {
+    //TODO: sta da radim sa ovim delom, kako drugacije
+    public void doubleClicked() {
+        this.notifySubs(this);
+    }
+
+    public void autorChanged() {
         this.notifySubs(this);
     }
 
