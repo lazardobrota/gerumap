@@ -15,7 +15,7 @@ import java.awt.*;
 
 @Getter
 @Setter
-public class MainFrame extends JFrame implements Subscriber {
+public class MainFrame extends JFrame{
 
     private static MainFrame instance;//pravimo jednu instancu glavnog prozora??
     private ActionManager actionManager;//imamo sve moguce akcije za dugmice na jednom mestu
@@ -24,8 +24,6 @@ public class MainFrame extends JFrame implements Subscriber {
     private MapTree mapTree;
     private MapTreeView projectExplorer;
 
-    private JLabel lblImenaProjekta;
-
     private MainFrame() {
     }
 
@@ -33,6 +31,7 @@ public class MainFrame extends JFrame implements Subscriber {
         actionManager = new ActionManager();
         mapTree = new MapTreeImplementation();
         projectExplorer = mapTree.generateTree(ApplicationFramework.getInstance().getMapRepository().getProjectExplorer());
+        ProjectView.getInstance();
         initGui();
     }
 
@@ -63,13 +62,10 @@ public class MainFrame extends JFrame implements Subscriber {
         flowLayout.setAlignment(FlowLayout.LEFT);
         panel.setLayout(flowLayout);
 
-        lblImenaProjekta = new JLabel(" ");
-        panel.add(lblImenaProjekta);
-
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
 
-        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, panel); // ono sto deli project explorer i radnu tablu
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, ProjectView.getInstance()); // ono sto deli project explorer i radnu tablu
         this.getContentPane().add(split, BorderLayout.CENTER);
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
@@ -82,13 +78,5 @@ public class MainFrame extends JFrame implements Subscriber {
         }
 
         return instance;
-    }
-
-
-    @Override
-    public void update(Object notification) {
-        if (notification instanceof Project) {
-            lblImenaProjekta.setText(notification.toString());
-        }
     }
 }
