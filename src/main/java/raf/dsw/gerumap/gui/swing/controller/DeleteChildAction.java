@@ -17,6 +17,7 @@ public class DeleteChildAction extends AbstractGerumapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //brise selektovani node
         MainFrame.getInstance().getMapTree().deleteChild(MainFrame.getInstance().getMapTree().getSelectedNode());
     }
 }
