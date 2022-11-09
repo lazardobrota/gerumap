@@ -32,6 +32,7 @@ public class MainFrame extends JFrame{
         mapTree = new MapTreeImplementation();
         projectExplorer = mapTree.generateTree(ApplicationFramework.getInstance().getMapRepository().getProjectExplorer());
         ProjectView.getInstance();
+        PageView.getInstance();
         initGui();
     }
 
@@ -58,14 +59,15 @@ public class MainFrame extends JFrame{
 
 
         JPanel panel = new JPanel();
-        FlowLayout flowLayout = new FlowLayout();
-        flowLayout.setAlignment(FlowLayout.LEFT);
-        panel.setLayout(flowLayout);
+        BorderLayout borderLayout = new BorderLayout();
+        panel.setLayout(borderLayout);
+        panel.add(ProjectView.getInstance(), BorderLayout.NORTH);
+        panel.add(PageView.getInstance(), BorderLayout.CENTER);
 
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
 
-        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, ProjectView.getInstance()); // ono sto deli project explorer i radnu tablu
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, panel); // ono sto deli project explorer i radnu tablu
         this.getContentPane().add(split, BorderLayout.CENTER);
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
