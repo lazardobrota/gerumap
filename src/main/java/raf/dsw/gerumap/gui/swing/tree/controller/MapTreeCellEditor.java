@@ -45,6 +45,7 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
                 if (clicked.getMapNode() instanceof Project) {
                     Project project = (Project) clicked.getMapNode();
                     //ProjectView.getInstance().setProject();
+                    project.doubleClicked(project);
                 }
             }
         }
