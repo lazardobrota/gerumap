@@ -3,9 +3,9 @@ package raf.dsw.gerumap.gui.swing.controller;
 import raf.dsw.gerumap.mapRepository.factory.FactoryUtils;
 import raf.dsw.gerumap.mapRepository.factory.NodeFactory;
 
-public interface NewAction{
+public class NewAction{
 
-   // private NodeFactory nodeFactory = FactoryUtils.getFactory();
+   // private NodeFactory nodeFactory = FactoryUtils.getFactory(MapNode mapNode);
 
 
 }

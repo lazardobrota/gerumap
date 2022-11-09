@@ -3,15 +3,11 @@ package raf.dsw.gerumap.mapRepository.factory;
 
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 
-public abstract class NodeFactory extends MapNode {
-
-     public NodeFactory(String ime, MapNode parent) {
-          super(ime, parent);
-     }
+public abstract class NodeFactory {
 
      public MapNode getNode(){
           MapNode node = createNode();
-          // node.setIme();
+          //node.setIme();
           //node.setParent();
           return node;
      }
