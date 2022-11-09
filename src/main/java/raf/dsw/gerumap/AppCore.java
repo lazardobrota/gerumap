@@ -1,13 +1,11 @@
 package raf.dsw.gerumap;
 
-import raf.dsw.gerumap.core.ApplicationFramework;
-import raf.dsw.gerumap.core.Gui;
-import raf.dsw.gerumap.core.MapRepository;
+import raf.dsw.gerumap.core.*;
 import raf.dsw.gerumap.gui.swing.SwingGui;
+import raf.dsw.gerumap.gui.swing.error.LoggerType;
+import raf.dsw.gerumap.gui.swing.error.LoggerFactory;
 import raf.dsw.gerumap.mapRepository.MapRepositoryImpl;
-import raf.dsw.gerumap.mapRepository.composite.MapNode;
-import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
-import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
+import raf.dsw.gerumap.messageGen.MessageGenImpl;
 
 public class AppCore {
 
@@ -16,7 +14,9 @@ public class AppCore {
         ApplicationFramework applicationFramework = ApplicationFramework.getInstance();
         Gui gui = new SwingGui();
         MapRepository mapRepository = new MapRepositoryImpl();
-        applicationFramework.initialise(gui,mapRepository);
+        ErrorLogger errorLogger = LoggerFactory.createLogger(LoggerType.CONSOLE_LOGGER);
+        MessageGenerator messageGenerator = new MessageGenImpl();
+        applicationFramework.initialise(gui,mapRepository, errorLogger, messageGenerator);
         applicationFramework.run();
     }
 
