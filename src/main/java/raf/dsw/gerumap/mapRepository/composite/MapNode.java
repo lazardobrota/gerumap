@@ -31,8 +31,13 @@ public abstract class MapNode implements Publisher {
     }
 
     //TODO: sta da radim sa ovim delom, kako drugacije
-    public void doubleClicked() {
-        this.notifySubs(this);
+    public void doubleClicked(Object notification) {
+        if(notification == null || this.subscribers == null || this.subscribers.isEmpty())
+            return;
+
+        for(Subscriber listener : subscribers){
+            listener.projectRename(notification);
+        }
     }
 
     public void autorChanged() {

@@ -48,4 +48,11 @@ public class ProjectView extends JPanel implements Subscriber {
             lblProjectName.setText(notification.toString());
         }
     }
+
+    @Override
+    public void projectRename(Object notification) {
+        if (notification instanceof Project) {
+            lblProjectName.setText(notification.toString());
+        }
+    }
 }

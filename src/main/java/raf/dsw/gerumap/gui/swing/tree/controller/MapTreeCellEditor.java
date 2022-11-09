@@ -43,11 +43,10 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
                 MapTreeItem clicked = MainFrame.getInstance().getMapTree().getSelectedNode();
                 if (clicked.getMapNode() instanceof Project) {
                     Project project = (Project) clicked.getMapNode();
-                    project.doubleClicked();
+                    project.doubleClicked(project);
                 }
             }
         }
-
         return false;
     }
 
