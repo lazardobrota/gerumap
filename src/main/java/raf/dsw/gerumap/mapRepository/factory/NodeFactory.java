@@ -6,9 +6,11 @@ import raf.dsw.gerumap.mapRepository.composite.MapNode;
 public abstract class NodeFactory {
 
      public MapNode getNode(){
+
           MapNode node = createNode();
-          //node.setIme();
-          //node.setParent();
+          node.setIme();
+          node.setParent();
+
           return node;
      }
 
