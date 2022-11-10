@@ -3,7 +3,6 @@ package raf.dsw.gerumap.gui.swing.view;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
-import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 
 import javax.swing.*;
@@ -13,15 +12,15 @@ import java.awt.*;
 @Setter
 public class ProjectView extends JPanel implements Subscriber {
 
-    private static ProjectView instance = null;
 
-    private MapNode mapNode = null;
+    private Project project = null;
 
     private FlowLayout flowLayout;
 
     private JLabel lblProjectName;
 
-    private ProjectView() {
+    public ProjectView() {
+        init();
     }
 
     private void init() {
@@ -33,13 +32,9 @@ public class ProjectView extends JPanel implements Subscriber {
         this.add(lblProjectName);
     }
 
-    public static ProjectView getInstance() {
-        if (instance == null) {
-            instance = new ProjectView();
-            instance.init();
-        }
-
-        return instance;
+    private void setViewUI() {
+        this.lblProjectName.setText(this.project.toString());
+        MainFrame.getInstance().getPageView().updateMindMaps(this.project);
     }
 
     @Override
@@ -54,5 +49,13 @@ public class ProjectView extends JPanel implements Subscriber {
         if (notification instanceof Project) {
             lblProjectName.setText(notification.toString());
         }
+    }
+
+    public void setProject(Project project) {
+        if (this.project != null)
+            this.project.removeSubs(this);//brise sa prethodnog projekta da mu sub bude ProjectView iz MainFrame
+        this.project = project;
+        this.project.addSubs(this);//postavlja da mu sada selektovani projekat ima sub ProjectView iz MainFrame
+        this.setViewUI();
     }
 }

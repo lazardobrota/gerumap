@@ -7,4 +7,6 @@ public class TabsPanel extends JTabbedPane {
     public TabsPanel() {
     }
 
+
+
 }
