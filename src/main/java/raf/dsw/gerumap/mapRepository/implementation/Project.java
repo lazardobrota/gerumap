@@ -35,12 +35,23 @@ public class Project extends MapNodeComposite {
             return false;
 
         this.getChildren().add(mindMap);
-        this.notifySubs(mindMap);//prosledjujemo ovaj minMap jer treba od njega novi tab da se napravi i treba da obavesti njegove subove da se apdejtaju
+        this.notifySubs(this);//prosledjujemo ovaj minMap jer treba od njega novi tab da se napravi i treba da obavesti njegove subove da se apdejtaju
         return true;
+    }
+
+    @Override
+    public void deleteChild(MapNode mapNode) {
+        super.deleteChild(mapNode);
+        this.notifySubs(this);
     }
 
     @Override
     public String toString() {
         return "Projekat: " + getIme() + ", Autor: " + getAutor();
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+        this.notifySubs(this);
     }
 }
