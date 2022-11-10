@@ -7,6 +7,6 @@ public class ProjectFactory extends NodeFactory{
 
     @Override
     public MapNode createNode() {
-        return new Project(" ",null);
+        return new Project();
     }
 }

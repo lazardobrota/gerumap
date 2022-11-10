@@ -15,6 +15,9 @@ public class MindMap extends MapNodeComposite {
         super(ime, parent);
         this.sablon = sablon;
     }
+    public MindMap(){
+
+    }
 
     //Dodaje element u MindMap
     @Override

@@ -7,6 +7,6 @@ public class ElementFactory extends NodeFactory{
 
     @Override
     public MapNode createNode() {
-        return new Element(" ",null);
+        return new Element();
     }
 }

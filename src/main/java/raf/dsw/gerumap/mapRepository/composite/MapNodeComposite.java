@@ -22,6 +22,9 @@ public abstract class MapNodeComposite extends MapNode{
         super(ime, parent);
         children = new ArrayList<>();
     }
+    public MapNodeComposite(){
+
+    }
 
     //Mozda ako ucitavamo vec postojaci projekat pa da mozemo odmah sve mape uma da dodamo??????
     public MapNodeComposite(String ime, MapNode parent, List<MapNode> children) {
