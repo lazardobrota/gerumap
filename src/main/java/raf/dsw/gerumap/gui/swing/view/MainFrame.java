@@ -31,6 +31,8 @@ public class MainFrame extends JFrame{
         mapTree = new MapTreeImplementation();
         projectExplorer = mapTree.generateTree(ApplicationFramework.getInstance().getMapRepository().getProjectExplorer());
         projectView = new ProjectView();
+        //Dodaje project exploreru kao sub projectView
+        ApplicationFramework.getInstance().getMapRepository().getProjectExplorer().addSubs(MainFrame.getInstance().getProjectView());
         initGui();
     }
 

@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.mapRepository.implementation;
 
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.gui.swing.view.MainPanel;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 
@@ -24,5 +26,12 @@ public class ProjectExplorer extends MapNodeComposite {
 
         this.getChildren().add(p);
         return true;
+    }
+
+    @Override
+    public void deleteChild(MapNode mapNode) {
+        super.deleteChild(mapNode);
+        this.notifySubs(this);
+        mapNode.removeSubs(MainFrame.getInstance().getProjectView());
     }
 }

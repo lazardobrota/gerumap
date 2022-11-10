@@ -19,6 +19,13 @@ public class MindMap extends MapNodeComposite {
 
     }
 
+    //TODO: Treba da dodamo sub za MinMap
+    @Override
+    public void setIme(String ime) {
+        super.setIme(ime);
+        this.notifySubs(this);
+    }
+
     //Dodaje element u MindMap
     @Override
     public boolean addChild(MapNode mapNode) {
