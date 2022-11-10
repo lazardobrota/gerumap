@@ -20,6 +20,9 @@ public class Project extends MapNodeComposite {
     public Project(String ime, MapNode parent){
         super(ime,parent);
     }
+    public Project(){
+
+    }
 
     //Dodaje mapu uma u Project
     @Override

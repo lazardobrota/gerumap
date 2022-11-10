@@ -7,4 +7,5 @@ public class Element extends MapNode {
     public Element(String ime, MapNode parent) {
         super(ime, parent);
     }
+    public Element(){}
 }

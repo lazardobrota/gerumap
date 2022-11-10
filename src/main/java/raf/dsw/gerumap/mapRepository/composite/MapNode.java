@@ -24,6 +24,15 @@ public abstract class MapNode implements Publisher {
 
         subscribers = new ArrayList<>();
     }
+    public MapNode(){
+
+    }
+    public void setIme(){
+
+    }
+    public void setParent(){
+
+    }
 
     public void setIme(String ime) {
         this.ime = ime;

@@ -8,6 +8,9 @@ public class ProjectExplorer extends MapNodeComposite {
     public ProjectExplorer(String ime) {
         super(ime, null);
     }
+    public ProjectExplorer(){
+
+    }
 
     //Dodaje projekat u ProjectExplorer
     @Override
