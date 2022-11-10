@@ -20,11 +20,11 @@ public class MindMap extends MapNodeComposite {
         sablon = false;
     }
 
-    //TODO: Treba da dodamo sub za MinMap
     @Override
     public void setIme(String ime) {
         super.setIme(ime);
-        this.notifySubs(this);
+        Project parent = (Project) this.getParent();//Salje roditelja mape uma koja je promenjena
+        parent.notifySubs(parent);
     }
 
     //Dodaje element u MindMap

@@ -50,7 +50,6 @@ public abstract class MapNode implements Publisher {
         return this.ime;
     }
 
-    //TODO: Mapa uma nema subs pa nikada ne ulazi u promenu imena
     @Override
     public void notifySubs(Object notification) {
         if(notification == null || this.subscribers == null || this.subscribers.isEmpty())
