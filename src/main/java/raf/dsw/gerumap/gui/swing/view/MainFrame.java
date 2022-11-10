@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
-import raf.dsw.gerumap.gui.swing.observer.Subscriber;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.MapTreeImplementation;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
-import raf.dsw.gerumap.mapRepository.implementation.Project;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +22,7 @@ public class MainFrame extends JFrame{
     private MapTree mapTree;
     private MapTreeView projectExplorer;
     private ProjectView projectView;
-    private PageView pageView;
+    private MapView mapView;
 
     private MainFrame() {
     }
@@ -34,7 +32,7 @@ public class MainFrame extends JFrame{
         mapTree = new MapTreeImplementation();
         projectExplorer = mapTree.generateTree(ApplicationFramework.getInstance().getMapRepository().getProjectExplorer());
         projectView = new ProjectView();
-        pageView = new PageView();
+        mapView = new MapView();
         initGui();
     }
 
@@ -64,7 +62,7 @@ public class MainFrame extends JFrame{
         BorderLayout borderLayout = new BorderLayout();
         panel.setLayout(borderLayout);
         panel.add(projectView, BorderLayout.NORTH);
-        panel.add(pageView, BorderLayout.CENTER);
+        panel.add(mapView, BorderLayout.CENTER);
 
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));

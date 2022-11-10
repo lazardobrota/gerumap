@@ -12,14 +12,14 @@ import java.awt.*;
 
 @Getter
 @Setter
-public class PageView extends JPanel implements Subscriber {
+public class MapView extends JPanel implements Subscriber {
 
 
     private TabsPanel tabsPanel;
 
     private BorderLayout borderLayout;
 
-    public PageView() {
+    public MapView() {
         init();
     }
 
@@ -35,7 +35,7 @@ public class PageView extends JPanel implements Subscriber {
         this.add(tabsPanel, BorderLayout.CENTER);
     }
 
-    public void updateMindMaps(Project project) {
+    public void changeMindMaps(Project project) {
         tabsPanel.removeAll();
         for (MapNode mapNode : project.getChildren()) {
             MindMap mindMap = (MindMap) mapNode;
@@ -46,11 +46,12 @@ public class PageView extends JPanel implements Subscriber {
 
     @Override
     public void update(Object notification) {
-
+        if (notification instanceof MindMap) {
+        }
     }
 
     @Override
-    public void projectRename(Object notification) {
+    public void rename(Object notification) {
 
     }
 }

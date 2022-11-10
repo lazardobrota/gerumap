@@ -36,7 +36,7 @@ public abstract class MapNode implements Publisher {
             return;
 
         for(Subscriber listener : subscribers){
-            listener.projectRename(notification);
+            listener.rename(notification);
         }
     }
 

@@ -3,6 +3,7 @@ package raf.dsw.gerumap.gui.swing.view;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 
 import javax.swing.*;
@@ -34,7 +35,7 @@ public class ProjectView extends JPanel implements Subscriber {
 
     private void setViewUI() {
         this.lblProjectName.setText(this.project.toString());
-        MainFrame.getInstance().getPageView().updateMindMaps(this.project);
+        MainFrame.getInstance().getMapView().changeMindMaps(this.project);
     }
 
     @Override
@@ -45,9 +46,12 @@ public class ProjectView extends JPanel implements Subscriber {
     }
 
     @Override
-    public void projectRename(Object notification) {
+    public void rename(Object notification) {
         if (notification instanceof Project) {
             lblProjectName.setText(notification.toString());
+        }
+        if (notification instanceof MindMap) {
+
         }
     }
 
