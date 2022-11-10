@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.mapRepository.composite;
 
 import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.observer.Publisher;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 /**
  * MapNode su svi elemeti: Project Explorer(on jedini nema roditelja), Projekat, mapa uma i pojmovi
  */
@@ -25,12 +27,6 @@ public abstract class MapNode implements Publisher {
         subscribers = new ArrayList<>();
     }
     public MapNode(){
-
-    }
-    public void setIme(){
-
-    }
-    public void setParent(){
 
     }
 
@@ -83,4 +79,7 @@ public abstract class MapNode implements Publisher {
             return;
         this.subscribers.remove(sub);
     }
+
+
+
 }

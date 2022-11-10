@@ -21,7 +21,7 @@ public class Project extends MapNodeComposite {
         super(ime,parent);
     }
     public Project(){
-
+        this.setIme("Project" + ((ProjectExplorer)this.getParent()).getNumberingChildren());
     }
 
     //Dodaje mapu uma u Project

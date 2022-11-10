@@ -7,19 +7,25 @@ import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
 public class FactoryUtils {
 
+    private static final ProjectFactory projectFactory = new ProjectFactory();
+    private static final MindMapFactory mindMapFactory = new MindMapFactory();
+    private static final ElementFactory elementFactory = new ElementFactory();
+
+    //Ovo su svi moguci MapNodeComposite
     public static NodeFactory getFactory(MapNode mapNode) {
 
         if (mapNode instanceof ProjectExplorer) {
-            return new ProjectFactory();
+            return projectFactory;
         }
-        else if(mapNode instanceof Project){
-            return new MindMapFactory();
+
+        if (mapNode instanceof Project){
+            return mindMapFactory;
         }
-        else if(mapNode instanceof MindMap){
-            return new ElementFactory();
+
+        if (mapNode instanceof MindMap){
+            return elementFactory;
         }
-        else {
-            return null;
-        }
+
+        return null;
     }
 }

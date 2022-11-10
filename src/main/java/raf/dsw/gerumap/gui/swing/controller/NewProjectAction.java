@@ -2,12 +2,17 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.mapRepository.composite.MapNode;
+import raf.dsw.gerumap.mapRepository.factory.FactoryUtils;
+import raf.dsw.gerumap.mapRepository.factory.NodeFactory;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 public class NewProjectAction extends AbstractGerumapAction{
+
+    private NodeFactory nodeFactory;
 
     public NewProjectAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));//ACCELERATOR_KEY - zadajemo precicu
@@ -21,5 +26,10 @@ public class NewProjectAction extends AbstractGerumapAction{
         //Bira cvor koji smo selektovali
         MapTreeItem selektovan = MainFrame.getInstance().getMapTree().getSelectedNode(); //getSelectedNode() vraca MapTreeItem pa ne treba cast
         MainFrame.getInstance().getMapTree().addChild(selektovan);
+
+//        nodeFactory = FactoryUtils.getFactory(selektovan.getMapNode());
+//        MapNode child = nodeFactory.getNode();
+//        MapTreeItem mapTreeItem = new MapTreeItem(child);
+//        MainFrame.getInstance().getMapTree().addChild(mapTreeItem);
     }
 }

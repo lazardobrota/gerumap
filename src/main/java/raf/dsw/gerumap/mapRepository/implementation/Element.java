@@ -7,5 +7,9 @@ public class Element extends MapNode {
     public Element(String ime, MapNode parent) {
         super(ime, parent);
     }
-    public Element(){}
+    public Element(){
+        this.setIme("Element" + ((MindMap)this.getParent()).getNumberingChildren());
+    }
+
+
 }

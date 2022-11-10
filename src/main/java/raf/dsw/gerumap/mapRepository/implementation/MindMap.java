@@ -16,7 +16,8 @@ public class MindMap extends MapNodeComposite {
         this.sablon = sablon;
     }
     public MindMap(){
-
+        this.setIme("MindMap" + ((Project)this.getParent()).getNumberingChildren());
+        sablon = false;
     }
 
     //TODO: Treba da dodamo sub za MinMap

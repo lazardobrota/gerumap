@@ -62,8 +62,6 @@ public class MapTreeImplementation implements MapTree{
             if (child == null)
                 return;
 
-            //child.addSubs(ProjectView.getInstance());//Svakom detetu dodaje kao sub MainFrame
-
             //proverava jel to project explorer npr i dodaje dete
             parent.add(new MapTreeItem(child));//ovde dodaje novu decu i to vidimo
             mapTreeView.expandPath(mapTreeView.getSelectionPath());//i osvezavamo
