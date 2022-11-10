@@ -22,7 +22,6 @@ public class MainFrame extends JFrame{
     private MapTree mapTree;
     private MapTreeView projectExplorer;
     private ProjectView projectView;
-    private MapView mapView;
 
     private MainFrame() {
     }
@@ -32,7 +31,6 @@ public class MainFrame extends JFrame{
         mapTree = new MapTreeImplementation();
         projectExplorer = mapTree.generateTree(ApplicationFramework.getInstance().getMapRepository().getProjectExplorer());
         projectView = new ProjectView();
-        mapView = new MapView();
         initGui();
     }
 
@@ -62,7 +60,7 @@ public class MainFrame extends JFrame{
         BorderLayout borderLayout = new BorderLayout();
         panel.setLayout(borderLayout);
         panel.add(projectView, BorderLayout.NORTH);
-        panel.add(mapView, BorderLayout.CENTER);
+        panel.add(MainPanel.getInstance(), BorderLayout.CENTER);
 
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));

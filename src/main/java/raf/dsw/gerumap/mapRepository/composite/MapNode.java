@@ -73,6 +73,7 @@ public abstract class MapNode implements Publisher {
         if(notification == null || this.subscribers == null || this.subscribers.isEmpty())
             return;
 
+
         for(Subscriber listener : subscribers){
             listener.update(notification);
         }

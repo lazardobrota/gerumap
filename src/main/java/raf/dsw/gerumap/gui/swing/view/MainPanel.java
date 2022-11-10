@@ -2,7 +2,6 @@ package raf.dsw.gerumap.gui.swing.view;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.gui.swing.observer.Subscriber;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
@@ -12,22 +11,22 @@ import java.awt.*;
 
 @Getter
 @Setter
-public class MapView extends JPanel implements Subscriber {
+public class MainPanel extends JPanel{
 
+    private static MainPanel instance;
 
     private TabsPanel tabsPanel;
 
     private BorderLayout borderLayout;
 
-    public MapView() {
-        init();
+    private MainPanel() {
     }
 
     private void init() {
         tabsPanel = new TabsPanel();
-        tabsPanel.add("tab1", new JLabel(" "));
-        tabsPanel.add("tab2", new JLabel(" "));
-        tabsPanel.add("tab3", new JLabel(" "));
+        tabsPanel.addTab("tab1", new JLabel(" "));
+        tabsPanel.addTab("tab2", new JLabel(" "));
+        tabsPanel.addTab("tab3", new JLabel(" "));
 
         borderLayout = new BorderLayout();
 
@@ -38,20 +37,16 @@ public class MapView extends JPanel implements Subscriber {
     public void changeMindMaps(Project project) {
         tabsPanel.removeAll();
         for (MapNode mapNode : project.getChildren()) {
-            MindMap mindMap = (MindMap) mapNode;
-            tabsPanel.add(mindMap.toString(), new JLabel());//TODO: Ovde ne znam sta umesto JLabel da stavim
+            MindMap map = (MindMap) mapNode;
+            tabsPanel.add(map.toString(), new JLabel());//TODO: Ovde ne znam sta umesto JLabel da stavim
         }
     }
 
-
-    @Override
-    public void update(Object notification) {
-        if (notification instanceof MindMap) {
+    public static MainPanel getInstance() {
+        if (instance == null) {
+            instance = new MainPanel();
+            instance.init();
         }
-    }
-
-    @Override
-    public void rename(Object notification) {
-
+        return instance;
     }
 }
