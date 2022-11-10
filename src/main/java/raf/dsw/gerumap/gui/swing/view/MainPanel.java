@@ -24,10 +24,6 @@ public class MainPanel extends JPanel{
 
     private void init() {
         tabsPanel = new TabsPanel();
-        tabsPanel.addTab("tab1", new JLabel(" "));
-        tabsPanel.addTab("tab2", new JLabel(" "));
-        tabsPanel.addTab("tab3", new JLabel(" "));
-
         borderLayout = new BorderLayout();
 
         this.setLayout(borderLayout);
@@ -38,7 +34,54 @@ public class MainPanel extends JPanel{
         tabsPanel.removeAll();
         for (MapNode mapNode : project.getChildren()) {
             MindMap map = (MindMap) mapNode;
-            tabsPanel.add(map.toString(), new JLabel());//TODO: Ovde ne znam sta umesto JLabel da stavim
+            tabsPanel.add(map.getIme(), new JPanel());//TODO: Ovde ne znam sta umesto JPanel() da stavim
+        }
+    }
+
+    //Menja ime mape uma na tabu
+    public void changeTabName(Project project) {
+        boolean t = false;
+        //Prolazimo kroz sve tabove
+        for (int i = 0; i < tabsPanel.getTabCount(); i++) {
+            t = false;
+            //Prolazimo kroz sve mape uma u projektu
+            for (MapNode mapNode : project.getChildren()) {
+                MindMap mindMap = (MindMap) mapNode;
+                //Ako postoji ta mapa uma u projektu sa istim imenom kao i na tabu onda ne radi nista
+                if (tabsPanel.getTitleAt(i).equals(mindMap.getIme()))
+                    t = true;
+            }
+            if (t)
+                continue;
+
+            tabsPanel.setTitleAt(i, project.getChildren().get(i).getIme());
+            return;
+        }
+    }
+
+    public void addMap(Project project) {
+        //Uzimamo poslednji mindMap koji je dodat
+        MindMap mindMap = (MindMap) project.getChildren().get(project.getChildren().size() - 1);
+        tabsPanel.addTab(mindMap.getIme(), new JPanel());//TODO: Ovde ne znam sta umesto JPanel() da stavim
+    }
+
+    public void removeMap(Project project) {
+        boolean t = false;
+        //Prolazimo kroz sve tabove
+        for (int i = 0; i < tabsPanel.getTabCount(); i++) {
+            t = false;
+            //Prolazimo kroz sve mape uma u projektu
+            for (MapNode mapNode : project.getChildren()) {
+                MindMap mindMap = (MindMap) mapNode;
+                //Ako postoji ta mapa uma u projektu i na tabu onda se ne brise
+                if (tabsPanel.getTitleAt(i).equals(mindMap.getIme()))
+                    t = true;
+            }
+            if (t)
+                continue;
+
+            tabsPanel.removeTabAt(i);
+            return;
         }
     }
 

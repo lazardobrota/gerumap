@@ -3,7 +3,10 @@ package raf.dsw.gerumap.gui.swing.view;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
+import raf.dsw.gerumap.mapRepository.composite.MapNode;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
+import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,23 +40,48 @@ public class ProjectView extends JPanel implements Subscriber {
         MainPanel.getInstance().changeMindMaps(this.project);
     }
 
+    private void removeProject(ProjectExplorer projectExplorer) {
+
+        for (MapNode mapNode : projectExplorer.getChildren()) {
+            Project project = (Project) mapNode;
+            if (lblProjectName.getText().equals(project.toString()))
+                return;
+        }
+
+        MainPanel.getInstance().getTabsPanel().removeAll();
+        lblProjectName.setText(" ");
+        project = null;
+
+    }
+
     @Override
     public void update(Object notification) {
-        if (!(notification instanceof Project))
+        if (notification instanceof ProjectExplorer) {
+            this.removeProject((ProjectExplorer) notification);
             return;
-        lblProjectName.setText(notification.toString());
-    }
+        }
 
-    @Override
-    public void rename(Object notification) {
-        if (!(notification instanceof Project))
-            return;
-        lblProjectName.setText(notification.toString());
-    }
+        if (notification instanceof Project) {
+            //Ako ima vise dece nego tabova
+            if (MainPanel.getInstance().getTabsPanel().getTabCount() < ((Project) notification).getChildren().size()) {
+                MainPanel.getInstance().addMap(project);
+                return;
+            }
+            //Ako jebroj tabova veci nego broj dece
+            if (MainPanel.getInstance().getTabsPanel().getTabCount() > ((Project) notification).getChildren().size()) {
+                MainPanel.getInstance().removeMap(project);
+                return;
+            }
 
-    @Override
-    public void childAdded(Object notification) {
+            //Ako je promeneno ime ili autor projekta
+            if (!lblProjectName.getText().equals(notification.toString())) {
+                lblProjectName.setText(notification.toString());
+                return;
+            }
 
+            //Ako je promenjeno ime mape uma
+            MainPanel.getInstance().changeTabName((Project) notification);
+        }
     }
 
 
