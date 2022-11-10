@@ -2,7 +2,6 @@ package raf.dsw.gerumap.gui.swing.tree.controller;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
-import raf.dsw.gerumap.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
@@ -45,7 +44,8 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
                 if (clicked.getMapNode() instanceof Project) {
                     Project project = (Project) clicked.getMapNode();
                     //ProjectView.getInstance().setProject();
-                    project.doubleClicked(project);
+                    MainFrame.getInstance().getProjectView().setProject(project);
+                    //project.doubleClicked(project);
                 }
             }
         }
