@@ -39,20 +39,6 @@ public abstract class MapNode implements Publisher {
         this.notifySubs(this);
     }
 
-    //TODO: sta da radim sa ovim delom, kako drugacije
-    public void doubleClicked(Object notification) {
-        if(notification == null || this.subscribers == null || this.subscribers.isEmpty())
-            return;
-
-        for(Subscriber listener : subscribers){
-            listener.rename(notification);
-        }
-    }
-
-    public void autorChanged() {
-        this.notifySubs(this);
-    }
-
     //Da li su ista imena
     @Override
     public boolean equals(Object obj) {
@@ -68,6 +54,7 @@ public abstract class MapNode implements Publisher {
         return this.ime;
     }
 
+    //TODO: Mapa uma nema subs pa nikada ne ulazi u promenu imena
     @Override
     public void notifySubs(Object notification) {
         if(notification == null || this.subscribers == null || this.subscribers.isEmpty())
