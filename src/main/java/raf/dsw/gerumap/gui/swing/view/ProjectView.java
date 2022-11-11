@@ -67,13 +67,13 @@ public class ProjectView extends JPanel implements Subscriber {
                 MainPanel.getInstance().addMap(project);
                 return;
             }
-            //Ako jebroj tabova veci nego broj dece
+            //Ako je broj tabova veci nego broj dece
             if (MainPanel.getInstance().getTabsPanel().getTabCount() > ((Project) notification).getChildren().size()) {
                 MainPanel.getInstance().removeMap(project);
                 return;
             }
 
-            //Ako je promeneno ime ili autor projekta
+            //Ako je promenjeno ime ili autor projekta
             if (!lblProjectName.getText().equals(notification.toString())) {
                 lblProjectName.setText(notification.toString());
                 return;
