@@ -8,7 +8,7 @@ public class Element extends MapNode {
         super(ime, parent);
     }
     public Element(){
-        this.setIme("Element" + ((MindMap)this.getParent()).getNumberingChildren());
+        this.setStartingName("Element");
     }
 
 

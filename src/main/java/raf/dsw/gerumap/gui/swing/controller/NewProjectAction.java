@@ -27,9 +27,5 @@ public class NewProjectAction extends AbstractGerumapAction{
         MapTreeItem selektovan = MainFrame.getInstance().getMapTree().getSelectedNode(); //getSelectedNode() vraca MapTreeItem pa ne treba cast
         MainFrame.getInstance().getMapTree().addChild(selektovan);
 
-//        nodeFactory = FactoryUtils.getFactory(selektovan.getMapNode());
-//        MapNode child = nodeFactory.getNode();
-//        MapTreeItem mapTreeItem = new MapTreeItem(child);
-//        MainFrame.getInstance().getMapTree().addChild(mapTreeItem);
     }
 }

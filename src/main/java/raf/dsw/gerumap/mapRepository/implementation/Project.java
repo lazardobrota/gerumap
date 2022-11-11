@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.mapRepository.implementation;
 
+import javafx.scene.Parent;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
@@ -21,7 +22,7 @@ public class Project extends MapNodeComposite {
         super(ime,parent);
     }
     public Project(){
-        this.setIme("Project" + ((ProjectExplorer)this.getParent()).getNumberingChildren());
+        this.setStartingName("Projekat");
     }
 
     //Dodaje mapu uma u Project

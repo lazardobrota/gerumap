@@ -35,6 +35,10 @@ public abstract class MapNode implements Publisher {
         this.notifySubs(this);
     }
 
+    public void setStartingName(String ime){
+        this.ime = ime;
+    }
+
     //Da li su ista imena
     @Override
     public boolean equals(Object obj) {

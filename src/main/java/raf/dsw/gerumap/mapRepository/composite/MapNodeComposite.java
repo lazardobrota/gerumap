@@ -15,21 +15,14 @@ import java.util.List;
 public abstract class MapNodeComposite extends MapNode{
 
     //kompozicija gde je OVO onaj crni romb a strelica je kod MapNode
-    private List<MapNode> children;
+    private List<MapNode> children = new ArrayList<>();
     private int numberingChildren = 1;
 
     public MapNodeComposite(String ime, MapNode parent) {
         super(ime, parent);
-        children = new ArrayList<>();
     }
     public MapNodeComposite(){
 
-    }
-
-    //Mozda ako ucitavamo vec postojaci projekat pa da mozemo odmah sve mape uma da dodamo??????
-    public MapNodeComposite(String ime, MapNode parent, List<MapNode> children) {
-        super(ime, parent);
-        this.children = children;
     }
 
     public abstract boolean addChild(MapNode mapNode);
