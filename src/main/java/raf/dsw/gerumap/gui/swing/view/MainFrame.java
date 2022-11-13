@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
+import raf.dsw.gerumap.gui.swing.messageGen.Message;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.MapTreeImplementation;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
@@ -71,6 +72,10 @@ public class MainFrame extends JFrame{
         this.getContentPane().add(split, BorderLayout.CENTER);
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
+    }
+
+    public void errorMessage(Message message) {
+        JOptionPane.showMessageDialog(new JDialog(), message);
     }
 
     public static MainFrame getInstance() {

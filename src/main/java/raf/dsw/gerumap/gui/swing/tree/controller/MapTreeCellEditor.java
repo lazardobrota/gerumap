@@ -1,5 +1,8 @@
 package raf.dsw.gerumap.gui.swing.tree.controller;
 
+import raf.dsw.gerumap.core.ApplicationFramework;
+import raf.dsw.gerumap.gui.swing.error.ErrorType;
+import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
@@ -43,9 +46,7 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
                 MapTreeItem clicked = MainFrame.getInstance().getMapTree().getSelectedNode();
                 if (clicked.getMapNode() instanceof Project) {
                     Project project = (Project) clicked.getMapNode();
-                    //ProjectView.getInstance().setProject();
                     MainFrame.getInstance().getProjectView().setProject(project);
-                    //project.doubleClicked(project);
                 }
             }
         }
@@ -56,6 +57,11 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
 
         if (parent == null)//roditelj ProjectExplorer-a ne postoji
             return true;
+
+        if (!e.getActionCommand().matches("[a-zA-Z 0-9]+")) { //Ne moze da bude prazno ime
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.INVALID_NAME);
+            return false;
+        }
 
         for (MapNode child : parent.getChildren()) {
             if (child.getIme().equals(e.getActionCommand()))

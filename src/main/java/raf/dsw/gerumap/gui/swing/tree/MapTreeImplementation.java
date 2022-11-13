@@ -1,5 +1,8 @@
 package raf.dsw.gerumap.gui.swing.tree;
 
+import raf.dsw.gerumap.core.ApplicationFramework;
+import raf.dsw.gerumap.gui.swing.error.ErrorType;
+import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeModel;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
@@ -39,8 +42,12 @@ public class MapTreeImplementation implements MapTree{
 
     @Override
     public void addChild(MapTreeItem parent) {
-        if (parent == null)//Nista nije selektovano
+        if (parent == null){ //Nista nije selektovano
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.EXCEPTION, ProblemType.NOTHING_IS_SELECTED);
             return;
+        }
+
+        //Da li mozemo da dodamo dete
         if(parent.getMapNode() instanceof MapNodeComposite){
             //Da bi mogli da koristimo addChild() metodu koja sama proverava ako ima decu sa istim imenima
             MapNodeComposite p = (MapNodeComposite) parent.getMapNode();
@@ -54,19 +61,25 @@ public class MapTreeImplementation implements MapTree{
             mapTreeView.expandPath(mapTreeView.getSelectionPath());//i osvezavamo
             SwingUtilities.updateComponentTreeUI(mapTreeView);
         }
+        else {
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.CANNOT_ADD_CHILD);
+        }
     }
 
     @Override
     public void deleteChild(MapTreeItem child) {
-        if (child == null)//Ako nista nije selektovano
+        if (child == null) { //Ako nista nije selektovano
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.EXCEPTION, ProblemType.NOTHING_IS_SELECTED);
             return;
+        }
 
         MapNodeComposite parent = (MapNodeComposite) child.getMapNode().getParent();
-        if (parent == null)//Ne mozemo projectExplorer da brisemo
+        if (parent == null) { //Ne mozemo projectExplorer da brisemo
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.CANNOT_REMOVE_PROJECT_EXPLORER);
             return;
+        }
 
         parent.deleteChild(child.getMapNode());
-        //System.out.println(parent.getChildren());
         treeModel.removeNodeFromParent(child);
     }
 

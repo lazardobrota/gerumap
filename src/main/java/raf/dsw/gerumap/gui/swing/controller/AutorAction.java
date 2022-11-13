@@ -1,5 +1,8 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.core.ApplicationFramework;
+import raf.dsw.gerumap.gui.swing.error.ErrorType;
+import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.view.EditFrame;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
@@ -22,9 +25,16 @@ public class AutorAction extends AbstractGerumapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (MainFrame.getInstance().getMapTree().getSelectedNode() == null)
+        if (MainFrame.getInstance().getMapTree().getSelectedNode() == null) {
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.NOTHING_IS_SELECTED);
             return;
-        if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)
+        }
+        if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) {
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.CANNOT_SET_AUTHOR);
+            return;
+        }
+        Project project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
+        EditFrame.getInstance().getTfNazivAutora().setText(project.getAutor()); //Napise prethodni naziv autora u textBox
         EditFrame.getInstance().setVisible(true);
     }
 }

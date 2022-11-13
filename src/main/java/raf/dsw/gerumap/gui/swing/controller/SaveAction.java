@@ -21,7 +21,7 @@ public class SaveAction implements ActionListener {
 
         if(selektovan != null && projekat instanceof Project){
             ((Project) projekat).setAutor(EditFrame.getInstance().getTfNazivAutora().getText());
-            EditFrame.getInstance().getTfNazivAutora().setText(" ");
+            EditFrame.getInstance().getTfNazivAutora().setText("");
         }
         EditFrame.getInstance().dispose();
     }
