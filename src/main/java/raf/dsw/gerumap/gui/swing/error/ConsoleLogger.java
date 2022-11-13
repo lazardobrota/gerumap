@@ -1,21 +1,17 @@
 package raf.dsw.gerumap.gui.swing.error;
 
 import raf.dsw.gerumap.core.ErrorLogger;
+import raf.dsw.gerumap.gui.swing.messageGen.Message;
 
 public class ConsoleLogger implements ErrorLogger {
 
     @Override
-    public String log(ErrorType errorType) {
-        if (errorType.equals(ErrorType.ERROR)) {
-            System.out.println("Imas error");
-        }
-        else if (errorType.equals(ErrorType.EXCEPTION)) {
-            System.out.println("Imas exception");
-        }
-        else if (errorType.equals(ErrorType.WARNING)) {
-            System.out.println("Imas warning");
-        }
+    public void log(Message message) {
+        System.out.println(message.toString());
+    }
 
-        return null;
+    @Override
+    public void update(Object notification) {
+        this.log((Message) notification);
     }
 }

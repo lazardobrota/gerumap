@@ -9,7 +9,7 @@ import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 @Setter
 public class Project extends MapNodeComposite {
 
-    private String autor = " ";   //osoba koja je napravila projekat
+    private String autor = "";   //osoba koja je napravila projekat
     private String putanja;
 
     public Project(String ime, MapNode parent, String autor, String putanja) {
