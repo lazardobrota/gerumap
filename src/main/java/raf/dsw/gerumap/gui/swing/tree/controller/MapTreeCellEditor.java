@@ -55,13 +55,12 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
 
     public boolean isCellNameUnique(MapNodeComposite parent, ActionEvent e) {
 
-        if (parent == null)//roditelj ProjectExplorer-a ne postoji
-            return true;
-
         if (!e.getActionCommand().matches("[a-zA-Z 0-9]+")) { //Ne moze da bude prazno ime
             ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.INVALID_NAME);
             return false;
         }
+        if (parent == null)//roditelj ProjectExplorer-a ne postoji
+            return true;
 
         for (MapNode child : parent.getChildren()) {
             if (child.getIme().equals(e.getActionCommand()))
