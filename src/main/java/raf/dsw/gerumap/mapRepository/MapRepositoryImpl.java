@@ -1,8 +1,6 @@
 package raf.dsw.gerumap.mapRepository;
 
 import raf.dsw.gerumap.core.MapRepository;
-import raf.dsw.gerumap.mapRepository.composite.MapNode;
-import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
 /**

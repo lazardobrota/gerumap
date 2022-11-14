@@ -3,7 +3,7 @@ package raf.dsw.gerumap.gui.swing.view;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.gui.swing.controller.OkAction;
+
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

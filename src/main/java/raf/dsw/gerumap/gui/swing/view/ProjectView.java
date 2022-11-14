@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
-import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 

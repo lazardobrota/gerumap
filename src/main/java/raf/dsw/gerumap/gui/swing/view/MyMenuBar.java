@@ -1,7 +1,5 @@
 package raf.dsw.gerumap.gui.swing.view;
 
-import com.sun.tools.javac.Main;
-
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 

@@ -2,7 +2,6 @@ package raf.dsw.gerumap.mapRepository.composite;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.gui.swing.view.ProjectView;
 
 import java.util.ArrayList;
 import java.util.List;
