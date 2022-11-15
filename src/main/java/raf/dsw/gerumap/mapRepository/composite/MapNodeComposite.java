@@ -28,6 +28,7 @@ public abstract class MapNodeComposite extends MapNode{
 
     public void deleteChild(MapNode mapNode) {
         children.remove(mapNode);
+        this.notifySubs(this);
     }
 
     public int getNumberingChildren() {
