@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
@@ -78,15 +79,25 @@ public class ProjectView extends JPanel implements Subscriber {
                 return;
             }
 
+            return;
+        }
+
+        if (notification instanceof MindMap) {
             //Ako je promenjeno ime mape uma
-            MainPanel.getInstance().changeTabName((Project) notification);
+            MainPanel.getInstance().changeTabName((Project) ((MindMap) notification).getParent());
+            //todo ubudece kada elementi budu nesto radili
         }
     }
 
 
     public void setProject(Project project) {
-        if (this.project != null)
+        if (this.project != null) {
             this.project.removeSubs(this);//brise sa prethodnog projekta da mu sub bude ProjectView iz MainFrame
+            //Sklanja za svaki mindMap sa starog projekta ProjectView kao sub
+            for (MapNode mapNode : this.project.getChildren()) { // todo
+                mapNode.removeSubs(this);
+            }
+        }
         this.project = project;
         this.project.addSubs(this);//postavlja da mu sada selektovani projekat ima sub ProjectView iz MainFrame
         this.setViewUI();
