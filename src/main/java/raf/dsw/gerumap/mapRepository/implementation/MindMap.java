@@ -20,13 +20,6 @@ public class MindMap extends MapNodeComposite {
         sablon = false;
     }
 
-    @Override
-    public void setIme(String ime) {
-        super.setIme(ime);
-        Project parent = (Project) this.getParent();//Salje roditelja mape uma koja je promenjena
-        parent.notifySubs(parent);
-    }
-
     //Dodaje element u MindMap
     @Override
     public boolean addChild(MapNode mapNode) {

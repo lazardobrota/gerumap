@@ -40,12 +40,6 @@ public class Project extends MapNodeComposite {
     }
 
     @Override
-    public void deleteChild(MapNode mapNode) {
-        super.deleteChild(mapNode);
-        this.notifySubs(this);
-    }
-
-    @Override
     public String toString() {
         return "Projekat: " + getIme() + ", Autor: " + getAutor();
     }

@@ -26,11 +26,4 @@ public class ProjectExplorer extends MapNodeComposite {
         this.getChildren().add(p);
         return true;
     }
-
-    @Override
-    public void deleteChild(MapNode mapNode) {
-        super.deleteChild(mapNode);
-        this.notifySubs(this);//TODO: Da li ovde projext explorer da ima sub ili da prosledimo njegovo dete (Project)
-        mapNode.removeSubs(MainFrame.getInstance().getProjectView());
-    }
 }
