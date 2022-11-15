@@ -34,7 +34,8 @@ public class MainPanel extends JPanel{
         tabsPanel.removeAll();
         for (MapNode mapNode : project.getChildren()) {
             MindMap map = (MindMap) mapNode;
-            tabsPanel.add(map.getIme(), new JPanel());//TODO: Ovde ne znam sta umesto JPanel() da stavim
+            map.addSubs(MainFrame.getInstance().getProjectView());//todo
+            tabsPanel.add(map.getIme(), new JPanel());
         }
     }
 
@@ -62,7 +63,8 @@ public class MainPanel extends JPanel{
     public void addMap(Project project) {
         //Uzimamo poslednji mindMap koji je dodat
         MindMap mindMap = (MindMap) project.getChildren().get(project.getChildren().size() - 1);
-        tabsPanel.addTab(mindMap.getIme(), new JPanel());//TODO: Ovde ne znam sta umesto JPanel() da stavim
+        mindMap.addSubs(MainFrame.getInstance().getProjectView());//todo
+        tabsPanel.addTab(mindMap.getIme(), new JPanel());
     }
 
     public void removeMap(Project project) {
