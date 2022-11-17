@@ -17,7 +17,6 @@ public class MessageGenImpl implements MessageGenerator {
 
     @Override
     public void generateMessage(ErrorType errorType, ProblemType problemType) {
-        //todo: iz nekog razloga jednom se desio neki nullPointerException nakon sto je dodat replaceAll al nisam siguran da li je do toga
         this.notifySubs(new Message("[" + errorType + "] [" + time + "] [" + problemType.toString().replaceAll("_", " ") + "]"));
     }
 

@@ -85,7 +85,6 @@ public class ProjectView extends JPanel implements Subscriber {
         if (notification instanceof MindMap) {
             //Ako je promenjeno ime mape uma
             MainPanel.getInstance().changeTabName((Project) ((MindMap) notification).getParent());
-            //todo ubudece kada elementi budu nesto radili
         }
     }
 
@@ -94,7 +93,7 @@ public class ProjectView extends JPanel implements Subscriber {
         if (this.project != null) {
             this.project.removeSubs(this);//brise sa prethodnog projekta da mu sub bude ProjectView iz MainFrame
             //Sklanja za svaki mindMap sa starog projekta ProjectView kao sub
-            for (MapNode mapNode : this.project.getChildren()) { // todo
+            for (MapNode mapNode : this.project.getChildren()) {
                 mapNode.removeSubs(this);
             }
         }
