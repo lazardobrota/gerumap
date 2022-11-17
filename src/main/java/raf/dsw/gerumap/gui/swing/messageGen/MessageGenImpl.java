@@ -13,11 +13,10 @@ import java.util.List;
 public class MessageGenImpl implements MessageGenerator {
 
     List<Subscriber> subscribers = new ArrayList<>();
-    String time = new SimpleDateFormat("dd.M.yy. hh:mm").format(new Date());
 
     @Override
     public void generateMessage(ErrorType errorType, ProblemType problemType) {
-        this.notifySubs(new Message("[" + errorType + "] [" + time + "] [" + problemType.toString().replaceAll("_", " ") + "]"));
+        this.notifySubs(new Message(errorType, problemType));
     }
 
     @Override
