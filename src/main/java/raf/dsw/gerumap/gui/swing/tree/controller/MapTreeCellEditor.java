@@ -63,8 +63,10 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
             return true;
 
         for (MapNode child : parent.getChildren()) {
-            if (child.getIme().equals(e.getActionCommand()))
+            if (child.getIme().equals(e.getActionCommand())) {
+                ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.INVALID_NAME);
                 return false;
+            }
         }
 
         return true;
