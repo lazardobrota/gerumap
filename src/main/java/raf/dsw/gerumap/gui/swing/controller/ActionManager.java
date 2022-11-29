@@ -2,10 +2,7 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.gui.swing.controller.verticalButtons.AddElementAction;
-import raf.dsw.gerumap.gui.swing.controller.verticalButtons.ConnectAction;
-import raf.dsw.gerumap.gui.swing.controller.verticalButtons.MoveAction;
-import raf.dsw.gerumap.gui.swing.controller.verticalButtons.SelectAction;
+import raf.dsw.gerumap.gui.swing.controller.verticalButtons.*;
 
 @Getter
 @Setter
@@ -21,8 +18,10 @@ public class ActionManager {
     //Vertikalni dugmici
     private AddElementAction addElementAction;
     private ConnectAction connectAction;
+    private EraseAction eraseAction;
     private MoveAction moveAction;
     private SelectAction selectAction;
+    private ZoomAction zoomAction;
 
     public ActionManager() {
         initActions();
@@ -38,8 +37,10 @@ public class ActionManager {
 
         addElementAction = new AddElementAction();
         connectAction = new ConnectAction();
+        eraseAction = new EraseAction();
         moveAction = new MoveAction();
         selectAction = new SelectAction();
+        zoomAction = new ZoomAction();
     }
 
 }

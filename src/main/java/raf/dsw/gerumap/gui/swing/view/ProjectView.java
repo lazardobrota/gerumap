@@ -7,6 +7,7 @@ import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
+import raf.dsw.gerumap.state.StateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,10 +18,10 @@ public class ProjectView extends JPanel implements Subscriber {
 
 
     private Project project = null;
-
     private FlowLayout flowLayout;
-
     private JLabel lblProjectName;
+
+    private StateManager stateManager;
 
     public ProjectView() {
         init();
@@ -29,10 +30,12 @@ public class ProjectView extends JPanel implements Subscriber {
     private void init() {
         flowLayout = new FlowLayout();
         lblProjectName = new JLabel(" ");
+        stateManager = new StateManager();
 
         flowLayout.setAlignment(FlowLayout.LEFT);
         this.setLayout(flowLayout);
         this.add(lblProjectName);
+
     }
 
     private void setViewUI() {
@@ -100,5 +103,33 @@ public class ProjectView extends JPanel implements Subscriber {
         this.project = project;
         this.project.addSubs(this);//postavlja da mu sada selektovani projekat ima sub ProjectView iz MainFrame
         this.setViewUI();
+    }
+
+    public void startAddElementState() {
+        this.stateManager.setAddElementState();
+    }
+
+    public void startConnectState() {
+        this.stateManager.setConnectState();
+    }
+
+    public void startEraseState() {
+        this.stateManager.setEraseState();
+    }
+
+    public void startMoveState() {
+        this.stateManager.setMoveState();
+    }
+
+    public void startSelectState() {
+        this.stateManager.setSelectState();
+    }
+
+    public void startZoomState() {
+        this.stateManager.setZoomState();
+    }
+
+    public void pressedResult() {
+        this.stateManager.getCurrentState().pressed();
     }
 }
