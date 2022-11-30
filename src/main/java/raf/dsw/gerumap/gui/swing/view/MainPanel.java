@@ -8,6 +8,8 @@ import raf.dsw.gerumap.mapRepository.implementation.Project;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,6 +18,7 @@ public class MainPanel extends JPanel{
     private static MainPanel instance;
 
     private TabsPanel tabsPanel;
+    private List<MindMapView> mindMapViewList = new ArrayList<>();//todo mozda
 
     private BorderLayout borderLayout;
 
