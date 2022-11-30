@@ -16,7 +16,8 @@ public class MindMapView extends JPanel implements Subscriber {
     private MindMap mindMap;
     private List<ElementPainter> elementPainterList = new ArrayList<>();//todo da li on uzima svu decu od mindMap i kako to radi
 
-    public MindMapView() {
+    public MindMapView(MindMap mindMap) {
+        this.mindMap = mindMap;
     }
 
     @Override

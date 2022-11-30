@@ -6,9 +6,6 @@ import java.awt.*;
 
 public class PojamPainter extends ElementPainter{
 
-    //todo gde pravimo shape
-    private Shape shape;//Ima razlicite oblike, elipsa, pravougaonik, ...
-
     public PojamPainter(Element element) {
         super(element);
     }

@@ -18,7 +18,6 @@ public class MainPanel extends JPanel{
     private static MainPanel instance;
 
     private TabsPanel tabsPanel;
-    private List<MindMapView> mindMapViewList = new ArrayList<>();//todo mozda
 
     private BorderLayout borderLayout;
 
@@ -38,7 +37,10 @@ public class MainPanel extends JPanel{
         for (MapNode mapNode : project.getChildren()) {
             MindMap map = (MindMap) mapNode;
             map.addSubs(MainFrame.getInstance().getProjectView());
-            tabsPanel.add(map.getIme(), new JPanel());
+
+            MindMapView mindMapView = new MindMapView(map);
+
+            tabsPanel.add(mindMapView.getMindMap().getIme(), mindMapView);
         }
     }
 
@@ -67,7 +69,10 @@ public class MainPanel extends JPanel{
         //Uzimamo poslednji mindMap koji je dodat
         MindMap mindMap = (MindMap) project.getChildren().get(project.getChildren().size() - 1);
         mindMap.addSubs(MainFrame.getInstance().getProjectView());
-        tabsPanel.addTab(mindMap.getIme(), new JPanel());
+
+        MindMapView mindMapView = new MindMapView(mindMap);
+
+        tabsPanel.addTab(mindMapView.getMindMap().getIme(), mindMapView);
     }
 
     public void removeMap(Project project) {
