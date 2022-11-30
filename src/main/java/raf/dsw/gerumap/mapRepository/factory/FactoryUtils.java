@@ -9,7 +9,6 @@ public class FactoryUtils {
 
     private static final ProjectFactory projectFactory = new ProjectFactory();
     private static final MindMapFactory mindMapFactory = new MindMapFactory();
-    private static final ElementFactory elementFactory = new ElementFactory();
 
     //Ovo su svi moguci MapNodeComposite
     public static NodeFactory getFactory(MapNode mapNode) {
@@ -20,10 +19,6 @@ public class FactoryUtils {
 
         if (mapNode instanceof Project){
             return mindMapFactory;
-        }
-
-        if (mapNode instanceof MindMap){
-            return elementFactory;
         }
 
         return null;

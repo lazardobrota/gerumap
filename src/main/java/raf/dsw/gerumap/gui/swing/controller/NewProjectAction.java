@@ -1,8 +1,12 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.core.ApplicationFramework;
+import raf.dsw.gerumap.gui.swing.error.ErrorType;
+import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.mapRepository.factory.NodeFactory;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,6 +27,13 @@ public class NewProjectAction extends AbstractGerumapAction{
     public void actionPerformed(ActionEvent e) {
         //Bira cvor koji smo selektovali
         MapTreeItem selektovan = MainFrame.getInstance().getMapTree().getSelectedNode(); //getSelectedNode() vraca MapTreeItem pa ne treba cast
+
+        //Ne moze da doda mapi uma dodate element na newProjectAction
+        if (selektovan.getMapNode() instanceof MindMap) {
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.CANNOT_ADD_CHILD);
+            return ;
+        }
+
         MainFrame.getInstance().getMapTree().addChild(selektovan);
 
     }
