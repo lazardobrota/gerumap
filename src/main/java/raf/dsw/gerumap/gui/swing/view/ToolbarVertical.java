@@ -9,10 +9,15 @@ public class ToolbarVertical extends JToolBar {
         setFloatable(false);
 
         this.add(MainFrame.getInstance().getActionManager().getAddElementAction());
+        this.addSeparator();
         this.add(MainFrame.getInstance().getActionManager().getConnectAction());
+        this.addSeparator();
         this.add(MainFrame.getInstance().getActionManager().getEraseAction());
+        this.addSeparator();
         this.add(MainFrame.getInstance().getActionManager().getMoveAction());
+        this.addSeparator();
         this.add(MainFrame.getInstance().getActionManager().getSelectAction());
+        this.addSeparator();
         this.add(MainFrame.getInstance().getActionManager().getZoomAction());
     }
 }
