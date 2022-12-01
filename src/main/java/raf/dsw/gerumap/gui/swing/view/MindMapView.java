@@ -32,22 +32,29 @@ public class MindMapView extends JPanel implements Subscriber {
 
     //todo
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    protected void paintComponent(Graphics g) {//Iscrtava
+        super.paintComponent(g);//prvo iscrta sve tabove
+
+        //sada nove dodate stvari iz paintera crta
+        for (ElementPainter elementPainter : elementPainterList) {
+            elementPainter.draw((Graphics2D) g, elementPainter.getElement());
+        }
     }
 
     @Override
     public void update(Object notification) {
+        //treba da bude if ako je dodat novi element za repaint
+        repaint();//poziva paintComponent
     }
 
+    //Kad se klikne negde na mindMap prozor
     private class MouseController extends MouseAdapter {
-
-        //Uzima iz selektovanog taba minMapView odnosno JPanel
-        private MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
 
         @Override
         public void mousePressed(MouseEvent e) {
+            MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
             Point position = e.getPoint();
+
             MainFrame.getInstance().getProjectView().pressedMouse(position.x, position.y, mindMapView);
         }
 
