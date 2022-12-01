@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.gui.swing.view;
 
 import raf.dsw.gerumap.mapRepository.implementation.Element;
+import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 
 import java.awt.*;
 
@@ -13,7 +14,10 @@ public class PojamPainter extends ElementPainter{
     //todo
     @Override
     public void draw(Graphics2D g, Element element) {
-
+        Pojam p = (Pojam) element;
+        System.out.println("draw");
+        g.setPaint(Color.RED);
+        g.drawOval(p.getPosition().x, p.getPosition().y, p.getDimension().width + 20, p.getDimension().height);//TODO treba elipsa sa podesenim tekstom da bude
     }
 
     //todo
