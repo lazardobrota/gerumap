@@ -42,6 +42,7 @@ public class MainPanel extends JPanel{
             map.addSubs(MainFrame.getInstance().getProjectView());
 
             MindMapView mindMapView = new MindMapView(map);
+
             map.addSubs(mindMapView);
 
             tabsPanel.add(mindMapView.getMindMap().getIme(), mindMapView);
@@ -75,6 +76,7 @@ public class MainPanel extends JPanel{
         mindMap.addSubs(MainFrame.getInstance().getProjectView());
 
         MindMapView mindMapView = new MindMapView(mindMap);
+
         mindMap.addSubs(mindMapView);
 
         tabsPanel.addTab(mindMapView.getMindMap().getIme(), mindMapView);
