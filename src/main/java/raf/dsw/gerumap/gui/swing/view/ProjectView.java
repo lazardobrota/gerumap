@@ -129,7 +129,7 @@ public class ProjectView extends JPanel implements Subscriber {
         this.stateManager.setZoomState();
     }
 
-    public void pressedResult() {
-        this.stateManager.getCurrentState().pressed();
+    public void pressedMouse(int x, int y, MindMapView mindMapView) {
+        this.stateManager.getCurrentState().pressed(x, y, mindMapView);
     }
 }

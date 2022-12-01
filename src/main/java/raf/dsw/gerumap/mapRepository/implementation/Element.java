@@ -4,7 +4,7 @@ import raf.dsw.gerumap.mapRepository.composite.MapNode;
 
 import java.awt.*;
 
-public abstract class Element extends MapNode {//todo treba da bude abstract i da se promeni Factory za element
+public abstract class Element extends MapNode {
 
     private Color color;
     private int stroke;//debljina linije
