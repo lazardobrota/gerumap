@@ -20,7 +20,6 @@ public class MainFrame extends JFrame{
     private ActionManager actionManager;//imamo sve moguce akcije za dugmice na jednom mestu
     private JMenuBar menu;
     private JToolBar toolBar;
-    private JToolBar toolBarVertical;
     private MapTree mapTree;
     private MapTreeView projectExplorer;
     private ProjectView projectView;
@@ -57,10 +56,6 @@ public class MainFrame extends JFrame{
 
         toolBar = new Toolbar();
         this.add(toolBar, BorderLayout.NORTH);
-
-        toolBarVertical = new ToolbarVertical();
-        this.add(toolBarVertical, BorderLayout.EAST);
-
 
         JPanel panel = new JPanel();
         BorderLayout borderLayout = new BorderLayout();

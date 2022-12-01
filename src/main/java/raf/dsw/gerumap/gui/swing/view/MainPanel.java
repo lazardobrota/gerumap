@@ -18,6 +18,7 @@ public class MainPanel extends JPanel{
     private static MainPanel instance;
 
     private TabsPanel tabsPanel;
+    private JToolBar toolBarVertical;
 
     private BorderLayout borderLayout;
 
@@ -26,10 +27,12 @@ public class MainPanel extends JPanel{
 
     private void init() {
         tabsPanel = new TabsPanel();
+        toolBarVertical = new ToolbarVertical();
         borderLayout = new BorderLayout();
 
         this.setLayout(borderLayout);
         this.add(tabsPanel, BorderLayout.CENTER);
+        this.add(toolBarVertical, BorderLayout.EAST);
     }
 
     public void changeMindMaps(Project project) {
@@ -39,6 +42,7 @@ public class MainPanel extends JPanel{
             map.addSubs(MainFrame.getInstance().getProjectView());
 
             MindMapView mindMapView = new MindMapView(map);
+            map.addSubs(mindMapView);
 
             tabsPanel.add(mindMapView.getMindMap().getIme(), mindMapView);
         }
@@ -71,6 +75,7 @@ public class MainPanel extends JPanel{
         mindMap.addSubs(MainFrame.getInstance().getProjectView());
 
         MindMapView mindMapView = new MindMapView(mindMap);
+        mindMap.addSubs(mindMapView);
 
         tabsPanel.addTab(mindMapView.getMindMap().getIme(), mindMapView);
     }
