@@ -16,7 +16,7 @@ public class PojamPainter extends ElementPainter{
     public void draw(Graphics2D g, Element element) {
         Pojam p = (Pojam) element;
         System.out.println("draw");
-        g.setPaint(Color.RED);
+        g.setPaint(p.getColor());//todo treba da se doda metoda
         g.drawOval(p.getPosition().x, p.getPosition().y, p.getDimension().width + 20, p.getDimension().height);//TODO treba elipsa sa podesenim tekstom da bude
     }
 
