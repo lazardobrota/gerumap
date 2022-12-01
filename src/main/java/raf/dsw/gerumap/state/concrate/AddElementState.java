@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.state.concrate;
 
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.gui.swing.view.PojamPainter;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
@@ -18,7 +19,8 @@ public class AddElementState extends State {
         m.getElementPainterList().add(new PojamPainter(pojam));//u listu paintera za tu mapu uma se dodaje pojam
 
         //Dodaje dete i poziva se update
-        mindMap.addChild(pojam);
+        mindMap.addChild(pojam);//todo treba i u stablu da se doda
+        //MainFrame.getInstance().getMapTree().addChild(mindMap);
         System.out.println("Add");
     }
 }
