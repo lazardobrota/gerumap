@@ -52,6 +52,7 @@ public class MindMapView extends JPanel implements Subscriber {
 
         @Override
         public void mousePressed(MouseEvent e) {
+            //Uzima mapu uma koja je trenutno prikazana na tabu
             MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
             Point position = e.getPoint();
 

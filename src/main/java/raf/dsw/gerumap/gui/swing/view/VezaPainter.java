@@ -18,6 +18,7 @@ public class VezaPainter extends ElementPainter{
     }
 
     //todo
+    //ovo sluzi da znamo da li smo pogodili jedan pojam kako bi mogli vezu da povucemo iz njega
     @Override
     public boolean elementAt(Element element, Point position) {
         return false;
