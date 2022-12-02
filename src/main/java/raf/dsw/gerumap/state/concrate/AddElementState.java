@@ -47,7 +47,7 @@ public class AddElementState extends State {
 
         //Ako je van panela da ga ne postavi mnogo desno sa Math.abs
         if (c2 < 0)
-            c2 = c;
+            c2 = 0;
 
         return c2;
     }
