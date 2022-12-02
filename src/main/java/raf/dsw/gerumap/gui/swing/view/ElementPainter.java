@@ -10,7 +10,7 @@ import java.awt.*;
 @Setter
 public abstract class ElementPainter {
 
-    private Element element;//element koji moze da bude ili pojam ili veza
+    protected Element element;//element koji moze da bude ili pojam ili veza
     protected Shape shape;//Ima razlicite oblike, elipsa, pravougaonik, linija, ...
 
     public ElementPainter(Element element) {
