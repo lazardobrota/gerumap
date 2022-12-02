@@ -28,10 +28,15 @@ public class NewProjectAction extends AbstractGerumapAction{
         //Bira cvor koji smo selektovali
         MapTreeItem selektovan = MainFrame.getInstance().getMapTree().getSelectedNode(); //getSelectedNode() vraca MapTreeItem pa ne treba cast
 
+        if (selektovan == null) {//Nista nije selektovano
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.EXCEPTION, ProblemType.NOTHING_IS_SELECTED);
+            return;
+        }
+
         //Ne moze da doda mapi uma dodate element na newProjectAction
         if (selektovan.getMapNode() instanceof MindMap) {
             ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.CANNOT_ADD_CHILD);
-            return ;
+            return;
         }
 
         MainFrame.getInstance().getMapTree().addChild(selektovan);

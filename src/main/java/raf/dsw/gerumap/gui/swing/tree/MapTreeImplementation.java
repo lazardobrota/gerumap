@@ -42,11 +42,7 @@ public class MapTreeImplementation implements MapTree{
 
     @Override
     public void addChild(MapTreeItem parent) {
-        if (parent == null){ //Nista nije selektovano
-            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.EXCEPTION, ProblemType.NOTHING_IS_SELECTED);
-            return;
-        }
-
+        
         //Da li mozemo da dodamo dete
         if(parent.getMapNode() instanceof MapNodeComposite){
             //Da bi mogli da koristimo addChild() metodu koja sama proverava ako ima decu sa istim imenima
