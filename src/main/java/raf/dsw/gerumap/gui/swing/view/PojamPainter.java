@@ -19,7 +19,7 @@ public class PojamPainter extends ElementPainter{
         Pojam p = (Pojam) element;
         System.out.println("draw");
         g.setPaint(p.getColor());//todo treba da se doda metoda
-        g.setStroke(new BasicStroke(10));
+        //g.setStroke(new BasicStroke(10));
         int x = p.getPosition().x;
         int y = p.getPosition().y;
 

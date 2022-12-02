@@ -1,5 +1,8 @@
 package raf.dsw.gerumap.state.concrate;
 
+import raf.dsw.gerumap.core.ApplicationFramework;
+import raf.dsw.gerumap.gui.swing.error.ErrorType;
+import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.view.ElementPainter;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
@@ -24,6 +27,7 @@ public class AddElementState extends State {
         for (ElementPainter elementPainter : m.getElementPainterList()) {
             //Vec postoji na toj poziciji takav pojam
             if (elementPainter.elementAt(pojam, pojam.getPosition())) {
+                ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.POSITION_TAKEN);
                 return;
             }
         }

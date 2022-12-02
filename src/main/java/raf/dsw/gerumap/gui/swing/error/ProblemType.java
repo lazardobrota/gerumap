@@ -6,4 +6,5 @@ public enum ProblemType {
     NOTHING_IS_SELECTED,
     INVALID_NAME,
     CANNOT_SET_AUTHOR,
+    POSITION_TAKEN
 }
