@@ -3,10 +3,7 @@ package raf.dsw.gerumap.state.concrate;
 import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.gui.swing.error.ErrorType;
 import raf.dsw.gerumap.gui.swing.error.ProblemType;
-import raf.dsw.gerumap.gui.swing.view.ElementPainter;
-import raf.dsw.gerumap.gui.swing.view.MainFrame;
-import raf.dsw.gerumap.gui.swing.view.MindMapView;
-import raf.dsw.gerumap.gui.swing.view.PojamPainter;
+import raf.dsw.gerumap.gui.swing.view.*;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
@@ -20,8 +17,8 @@ public class AddElementState extends State {
     public void pressed(int x, int y, MindMapView m) {
         MindMap mindMap = m.getMindMap();
         Dimension dimension = new Dimension(50, 50); //Lazni pojam gde samo proveravamo da li postoji nesto na tim koordinatama
-        int x2 = coordinate(x, dimension);
-        int y2 = coordinate(y, dimension);
+        int x2 = coordinate(x, dimension.width);
+        int y2 = coordinate(y, dimension.height);
         Pojam pojam = new Pojam(dimension, new Point(Math.abs(x2), Math.abs(y2)));
 
         for (ElementPainter elementPainter : m.getElementPainterList()) {
@@ -42,12 +39,14 @@ public class AddElementState extends State {
         System.out.println("Add");
     }
 
-    private int coordinate(int c, Dimension dimension) {
-        int c2 = c - dimension.width / 2;
+    private int coordinate(int c, int dimension) {
+        int c2 = c - dimension / 2;
 
-        //Ako je van panela da ga ne postavi mnogo desno sa Math.abs
+        //Ako je van panela i ide u minus
         if (c2 < 0)
             c2 = 0;
+
+        //todo da li treba i uslov ako je duze od panela(previse desno ili previse dole)
 
         return c2;
     }
