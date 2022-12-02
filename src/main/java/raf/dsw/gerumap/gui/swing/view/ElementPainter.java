@@ -11,7 +11,7 @@ import java.awt.*;
 public abstract class ElementPainter {
 
     private Element element;//element koji moze da bude ili pojam ili veza
-    private Shape shape;//Ima razlicite oblike, elipsa, pravougaonik, linija, ...
+    protected Shape shape;//Ima razlicite oblike, elipsa, pravougaonik, linija, ...
 
     public ElementPainter(Element element) {
         this.element = element;
