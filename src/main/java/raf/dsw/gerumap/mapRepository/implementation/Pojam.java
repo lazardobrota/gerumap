@@ -18,4 +18,10 @@ public class Pojam extends Element{
         this.dimension = dimension;
         this.position = position;
     }
+
+    //Koristi se za proveru da li postoji takav pojam
+    public Pojam(Dimension dimension, Point position) {
+        this.dimension = dimension;
+        this.position = position;
+    }
 }
