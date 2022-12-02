@@ -42,7 +42,7 @@ public class MapTreeImplementation implements MapTree{
 
     @Override
     public void addChild(MapTreeItem parent) {
-        
+
         //Da li mozemo da dodamo dete
         if(parent.getMapNode() instanceof MapNodeComposite){
             //Da bi mogli da koristimo addChild() metodu koja sama proverava ako ima decu sa istim imenima

@@ -17,7 +17,8 @@ public class PojamPainter extends ElementPainter{
         Pojam p = (Pojam) element;
         System.out.println("draw");
         g.setPaint(p.getColor());//todo treba da se doda metoda
-        g.drawOval(p.getPosition().x, p.getPosition().y, p.getDimension().width + 20, p.getDimension().height);//TODO treba elipsa sa podesenim tekstom da bude
+        //x - p.getDimension().width/2, y - p.getDimension().height/2 u argumentu postavljaju na sredinu misa da se postavi krug
+        g.drawOval(p.getPosition().x - p.getDimension().width/2, p.getPosition().y - p.getDimension().height/2, p.getDimension().width, p.getDimension().height);//TODO treba elipsa sa podesenim tekstom da bude
     }
 
     //todo
