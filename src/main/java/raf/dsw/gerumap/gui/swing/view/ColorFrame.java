@@ -23,6 +23,7 @@ public class ColorFrame extends JDialog {
     private ColorFrame(){}
 
     private void init(){
+        this.setModalityType(ModalityType.APPLICATION_MODAL);//Postavi da ne moze nista drugo da se radi dok se ne zatvori JDialog
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = (int) screenSize.getHeight();
@@ -40,6 +41,10 @@ public class ColorFrame extends JDialog {
         tfDebljinaLinije = new JTextField();
         tfDebljinaLinije.setPreferredSize(new Dimension(70,20));
         chBiranjeBoje = new JColorChooser(Color.BLACK);
+
+        //Predefinisana pravila za pojam
+        tfIspisanTekst.setText("Pojam");
+        tfDebljinaLinije.setText("1");
 
         btnIzaberi = new JButton("Izaberi");
         btnIzaberi.addActionListener(MainFrame.getInstance().getActionManager().getChooseAction());

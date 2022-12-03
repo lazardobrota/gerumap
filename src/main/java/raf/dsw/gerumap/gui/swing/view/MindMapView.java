@@ -30,7 +30,6 @@ public class MindMapView extends JPanel implements Subscriber {
         this.addMouseListener(new MouseController());
     }
 
-    //todo
     @Override
     protected void paintComponent(Graphics g) {//Iscrtava
         super.paintComponent(g);//prvo iscrta sve tabove
@@ -49,9 +48,14 @@ public class MindMapView extends JPanel implements Subscriber {
 
     //Kad se klikne negde na mindMap prozor
     private class MouseController extends MouseAdapter {
+        //Pocetna i krajna koordinata za vezu
+        private Point pointStart = null;
+        private Point pointEnd = null;
 
         @Override
         public void mousePressed(MouseEvent e) {
+            pointStart = e.getPoint();//pocetna koordinata veze
+
             //Uzima mapu uma koja je trenutno prikazana na tabu
             MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
             Point position = e.getPoint();
@@ -62,13 +66,21 @@ public class MindMapView extends JPanel implements Subscriber {
         //todo
         @Override
         public void mouseReleased(MouseEvent e) {
-            super.mouseReleased(e);
+
+            MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
+            pointStart = null;//Zavrseno je pravljenje veze
         }
 
         //todo
         @Override
         public void mouseDragged(MouseEvent e) {
-            super.mouseDragged(e);
+            pointEnd = e.getPoint();
+            repaint();
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent e) {
+            pointEnd = e.getPoint();
         }
     }
 }

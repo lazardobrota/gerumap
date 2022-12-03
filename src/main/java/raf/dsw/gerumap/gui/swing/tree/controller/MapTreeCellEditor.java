@@ -44,7 +44,7 @@ public class  MapTreeCellEditor extends DefaultTreeCellEditor implements ActionL
                 return  true;
             else if (((MouseEvent) event).getClickCount() == 2) {
                 MapTreeItem clicked = MainFrame.getInstance().getMapTree().getSelectedNode();
-                if (clicked.getMapNode() != null && clicked.getMapNode() instanceof Project) {
+                if (clicked != null && clicked.getMapNode() instanceof Project) {
                     Project project = (Project) clicked.getMapNode();
                     MainFrame.getInstance().getProjectView().setProject(project);
                 }
