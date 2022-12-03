@@ -3,6 +3,7 @@ package raf.dsw.gerumap.state.concrate;
 import raf.dsw.gerumap.gui.swing.view.ElementPainter;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.gui.swing.view.PojamPainter;
+import raf.dsw.gerumap.gui.swing.view.VezaPainter;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.mapRepository.implementation.Veza;
 import raf.dsw.gerumap.state.State;
@@ -10,28 +11,88 @@ import raf.dsw.gerumap.state.State;
 import java.awt.*;
 
 public class ConnectState extends State {
+    int hitbox = 10;
 
     @Override
     public void pressed(int x, int y, MindMapView m) {
 
         //Lazni pojam koji koristimo samo za testiranje
-        Veza veza = new Veza(new Pojam(new Dimension(10, 10), new Point(x, y)));
+        Veza veza = new Veza(new Pojam(new Dimension(hitbox, hitbox), new Point(x, y)));
+
+        boolean t = false;
+        Pojam pojam = null;
         for (ElementPainter elementPainter : m.getElementPainterList()) {
             if (elementPainter instanceof PojamPainter && elementPainter.elementAt(veza.getFrom(), veza.getFrom().getPosition())) {
-
+                t = true;
+                pojam = (Pojam) elementPainter.getElement();
+                break;
             }
         }
+
+        if (!t)
+            return;
+
+        veza.setFrom(pojam);
+        m.getElementPainterList().add(new VezaPainter(veza));//Uvek je poslednji dodat u listu
+        //System.out.println("Connect");
+    }
+
+    @Override
+    public void released(int x, int y, MindMapView m) {
+        if (m.getElementPainterList().isEmpty())
+            return;
+
+        ElementPainter elementPainter = m.getElementPainterList().get(m.getElementPainterList().size() - 1);
+        if (elementPainter instanceof PojamPainter)
+            return;
+
+        //Uzima poslednji element koji je sigurno veza
+        VezaPainter vezaPainter = (VezaPainter) elementPainter;
+        Veza veza = (Veza) vezaPainter.getElement();
+
+        //Nova veza sa prvim elementom i hitbox za drugi
+        Veza vezaEnd = new Veza(veza.getFrom(), new Pojam(new Dimension(hitbox, hitbox), new Point(x, y)));
+
+        //Brisemo staru vezu sa jednim elementom
+        m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
+
+        boolean t = false;
+        Pojam pojam = null;
+        for (ElementPainter painter : m.getElementPainterList()) {
+            if (painter instanceof PojamPainter && painter.elementAt(veza.getTo(), veza.getTo().getPosition())) {
+                t = true;
+                pojam = (Pojam) painter.getElement();
+                break;
+            }
+        }
+
+        if (!t)
+            return;
+
+        veza.setTo(pojam);
+        m.getElementPainterList().add(new VezaPainter(veza));
         System.out.println("Connect");
     }
 
     @Override
-    public void released(Point pointStart, Point pointEnd, MindMapView m) {
-        super.released(pointStart, pointEnd, m);
-    }
+    public void dragged(int x, int y, MindMapView m) {
+        if (m.getElementPainterList().isEmpty())
+            return;
 
-    @Override
-    public void moved(Point pointStart, Point pointEnd, MindMapView m) {
+        ElementPainter elementPainter = m.getElementPainterList().get(m.getElementPainterList().size() - 1);
+        if (elementPainter instanceof PojamPainter)
+            return;
 
-        super.moved(pointStart, pointEnd, m);
+        //Uzima poslednji element koji je sigurno veza
+        VezaPainter vezaPainter = (VezaPainter) elementPainter;
+        Veza veza = (Veza) vezaPainter.getElement();
+
+        //Nova veza sa prvim elementom i hitbox za drugi
+        Veza vezaEnd = new Veza(veza.getFrom(), new Pojam(new Dimension(hitbox, hitbox), new Point(x, y)));
+
+        //Brisemo staru vezu sa jednim elementom
+        m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
+        //Dodaje istu vezu samo na drugom mestu je kraj
+        m.getElementPainterList().add(new VezaPainter(vezaEnd));
     }
 }
