@@ -13,6 +13,7 @@ public class EraseState extends State {
     @Override
     public void pressed(int x, int y, MindMapView m) {
 
+        //Lazni pojam koji koristimo kao hitbox kursora
         Pojam pojam = new Pojam(new Dimension(10, 10), new Point(x, y));
 
 
