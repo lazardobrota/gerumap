@@ -13,27 +13,28 @@ public class PojamPainter extends ElementPainter{
         super(element);
     }
 
-    //todo
     @Override
     public void draw(Graphics2D g, Element element) {
         Pojam p = (Pojam) element;
         System.out.println("draw");
         g.setPaint(p.getColor());//todo treba da se doda metoda
-        //g.setStroke(new BasicStroke(10));
+        g.setStroke(new BasicStroke(p.getStroke()));
         int x = p.getPosition().x;
         int y = p.getPosition().y;
 
         shape = new Ellipse2D.Float(x, y, p.getDimension().width, p.getDimension().height); //TODO treba elipsa sa podesenim tekstom da bude
 
         g.draw(shape);
+        g.drawString(p.getIme(), x + p.getDimension().width/2, y + p.getDimension().height/2);
     }
 
-    //todo
     @Override
     public boolean elementAt(Element element, Point position) {
         //todo da li da vraca ze Vezu uvek false
-        if (element instanceof Veza)//Veza moze da bude na pojmu jer ih tako povezuje
+        if (element instanceof Veza){//Veza moze da bude na pojmu jer ih tako povezuje
+
             return false;
+        }
 
         Pojam pojam = (Pojam) this.element;//Pojam ove klase koji je vec dodat
         Pojam that = (Pojam) element;//Neki pojam koji sada hocemo da dodamo
@@ -57,4 +58,6 @@ public class PojamPainter extends ElementPainter{
             return true;
         return false;
     }
+
+
 }
