@@ -16,8 +16,7 @@ public class PojamPainter extends ElementPainter{
     @Override
     public void draw(Graphics2D g, Element element) {
         Pojam p = (Pojam) element;
-        System.out.println("draw");
-        g.setPaint(p.getColor());//todo treba da se doda metoda
+        g.setPaint(p.getColor());
         g.setStroke(new BasicStroke(p.getStroke()));
         int x = p.getPosition().x;
         int y = p.getPosition().y;
@@ -30,20 +29,29 @@ public class PojamPainter extends ElementPainter{
 
     @Override
     public boolean elementAt(Element element, Point position) {
-        //todo da li da vraca ze Vezu uvek false
-        if (element instanceof Veza){//Veza moze da bude na pojmu jer ih tako povezuje
-
-            return false;
-        }
-
+        //Pojam
         Pojam pojam = (Pojam) this.element;//Pojam ove klase koji je vec dodat
+
+        if (element instanceof Veza){//Veza moze da bude na pojmu jer ih tako povezuje
+            //That
+            Veza veza = (Veza) element;
+            Pojam that = veza.getFrom();
+
+            return overlap(pojam, that);
+        }
+        //That
         Pojam that = (Pojam) element;//Neki pojam koji sada hocemo da dodamo
 
+        return overlap(pojam, that);
+    }
+
+    private boolean overlap(Pojam pojam, Pojam that) {
         //Pojam
         int x = pojam.getPosition().x;
         int y = pojam.getPosition().y;
         int right = x + pojam.getDimension().width;
         int down = y + pojam.getDimension().height;
+
         //That
         int x2 = that.getPosition().x;
         int y2 = that.getPosition().y;
