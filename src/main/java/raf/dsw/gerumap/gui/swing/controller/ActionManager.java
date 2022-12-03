@@ -14,6 +14,7 @@ public class ActionManager {
     private OkAction okAction;
     private DeleteChildAction deleteChildAction;
     private SaveAction autorAction;
+    private ChooseAction chooseAction;
 
     //Vertikalni dugmici
     private AddElementAction addElementAction;
@@ -22,6 +23,7 @@ public class ActionManager {
     private MoveAction moveAction;
     private SelectAction selectAction;
     private ZoomAction zoomAction;
+    private ColorAction colorAction;
 
     public ActionManager() {
         initActions();
@@ -34,6 +36,7 @@ public class ActionManager {
         okAction = new OkAction();
         deleteChildAction = new DeleteChildAction();
         autorAction = new SaveAction();
+        chooseAction = new ChooseAction();
 
         addElementAction = new AddElementAction();
         connectAction = new ConnectAction();
@@ -41,6 +44,7 @@ public class ActionManager {
         moveAction = new MoveAction();
         selectAction = new SelectAction();
         zoomAction = new ZoomAction();
+        colorAction = new ColorAction();
     }
 
 }
