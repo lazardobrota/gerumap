@@ -7,7 +7,7 @@ import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 
 @Getter
 @Setter
-public class MindMap extends MapNodeComposite {
+public class MindMap extends MapNodeComposite {//todo problem kada se prebacuje sa projekta i vraca na stari projekat sve iz mindMapView je obrisano ali deca mindMape nisu
 
     private boolean sablon;
 

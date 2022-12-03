@@ -21,4 +21,8 @@ public class Veza extends Element{
         this.from = from;
         this.to = to;
     }
+
+    public Veza(Pojam from) {
+        this.from = from;
+    }
 }
