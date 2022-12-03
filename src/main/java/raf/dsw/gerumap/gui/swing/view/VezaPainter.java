@@ -115,7 +115,8 @@ public class VezaPainter extends ElementPainter{
         }
 
         shape = new Line2D.Float(xx, yy, xx2, yy2);
-        g.setPaint(Color.BLACK);
+        g.setPaint(veza.getColor());
+        g.setStroke(new BasicStroke(veza.getStroke()));
         g.draw(shape);
     }
 

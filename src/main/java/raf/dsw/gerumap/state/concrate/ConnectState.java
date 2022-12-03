@@ -1,9 +1,6 @@
 package raf.dsw.gerumap.state.concrate;
 
-import raf.dsw.gerumap.gui.swing.view.ElementPainter;
-import raf.dsw.gerumap.gui.swing.view.MindMapView;
-import raf.dsw.gerumap.gui.swing.view.PojamPainter;
-import raf.dsw.gerumap.gui.swing.view.VezaPainter;
+import raf.dsw.gerumap.gui.swing.view.*;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.mapRepository.implementation.Veza;
 import raf.dsw.gerumap.state.State;
@@ -13,6 +10,7 @@ import java.awt.*;
 public class ConnectState extends State {
     int hitbox = 10;
 
+    //todo treba vezi roditelj da se doda, ime i roditelji dete
     @Override
     public void pressed(int x, int y, MindMapView m) {
 
@@ -89,6 +87,9 @@ public class ConnectState extends State {
 
         //Nova veza sa prvim elementom i hitbox za drugi
         Veza vezaEnd = new Veza(veza.getFrom(), new Pojam(new Dimension(hitbox, hitbox), new Point(x, y)));
+
+        vezaEnd.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor()); //dodajemo vezi boju
+        vezaEnd.setStroke(Integer.parseInt(ColorFrame.getInstance().getTfDebljinaLinije().getText())); // //dodajemo vezi debljinu linije
 
         //Brisemo staru vezu sa jednim elementom
         m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
