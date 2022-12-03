@@ -27,7 +27,9 @@ public class MindMapView extends JPanel implements Subscriber {
 
     private void initMMV() {
         this.setBackground(Color.WHITE);
-        this.addMouseListener(new MouseController());
+        MouseController mouseController = new MouseController();
+        this.addMouseListener(mouseController);
+        this.addMouseMotionListener(mouseController);
     }
 
     @Override
@@ -38,6 +40,7 @@ public class MindMapView extends JPanel implements Subscriber {
         for (ElementPainter elementPainter : elementPainterList) {
             elementPainter.draw((Graphics2D) g, elementPainter.getElement());
         }
+
     }
 
     @Override
@@ -48,13 +51,10 @@ public class MindMapView extends JPanel implements Subscriber {
 
     //Kad se klikne negde na mindMap prozor
     private class MouseController extends MouseAdapter {
-        //Pocetna i krajna koordinata za vezu
-        private Point pointStart = null;
-        private Point pointEnd = null;
+
 
         @Override
         public void mousePressed(MouseEvent e) {
-            pointStart = e.getPoint();//pocetna koordinata veze
 
             //Uzima mapu uma koja je trenutno prikazana na tabu
             MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
@@ -63,24 +63,25 @@ public class MindMapView extends JPanel implements Subscriber {
             MainFrame.getInstance().getProjectView().pressedMouse(position.x, position.y, mindMapView);
         }
 
-        //todo
         @Override
         public void mouseReleased(MouseEvent e) {
+            Point position = e.getPoint();
 
             MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
-            pointStart = null;//Zavrseno je pravljenje veze
+
+            MainFrame.getInstance().getProjectView().releasedMouse(position.x, position.y, mindMapView);
+            mindMapView.update(0);//todo
         }
+
 
         //todo
         @Override
         public void mouseDragged(MouseEvent e) {
-            pointEnd = e.getPoint();
-            repaint();
-        }
+            Point position = e.getPoint();
 
-        @Override
-        public void mouseMoved(MouseEvent e) {
-            pointEnd = e.getPoint();
+            MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
+            MainFrame.getInstance().getProjectView().draggedMouse(position.x, position.y, mindMapView);
+            mindMapView.update(0);//todo
         }
     }
 }

@@ -132,4 +132,12 @@ public class ProjectView extends JPanel implements Subscriber {
     public void pressedMouse(int x, int y, MindMapView mindMapView) {
         this.stateManager.getCurrentState().pressed(x, y, mindMapView);
     }
+
+    public void draggedMouse(int x, int y, MindMapView mindMapView) {
+        this.stateManager.getCurrentState().dragged(x, y, mindMapView);
+    }
+
+    public void releasedMouse(int x, int y, MindMapView mindMapView) {
+        this.stateManager.getCurrentState().released(x, y, mindMapView);
+    }
 }

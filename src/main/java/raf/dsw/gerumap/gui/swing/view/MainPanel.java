@@ -39,6 +39,7 @@ public class MainPanel extends JPanel{
         tabsPanel.removeAll();
         for (MapNode mapNode : project.getChildren()) {
             MindMap map = (MindMap) mapNode;
+            map.getChildren().clear();//todo bandana na veci problem sto je da se elementPainteri brisu kad se promeni projekat
             map.addSubs(MainFrame.getInstance().getProjectView());
 
             MindMapView mindMapView = new MindMapView(map);
