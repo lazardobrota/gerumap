@@ -10,7 +10,7 @@ import java.awt.*;
 public class ConnectState extends State {
     int hitbox = 10;
 
-    //todo treba vezi roditelj da se doda, ime i roditelji dete
+    //todo treba vezi roditelj da se doda, ime i roditelji dete || takodje vezi trenutno from i to pojam moze da bude skroz isti pojam
     @Override
     public void pressed(int x, int y, MindMapView m) {
 
@@ -57,7 +57,7 @@ public class ConnectState extends State {
         boolean t = false;
         Pojam pojam = null;
         for (ElementPainter painter : m.getElementPainterList()) {
-            if (painter instanceof PojamPainter && painter.elementAt(veza.getTo(), veza.getTo().getPosition())) {
+            if (painter instanceof PojamPainter && painter.elementAt(vezaEnd.getTo(), vezaEnd.getTo().getPosition())) {
                 t = true;
                 pojam = (Pojam) painter.getElement();
                 break;
