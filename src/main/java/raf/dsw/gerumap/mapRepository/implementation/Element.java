@@ -20,5 +20,14 @@ public abstract class Element extends MapNode {
         this.setStartingName("Element");
     }
 
+    //todo povezi element sa subovima
+    public void setColor(Color color) {
+        this.color = color;
+        this.notifySubs(this);
+    }
 
+    public void setStroke(int stroke) {
+        this.stroke = stroke;
+        this.notifySubs(this);
+    }
 }

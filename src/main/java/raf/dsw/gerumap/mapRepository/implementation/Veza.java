@@ -25,4 +25,12 @@ public class Veza extends Element{
     public Veza(Pojam from) {
         this.from = from;
     }
+
+    //todo dodaj sub elementima
+    public void setTo(Pojam to) {
+        this.to = to;
+        this.notifySubs(this);
+    }
+
+
 }
