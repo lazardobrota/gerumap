@@ -6,6 +6,7 @@ import raf.dsw.gerumap.mapRepository.implementation.Veza;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.util.ArrayList;
 
 public class VezaPainter extends ElementPainter{
 
@@ -24,94 +25,44 @@ public class VezaPainter extends ElementPainter{
         int y2 =veza.getTo().getPosition().y;
 
         //From - pocetni pojam
-        int xLeft = x;
-        int yLeft = y + veza.getFrom().getDimension().height/2;
-        int left = y + veza.getFrom().getDimension().height/2;// -0
+        Point left = leftPosition(x, y, veza.getFrom()); // left
+        Point up = upPosition(x, y, veza.getFrom()); // up
+        Point right = rightPosition(x, y, veza.getFrom());// right
+        Point down = downPosition(x, y, veza.getFrom());//down
 
-        int xUp = x + veza.getFrom().getDimension().width/2;
-        int yUp = y;
-        int up = x + veza.getFrom().getDimension().width/2;// |
-        //                                                    0
-
-        int xRight = x + veza.getFrom().getDimension().width;
-        int yRight = left;
-        int right = x + veza.getFrom().getDimension().width + left;// 0-
-
-        int xDown = up;
-        int yDown = y + veza.getFrom().getDimension().height;
-        int down = y + veza.getFrom().getDimension().height + up;// 0
-        //                                                          |
+        Point[] arrPoints = {left, up, right, down};
         double min = 9999;
-        double intezitet = Math.sqrt(Math.pow(xLeft - x2, 2) + Math.pow(yLeft - y2, 2));
+        double intezitet;
         int xx = x;
         int yy = y;
-        if (min > intezitet) {
-            min = intezitet;
-            xx = xLeft;
-            yy = yLeft;
-        }
-        intezitet = Math.sqrt(Math.pow(xUp - x2, 2) + Math.pow(yUp - y2, 2));
-        if (min > intezitet) {
-            min = intezitet;
-            xx = xUp;
-            yy = yUp;
-        }
-        intezitet = Math.sqrt(Math.pow(xRight - x2, 2) + Math.pow(yRight - y2, 2));
-        if (min > intezitet) {
-            min = intezitet;
-            xx = xRight;
-            yy = yRight;
-        }
-        intezitet = Math.sqrt(Math.pow(xDown - x2, 2) + Math.pow(yDown - y2, 2));
-        if (min > intezitet) {
-            min = intezitet;
-            xx = xDown;
-            yy = yDown;
+
+        for (int i = 0; i < arrPoints.length; i++) {
+            intezitet = Math.sqrt(Math.pow(arrPoints[i].x - x2, 2) + Math.pow(arrPoints[i].y - y2, 2));
+            if (min > intezitet) {
+                min = intezitet;
+                xx = arrPoints[i].x;
+                yy = arrPoints[i].y;
+            }
         }
 
         //To - krajni pojam
-        int x2Left = x2;
-        int y2Left = y2 + veza.getTo().getDimension().height/2;
-        int left2 = y2 + veza.getTo().getDimension().height/2;
+        Point left2 = leftPosition(x2, y2, veza.getTo()); //left
+        Point up2 = upPosition(x2, y2, veza.getTo()); //up
+        Point right2 = rightPosition(x2, y2, veza.getTo()); // right
+        Point down2 = downPosition(x2, y2, veza.getTo()); // down
 
-        int x2Up = x2 + veza.getTo().getDimension().width/2;
-        int y2Up = y2;
-        int up2 = x2 + veza.getTo().getDimension().width/2;
-
-        int x2Right = x2 + veza.getTo().getDimension().width;
-        int y2Right = left2;
-        int right2 = x2+ veza.getTo().getDimension().width + left2;
-
-        int x2Down = up2;
-        int y2Down = y2 + veza.getTo().getDimension().height;
-        int down2 = y2 + veza.getTo().getDimension().height + up2;
-
+        arrPoints = new Point[]{left2, up2, right2, down2};
         min = 9999;
-        intezitet = Math.sqrt(Math.pow(x2Left - xx, 2) + Math.pow(y2Left - yy, 2));
         int xx2 = x2;
         int yy2 = y2;
-        if (min > intezitet) {
-            min = intezitet;
-            xx2 = x2Left;
-            yy2 = y2Left;
-        }
-        intezitet = Math.sqrt(Math.pow(x2Up - xx, 2) + Math.pow(y2Up - yy, 2));
-        if (min > intezitet) {
-            min = intezitet;
-            xx2 = x2Up;
-            yy2 = y2Up;
-        }
-        intezitet = Math.sqrt(Math.pow(x2Right - xx, 2) + Math.pow(y2Right - yy, 2));
-        if (min > intezitet) {
-            min = intezitet;
-            xx2 = x2Right;
-            yy2 = y2Right;
-        }
-        intezitet = Math.sqrt(Math.pow(x2Down - xx, 2) + Math.pow(y2Down - yy, 2));
-        if (min > intezitet) {
-            min = intezitet;
-            xx2 = x2Down;
-            yy2 = y2Down;
+
+        for (int i = 0; i < arrPoints.length; i++) {
+            intezitet = Math.sqrt(Math.pow(arrPoints[i].x - xx, 2) + Math.pow(arrPoints[i].y - yy, 2));
+            if (min > intezitet) {
+                min = intezitet;
+                xx2 = arrPoints[i].x;
+                yy2 = arrPoints[i].y;
+            }
         }
 
         shape = new Line2D.Float(xx, yy, xx2, yy2);
@@ -121,7 +72,7 @@ public class VezaPainter extends ElementPainter{
     }
 
     //todo
-    //ovo sluzi da znamo da li smo pogodili jedan pojam kako bi mogli vezu da povucemo iz njega
+    //za brisanje pojma da li smo ga pogodili
     @Override
     public boolean elementAt(Element element, Point position) {
         if (element instanceof Veza)//Mora pojam da pogodi
@@ -132,9 +83,41 @@ public class VezaPainter extends ElementPainter{
         return false;
     }
 
-    private double milankaIntezitet(double min, int x1, int x2, int y1, int y2) {
+    //-0
+    private Point leftPosition(int x, int y, Pojam pojam) {
+        Point left = new Point();
+        left.x = x;
+        left.y = y + pojam.getDimension().height/2;
 
+        return left;
+    }
 
-        return min;
+    // |
+    // 0
+    private Point upPosition(int x, int y, Pojam pojam) {
+        Point up = new Point();
+        up.x = x + pojam.getDimension().width/2;
+        up.y = y;
+
+        return up;
+    }
+
+    //0-
+    private Point rightPosition(int x, int y, Pojam pojam) {
+        Point right = new Point();
+        right.x = x + pojam.getDimension().width;
+        right.y = y + pojam.getDimension().height/2;
+
+        return right;
+    }
+
+    //0
+    //|
+    private Point downPosition(int x, int y, Pojam pojam) {
+        Point down = new Point();
+        down.x = x + pojam.getDimension().width/2;
+        down.y = y + pojam.getDimension().height;
+
+        return down;
     }
 }
