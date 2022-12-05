@@ -24,7 +24,7 @@ public class PojamPainter extends ElementPainter{
         shape = new Ellipse2D.Float(x, y, p.getDimension().width, p.getDimension().height); //TODO treba elipsa sa podesenim tekstom da bude
 
         g.draw(shape);
-        g.drawString(p.getIme(), x + p.getDimension().width/2, y + p.getDimension().height/2);
+        g.drawString(p.getIme(), x + p.getDimension().width/2 - g.getFontMetrics().stringWidth(p.getIme())/2, y + p.getDimension().height/2);
     }
 
     @Override
