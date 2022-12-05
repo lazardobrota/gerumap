@@ -60,10 +60,14 @@ public class PojamPainter extends ElementPainter{
 
         //That zeli da se postavi na mesto gde vec postoji elipsa a to je nemoguce
         //(x i y) ili (x i dole) se gleda da li se tu nalazi
-        if ((x <= x2 && x2 <= right) && ((y <= y2 && y2 <= down) || (y <= down2 && down2 <= down)))
+        //Da li dodat unutar postavljenog
+        if (((x <= x2 && x2 <= right) || (x <= right2 && right2 <= right)) && ((y <= y2 && y2 <= down) || (y <= down2 && down2 <= down)))
             return true;
-        if ((x <= right2 && right2 <= right) && (((y <= y2 && y2 <= down) || (y <= down2 && down2 <= down))))
+
+        //Da li je postavljeni unutar dodatok
+        if (((x2 <= x && x <= right2) || ((x2 <= right && right <= right2))) && ((y2 <= y && y <= down2) || (y2 <= down && down <= down2)))
             return true;
+
         return false;
     }
 
