@@ -44,6 +44,7 @@ public class MainPanel extends JPanel{
             map.addSubs(MainFrame.getInstance().getProjectView());
 
             MindMapView mindMapView = new MindMapView(map);
+            map.addSubs(mindMapView);
             //Prolazimo kroz svu decu mape uma
             for (MapNode mn : map.getChildren()) {
                 Element element = (Element) mn;
@@ -54,7 +55,6 @@ public class MainPanel extends JPanel{
                     mindMapView.getElementPainterList().add(new VezaPainter(element));//Za vezu painter
                 }
             }
-            map.addSubs(mindMapView);
 
             tabsPanel.add(mindMapView.getMindMap().getIme(), mindMapView);
         }
