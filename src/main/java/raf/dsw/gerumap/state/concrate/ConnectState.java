@@ -30,11 +30,13 @@ public class ConnectState extends State {
         if (!t)
             return;
 
-        veza.setFrom(pojam);
+        veza .setFrom(pojam);
         m.getElementPainterList().add(new VezaPainter(veza));//Uvek je poslednji dodat u listu
         //System.out.println("Connect");
     }
 
+    //todo ne treba vezaEnd nego samo veza da se menja jer je veza dete mape uma
+    //todo nakon sto se povezu dva pojma, ako se klikne negde sa strane njihova veza se ukljanja
     @Override
     public void released(int x, int y, MindMapView m) {
         if (m.getElementPainterList().isEmpty())
@@ -67,8 +69,9 @@ public class ConnectState extends State {
         if (!t)
             return;
 
-        veza.setTo(pojam);
         m.getElementPainterList().add(new VezaPainter(veza));
+        veza.setTo(pojam);//poziva observer
+        m.getMindMap().getChildren().add(veza);//Dobra je veza i dodaje se u decu mape uma
         System.out.println("Connect");
     }
 
@@ -88,12 +91,13 @@ public class ConnectState extends State {
         //Nova veza sa prvim elementom i hitbox za drugi
         Veza vezaEnd = new Veza(veza.getFrom(), new Pojam(new Dimension(hitbox, hitbox), new Point(x, y)));
 
-        vezaEnd.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor()); //dodajemo vezi boju
-        vezaEnd.setStroke(Integer.parseInt(ColorFrame.getInstance().getTfDebljinaLinije().getText())); // //dodajemo vezi debljinu linije
-
         //Brisemo staru vezu sa jednim elementom
         m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
         //Dodaje istu vezu samo na drugom mestu je kraj
         m.getElementPainterList().add(new VezaPainter(vezaEnd));
+
+        //poziva observer
+        vezaEnd.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor()); //dodajemo vezi boju
+        vezaEnd.setStroke(Integer.parseInt(ColorFrame.getInstance().getTfDebljinaLinije().getText())); // //dodajemo vezi debljinu linije
     }
 }

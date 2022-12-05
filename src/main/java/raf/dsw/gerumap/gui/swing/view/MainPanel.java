@@ -3,7 +3,9 @@ package raf.dsw.gerumap.gui.swing.view;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
+import raf.dsw.gerumap.mapRepository.implementation.Element;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
+import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 
 import javax.swing.*;
@@ -39,10 +41,19 @@ public class MainPanel extends JPanel{
         tabsPanel.removeAll();
         for (MapNode mapNode : project.getChildren()) {
             MindMap map = (MindMap) mapNode;
-            map.getChildren().clear();//todo bandana na veci problem sto je da se elementPainteri brisu kad se promeni projekat
             map.addSubs(MainFrame.getInstance().getProjectView());
 
             MindMapView mindMapView = new MindMapView(map);
+            //Prolazimo kroz svu decu mape uma
+            for (MapNode mn : map.getChildren()) {
+                Element element = (Element) mn;
+                if (element instanceof Pojam) {
+                    mindMapView.getElementPainterList().add(new PojamPainter(element));//Za pojam painter
+                }
+                else {
+                    mindMapView.getElementPainterList().add(new VezaPainter(element));//Za vezu painter
+                }
+            }
             map.addSubs(mindMapView);
 
             tabsPanel.add(mindMapView.getMindMap().getIme(), mindMapView);
