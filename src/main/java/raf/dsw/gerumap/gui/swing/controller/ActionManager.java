@@ -15,6 +15,7 @@ public class ActionManager {
     private DeleteChildAction deleteChildAction;
     private SaveAction autorAction;
     private ChooseAction chooseAction;
+    private ClosingColorAction closingColorAction;
 
     //Vertikalni dugmici
     private AddElementAction addElementAction;
@@ -37,6 +38,7 @@ public class ActionManager {
         deleteChildAction = new DeleteChildAction();
         autorAction = new SaveAction();
         chooseAction = new ChooseAction();
+        closingColorAction = new ClosingColorAction();
 
         addElementAction = new AddElementAction();
         connectAction = new ConnectAction();

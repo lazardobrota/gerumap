@@ -30,7 +30,8 @@ public class ColorFrame extends JDialog {
         int screenWidth = (int) screenSize.getWidth();
         this.setSize(screenWidth / 2, screenHeight / 2);
         this.setLocationRelativeTo(MainFrame.getInstance());
-        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.addWindowListener(MainFrame.getInstance().getActionManager().getClosingColorAction());
+        //this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setTitle("Izaberite kako izgleda vaš oblik");
 
 
@@ -72,7 +73,6 @@ public class ColorFrame extends JDialog {
         this.add(panelZaBox2);
         this.add(panelZaBoju);
         this.add(panelZaDugme);
-
 
     }
 
