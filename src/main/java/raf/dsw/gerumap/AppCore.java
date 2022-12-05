@@ -14,7 +14,7 @@ public class AppCore {
         ApplicationFramework applicationFramework = ApplicationFramework.getInstance();
         Gui gui = new SwingGui();
         MapRepository mapRepository = new MapRepositoryImpl();
-        ErrorLogger errorLogger = LoggerFactory.createLogger(LoggerType.FILE_LOGGER);
+        ErrorLogger errorLogger = LoggerFactory.createLogger(LoggerType.CONSOLE_LOGGER);
         MessageGenerator messageGenerator = new MessageGenImpl();
         messageGenerator.addSubs(errorLogger);
         messageGenerator.addSubs(gui);

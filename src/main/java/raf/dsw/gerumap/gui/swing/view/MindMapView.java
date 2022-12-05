@@ -70,18 +70,15 @@ public class MindMapView extends JPanel implements Subscriber {
             MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
 
             MainFrame.getInstance().getProjectView().releasedMouse(position.x, position.y, mindMapView);
-            mindMapView.update(0);//todo
         }
 
 
-        //todo
         @Override
         public void mouseDragged(MouseEvent e) {
             Point position = e.getPoint();
 
             MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
             MainFrame.getInstance().getProjectView().draggedMouse(position.x, position.y, mindMapView);
-            mindMapView.update(0);//todo
         }
     }
 }

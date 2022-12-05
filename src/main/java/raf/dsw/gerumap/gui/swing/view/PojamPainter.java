@@ -21,7 +21,7 @@ public class PojamPainter extends ElementPainter{
         int x = p.getPosition().x;
         int y = p.getPosition().y;
 
-        shape = new Ellipse2D.Float(x, y, p.getDimension().width, p.getDimension().height); //TODO treba elipsa sa podesenim tekstom da bude
+        shape = new Ellipse2D.Float(x, y, p.getDimension().width, p.getDimension().height);
 
         g.draw(shape);
         g.drawString(p.getIme(), x + p.getDimension().width/2 - g.getFontMetrics().stringWidth(p.getIme())/2, y + p.getDimension().height/2);
@@ -32,6 +32,7 @@ public class PojamPainter extends ElementPainter{
         //Pojam
         Pojam pojam = (Pojam) this.element;//Pojam ove klase koji je vec dodat
 
+        //Ovo je mozda i ne potrebno
         if (element instanceof Veza){//Veza moze da bude na pojmu jer ih tako povezuje
             //That
             Veza veza = (Veza) element;
@@ -64,7 +65,7 @@ public class PojamPainter extends ElementPainter{
         if (((x <= x2 && x2 <= right) || (x <= right2 && right2 <= right)) && ((y <= y2 && y2 <= down) || (y <= down2 && down2 <= down)))
             return true;
 
-        //Da li je postavljeni unutar dodatok
+        //Da li je postavljeni unutar dodatog
         if (((x2 <= x && x <= right2) || ((x2 <= right && right <= right2))) && ((y2 <= y && y <= down2) || (y2 <= down && down <= down2)))
             return true;
 

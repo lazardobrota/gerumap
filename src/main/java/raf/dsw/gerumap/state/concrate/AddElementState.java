@@ -32,7 +32,8 @@ public class AddElementState extends State {
 
         String name = ColorFrame.getInstance().getTfIspisanTekst().getText();
         //Moze da se pravi pravi pojam jer ima slobodan prostor da se napravi
-        pojam = new Pojam(name + mindMap.getNumberingChildren(), mindMap, dimension, new Point(Math.abs(x2), Math.abs(y2)));//todo postavi tekst na centar
+        pojam = new Pojam(name + mindMap.getNumberingChildren(), mindMap, dimension, new Point(Math.abs(x2), Math.abs(y2)));
+        pojam.addSubs(m);//Dodaje pojmu MindMapView kao sub
         pojam.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor());//uzima selektovanu boju za pojam
         String stroke = ColorFrame.getInstance().getTfDebljinaLinije().getText();
         pojam.setStroke(Integer.parseInt(stroke));
@@ -40,8 +41,7 @@ public class AddElementState extends State {
         m.getElementPainterList().add(new PojamPainter(pojam));//u listu paintera za tu mapu uma se dodaje pojam
 
         //Dodaje dete i poziva se update
-        mindMap.addChild(pojam);//todo treba i u stablu da se doda
-        //MainFrame.getInstance().getMapTree().addChild(mindMap);
+        mindMap.addChild(pojam);
         System.out.println("Add");
     }
 
@@ -51,8 +51,6 @@ public class AddElementState extends State {
         //Ako je van panela i ide u minus
         if (c2 < 0)
             c2 = 0;
-
-        //todo da li treba i uslov ako je duze od panela(previse desno ili previse dole)
 
         return c2;
     }
