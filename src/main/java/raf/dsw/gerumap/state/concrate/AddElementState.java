@@ -17,6 +17,8 @@ public class AddElementState extends State {
 
     @Override
     public void pressed(int x, int y, MindMapView m) {
+        m.getMapSelectionModel().getSelectedElements().clear();//Skloni selekt
+
         MindMap mindMap = m.getMindMap();
         int width = ColorFrame.getInstance().getTfIspisanTekst().getText().length(); // duzina elipse
         Dimension dimension = new Dimension(50 + width*10, 50); //Lazni pojam gde samo proveravamo da li postoji nesto na tim koordinatama

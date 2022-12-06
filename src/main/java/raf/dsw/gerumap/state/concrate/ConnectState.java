@@ -15,6 +15,7 @@ public class ConnectState extends State {
 
     @Override
     public void pressed(int x, int y, MindMapView m) {
+        m.getMapSelectionModel().getSelectedElements().clear();//Skloni selekt
 
         //Lazni pojam koji koristimo samo za testiranje
         Veza veza = new Veza(new Pojam(new Dimension(hitbox, hitbox), new Point(x, y)));
