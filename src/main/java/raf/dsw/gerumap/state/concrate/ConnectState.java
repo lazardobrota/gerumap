@@ -75,7 +75,7 @@ public class ConnectState extends State {
 
         veza.setTo(pojam);//poziva observer
         veza = new Veza("Veza" + m.getMindMap().getNumberingChildren(), m.getMindMap(), veza.getFrom(), veza.getTo());
-        m.getMindMap().getChildren().add(veza);//Dobra je veza i dodaje se u decu mape uma
+        m.getMindMap().addChild(veza);//Dobra je veza i dodaje se u decu mape uma
         System.out.println("Connect");
     }
 

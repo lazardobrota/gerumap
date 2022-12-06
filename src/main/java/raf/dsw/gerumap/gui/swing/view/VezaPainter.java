@@ -75,50 +75,19 @@ public class VezaPainter extends ElementPainter{
         g.draw(shape);
     }
 
-    //todo crta levo desno gore dole ali koordinate elipse su gore levo
     //za brisanje pojma da li smo ga pogodili
     @Override
     public boolean elementAt(Element element, Point position) {
         if (element instanceof Veza)//Mora pojam da pogodi
             return false;
 
-        //this
-        Veza veza = (Veza) this.element;
-        //A
-        int x = veza.getPocetak().x;//x1
-        int y = veza.getPocetak().y;//x1
-        //B
-        int right = veza.getKraj().x;//x2
-        int down = veza.getKraj().y;//y2
-
-        if (x > right) {
-            int t = x;
-            x = right;
-            right = t;
-        }
-
-        //that
+        //Lazni pojam za hitbox
         Pojam that= (Pojam) element;
-        int x2 = position.x;//x
-        int y2 = position.y;//y
+        int x = position.x;//x
+        int y = position.y;//y
 
-        //Ako se x2 hitbox pojma nalazi izmedju leve i desne koordinate veze
-        if (x < x2 && x2 <= right) {//todo popravi brisanje veze
-
-            //jednacina prave: y - y1 = ((y2-y1)/(x2-x1))*(x-x1)  A(x1, y1) B(x2, y2)
-            //kod nas: y2 - y = ((down - y)/(right - x)) * (x2 - x)
-            int k = (y - down) / (x - right);
-            int result = position.y - y - k * position.x + k * x;
-            System.out.println("result: " + result);
-
-            if ( -5 <= result && result <= 5)//Moze sa 10 da promasi(kao hitbox)
-                return true;
-        }
-
-        if (x == right)
-            return true;
-
-        return false;
+        //Da li linija intersektuje sa hitboxom
+        return this.getShape().intersects(x, y, that.getDimension().width, that.getDimension().height);
     }
 
     //-0
