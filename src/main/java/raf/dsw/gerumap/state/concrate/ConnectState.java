@@ -1,5 +1,8 @@
 package raf.dsw.gerumap.state.concrate;
 
+import raf.dsw.gerumap.core.ApplicationFramework;
+import raf.dsw.gerumap.gui.swing.error.ErrorType;
+import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.view.*;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.mapRepository.implementation.Veza;
@@ -10,7 +13,6 @@ import java.awt.*;
 public class ConnectState extends State {
     int hitbox = 10;
 
-    //todo vezi trenutno from i to pojam moze da bude skroz isti pojam
     @Override
     public void pressed(int x, int y, MindMapView m) {
 
@@ -37,7 +39,6 @@ public class ConnectState extends State {
         //System.out.println("Connect");
     }
 
-    //todo ne mogu duple veze sa iste stvari
     @Override
     public void released(int x, int y, MindMapView m) {
 
@@ -67,10 +68,32 @@ public class ConnectState extends State {
 
         //Ako nije pronasao drugi pojam ili je pocetni pojam los i ima i dalje hitbox za dimenzije
         if (!t || veza.getFrom().getDimension().width == hitbox) {
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.INVALID_CONNECTION);
             //Brisemo staru vezu sa jednim elementom
             m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
             veza.setIme("Fake");
             return;
+        }
+
+        //Ne moze veze sama sa sobom da se poveze
+        if (veza.getFrom().equals(pojam)) {
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.INVALID_CONNECTION);
+            m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
+            veza.setIme("Fake");
+            return;
+        }
+
+        for (ElementPainter painter : m.getElementPainterList()) {
+            if (painter instanceof VezaPainter) {
+                Veza v = (Veza) painter.getElement();
+                //Ako postoji vec veza koja povezuje dva pojma
+                if (v.getFrom().equals(veza.getFrom()) && v.getTo().equals(pojam)) {
+                    ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.ALREADY_HAS_CONNECTION);
+                    m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
+                    veza.setIme("Fake");
+                    return;
+                }
+            }
         }
 
         veza.setTo(pojam);//poziva observer
