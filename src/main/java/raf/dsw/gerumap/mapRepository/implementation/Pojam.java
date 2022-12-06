@@ -24,4 +24,9 @@ public class Pojam extends Element{
         this.dimension = dimension;
         this.position = position;
     }
+
+    public void setPosition(Point position) {
+        this.position = position;
+        this.notifySubs(this);
+    }
 }

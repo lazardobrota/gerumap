@@ -3,6 +3,7 @@ package raf.dsw.gerumap.state.concrate;
 import raf.dsw.gerumap.gui.swing.view.ColorFrame;
 import raf.dsw.gerumap.gui.swing.view.ElementPainter;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
+import raf.dsw.gerumap.gui.swing.view.PojamPainter;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.state.State;
 
@@ -20,10 +21,10 @@ public class SelectState extends State {
 
         //Pravimo lazni pojam koji prati mis za selektovanje
         Pojam pojam = new Pojam(new Dimension(10, 10), new Point(x, y));
-        m.getMapSelectionModel().setFakePojam(pojam);
         pojam.addSubs(m);
         pojam.setColor(Color.DARK_GRAY);
         pojam.setStroke(2);
+        m.getMapSelectionModel().setFakePojam(pojam);
         SelectState.x = x;
         SelectState.y = y;
     }
@@ -32,13 +33,12 @@ public class SelectState extends State {
     public void released(int x, int y, MindMapView m) {
         Pojam pojam = m.getMapSelectionModel().getFakePojam();
         for (ElementPainter elementPainter : m.getElementPainterList()) {
-            if (elementPainter.elementAt(pojam, pojam.getPosition())) {
+            //Samo za pojmove da menja boju
+            if (elementPainter instanceof PojamPainter && elementPainter.elementAt(pojam, pojam.getPosition())) {
                 m.getMapSelectionModel().getSelectedElements().add(elementPainter.getElement());
             }
         }
 
-        pojam.setColor(Color.DARK_GRAY);
-        pojam.setStroke(2);
         m.getMapSelectionModel().setFakePojam(null);
     }
 
@@ -91,7 +91,5 @@ public class SelectState extends State {
 
         pojam.setDimension(new Dimension(width, height));
         m.getMapSelectionModel().setFakePojam(pojam);
-        pojam.setColor(Color.DARK_GRAY);
-        pojam.setStroke(2);
     }
 }

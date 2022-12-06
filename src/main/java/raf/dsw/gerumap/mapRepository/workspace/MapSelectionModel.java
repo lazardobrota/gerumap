@@ -50,4 +50,9 @@ public class MapSelectionModel implements Publisher {
             return;
         this.subscribers.remove(sub);
     }
+
+    public void setFakePojam(Pojam fakePojam) {
+        this.fakePojam = fakePojam;
+        this.notifySubs(this);
+    }
 }
