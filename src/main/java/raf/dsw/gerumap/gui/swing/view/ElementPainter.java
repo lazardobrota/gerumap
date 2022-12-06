@@ -18,5 +18,8 @@ public abstract class ElementPainter {
     }
 
     public abstract void draw(Graphics2D g, Element element);
+    public void selectedDraw(Graphics2D g, Element element) {
+
+    }
     public abstract boolean elementAt(Element element, Point position);
 }

@@ -6,6 +6,7 @@ import raf.dsw.gerumap.mapRepository.implementation.Veza;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 public class PojamPainter extends ElementPainter{
 
@@ -25,6 +26,21 @@ public class PojamPainter extends ElementPainter{
 
         g.draw(shape);
         g.drawString(p.getIme(), x + p.getDimension().width/2 - g.getFontMetrics().stringWidth(p.getIme())/2, y + p.getDimension().height/2);
+    }
+
+    @Override
+    public void selectedDraw(Graphics2D g, Element element) {
+        Pojam p = (Pojam) element;
+        g.setPaint(p.getColor());
+        g.setStroke(new BasicStroke(p.getStroke()));
+        int x = p.getPosition().x;
+        int y = p.getPosition().y;
+
+        shape = new Rectangle2D.Float(x, y, p.getDimension().width, p.getDimension().height);
+
+        //Za crtanje isprekidanih linija
+        //g.setStroke(new BasicStroke(p.getStroke(), BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
+        g.draw(shape);
     }
 
     @Override

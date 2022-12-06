@@ -5,6 +5,7 @@ import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
+import raf.dsw.gerumap.mapRepository.workspace.MapSelectionModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,10 +19,12 @@ import java.util.List;
 public class MindMapView extends JPanel implements Subscriber {
 
     private MindMap mindMap;
+    private MapSelectionModel mapSelectionModel;
     private List<ElementPainter> elementPainterList = new ArrayList<>();//lista paintera
 
     public MindMapView(MindMap mindMap) {
         this.mindMap = mindMap;
+        mapSelectionModel = new MapSelectionModel();
         initMMV();
     }
 
@@ -36,9 +39,17 @@ public class MindMapView extends JPanel implements Subscriber {
     protected void paintComponent(Graphics g) {//Iscrtava
         super.paintComponent(g);//prvo iscrta sve tabove
 
+        if (this.mapSelectionModel.getFakePojam() != null) {
+            ElementPainter elementPainter = new PojamPainter(this.mapSelectionModel.getFakePojam());
+            elementPainter.selectedDraw((Graphics2D) g, elementPainter.getElement());
+        }
+
         //sada nove dodate stvari iz paintera crta
         for (ElementPainter elementPainter : elementPainterList) {
             elementPainter.draw((Graphics2D) g, elementPainter.getElement());
+            if (this.getMapSelectionModel().getSelectedElements().contains(elementPainter.getElement())) {
+                elementPainter.selectedDraw((Graphics2D) g, elementPainter.getElement());
+            }
         }
 
     }

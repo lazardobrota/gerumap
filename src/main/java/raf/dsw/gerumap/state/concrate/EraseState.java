@@ -54,7 +54,6 @@ public class EraseState extends State {
                 Veza veza = (Veza) elementPainter.getElement();
                 //Ako veza ima taj pojam koji se brise kao pocetni ili krajni onda se i ta veza brise
                 if (veza.getFrom().equals(pojam) || veza.getTo().equals(pojam)) {
-                    System.out.println("brisanje");
                     mindMapView.getMindMap().deleteChild(veza);//Roditelju sklanja taj element
                     iterator.remove();//Listi paintera sklanja taj elementPainter
                 }
