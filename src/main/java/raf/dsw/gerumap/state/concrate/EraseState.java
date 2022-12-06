@@ -35,14 +35,13 @@ public class EraseState extends State {
             iterator.remove();//Listi paintera sklanja taj elementPainter
 
             System.out.println("Erase");
-            //break;
+            break;
         }
 
         if (brise == null)
             return;
 
-        //todo
-        //removeConnections(brise, m);//mora van jer ne moze iterator unutar iteratora da prolazi
+        removeConnections(brise, m);//mora van jer ne moze iterator unutar iteratora da prolazi
     }
 
     //Ako nije pojam sam onda treba i njegove vezu da se obrisu
@@ -55,7 +54,7 @@ public class EraseState extends State {
                 Veza veza = (Veza) elementPainter.getElement();
                 //Ako veza ima taj pojam koji se brise kao pocetni ili krajni onda se i ta veza brise
                 if (veza.getFrom().equals(pojam) || veza.getTo().equals(pojam)) {
-                    //todo ne brise veze iz mape uma
+                    System.out.println("brisanje");
                     mindMapView.getMindMap().deleteChild(veza);//Roditelju sklanja taj element
                     iterator.remove();//Listi paintera sklanja taj elementPainter
                 }
