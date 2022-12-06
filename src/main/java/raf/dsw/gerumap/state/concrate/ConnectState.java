@@ -87,7 +87,7 @@ public class ConnectState extends State {
             if (painter instanceof VezaPainter) {
                 Veza v = (Veza) painter.getElement();
                 //Ako postoji vec veza koja povezuje dva pojma
-                if (v.getFrom().equals(veza.getFrom()) && v.getTo().equals(pojam)) {
+                if (v.getFrom().equals(veza.getFrom()) && v.getTo().equals(pojam) || v.getFrom().equals(pojam) && v.getTo().equals(veza.getFrom())) {
                     ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.ALREADY_HAS_CONNECTION);
                     m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
                     veza.setIme("Fake");
