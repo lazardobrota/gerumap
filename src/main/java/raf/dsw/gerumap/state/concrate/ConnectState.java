@@ -98,6 +98,8 @@ public class ConnectState extends State {
 
         veza.setTo(pojam);//poziva observer
         veza = new Veza("Veza" + m.getMindMap().getNumberingChildren(), m.getMindMap(), veza.getFrom(), veza.getTo());
+        veza.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor()); //dodajemo vezi boju
+        veza.setStroke(Integer.parseInt(ColorFrame.getInstance().getTfDebljinaLinije().getText())); // //dodajemo vezi debljinu linije
         m.getElementPainterList().get(m.getElementPainterList().size() - 1).setElement(veza);//apdejtuje vezu da zapravo postoji
         m.getMindMap().addChild(veza);//Dobra je veza i dodaje se u decu mape uma
         System.out.println("Connect");
