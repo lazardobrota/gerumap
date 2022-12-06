@@ -25,6 +25,7 @@ public class PojamPainter extends ElementPainter{
         shape = new Ellipse2D.Float(x, y, p.getDimension().width, p.getDimension().height);
 
         g.draw(shape);
+        g.setPaint(Color.BLACK);//nazive crno da bi mogli da se procitaju
         g.drawString(p.getIme(), x + p.getDimension().width/2 - g.getFontMetrics().stringWidth(p.getIme())/2, y + p.getDimension().height/2);
     }
 
