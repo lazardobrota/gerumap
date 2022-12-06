@@ -39,11 +39,6 @@ public class MindMapView extends JPanel implements Subscriber {
     protected void paintComponent(Graphics g) {//Iscrtava
         super.paintComponent(g);//prvo iscrta sve tabove
 
-        if (this.mapSelectionModel.getFakePojam() != null) {
-            ElementPainter elementPainter = new PojamPainter(this.mapSelectionModel.getFakePojam());
-            elementPainter.selectedDraw((Graphics2D) g, elementPainter.getElement());
-        }
-
         //sada nove dodate stvari iz paintera crta
         for (ElementPainter elementPainter : elementPainterList) {
             elementPainter.draw((Graphics2D) g, elementPainter.getElement());
@@ -52,6 +47,10 @@ public class MindMapView extends JPanel implements Subscriber {
             }
         }
 
+        if (this.mapSelectionModel.getFakePojam() != null) {
+            ElementPainter elementPainter = new PojamPainter(this.mapSelectionModel.getFakePojam());
+            elementPainter.selectedDraw((Graphics2D) g, elementPainter.getElement());
+        }
     }
 
     @Override

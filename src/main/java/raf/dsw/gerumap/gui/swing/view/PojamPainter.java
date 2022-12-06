@@ -31,8 +31,8 @@ public class PojamPainter extends ElementPainter{
     @Override
     public void selectedDraw(Graphics2D g, Element element) {
         Pojam p = (Pojam) element;
-        g.setPaint(p.getColor());
-        g.setStroke(new BasicStroke(p.getStroke()));
+        g.setPaint(Color.DARK_GRAY);
+        g.setStroke(new BasicStroke(2));
         int x = p.getPosition().x;
         int y = p.getPosition().y;
 
