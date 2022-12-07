@@ -1,10 +1,10 @@
-package raf.dsw.gerumap.state.concrate;
+package raf.dsw.gerumap.gui.swing.state.concrate;
 
 import raf.dsw.gerumap.gui.swing.view.ElementPainter;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.mapRepository.implementation.Veza;
-import raf.dsw.gerumap.state.State;
+import raf.dsw.gerumap.gui.swing.state.State;
 
 import java.awt.*;
 import java.util.Iterator;

@@ -1,6 +1,6 @@
-package raf.dsw.gerumap.state;
+package raf.dsw.gerumap.gui.swing.state;
 
-import raf.dsw.gerumap.state.concrate.*;
+import raf.dsw.gerumap.gui.swing.state.concrate.*;
 
 public class StateManager {
 
@@ -11,6 +11,7 @@ public class StateManager {
     private MoveState moveState;
     private SelectState selectState;
     private ZoomState zoomState;
+    private ZoomOutState zoomOutState;
 
     public StateManager() {
         initStates();
@@ -24,6 +25,7 @@ public class StateManager {
         this.moveState = new MoveState();
         this.selectState = new SelectState();
         this.zoomState = new ZoomState();
+        this.zoomOutState = new ZoomOutState();
 
         this.currentState = addElementState;//Random pocetna vrednost
     }
@@ -54,5 +56,8 @@ public class StateManager {
 
     public void setZoomState() {
         this.currentState = zoomState;
+    }
+    public void setZoomOutState() {
+        this.currentState = zoomOutState;
     }
 }

@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.state;
+package raf.dsw.gerumap.gui.swing.state;
 
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
 

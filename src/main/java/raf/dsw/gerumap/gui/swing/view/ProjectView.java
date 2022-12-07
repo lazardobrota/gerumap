@@ -7,7 +7,7 @@ import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
-import raf.dsw.gerumap.state.StateManager;
+import raf.dsw.gerumap.gui.swing.state.StateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -127,6 +127,9 @@ public class ProjectView extends JPanel implements Subscriber {
 
     public void startZoomState() {
         this.stateManager.setZoomState();
+    }
+    public void startZoomOutState() {
+        this.stateManager.setZoomOutState();
     }
 
     public void pressedMouse(int x, int y, MindMapView mindMapView) {

@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class MindMapView extends JPanel implements Subscriber {
     private MindMap mindMap;
     private MapSelectionModel mapSelectionModel;
     private List<ElementPainter> elementPainterList = new ArrayList<>();//lista paintera
+    private AffineTransform affineTransform;
+    private double zoom = 1;
 
     public MindMapView(MindMap mindMap) {
         this.mindMap = mindMap;
@@ -33,11 +36,17 @@ public class MindMapView extends JPanel implements Subscriber {
         MouseController mouseController = new MouseController();
         this.addMouseListener(mouseController);
         this.addMouseMotionListener(mouseController);
+
+        affineTransform = new AffineTransform();
     }
 
     @Override
     protected void paintComponent(Graphics g) {//Iscrtava
         super.paintComponent(g);//prvo iscrta sve tabove
+
+        Graphics2D graphics2D = (Graphics2D) g;
+        graphics2D.scale(this.zoom, this.zoom);
+        graphics2D.transform(this.affineTransform);
 
         //sada nove dodate stvari iz paintera crta
         for (ElementPainter elementPainter : elementPainterList) {
