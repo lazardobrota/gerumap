@@ -35,8 +35,9 @@ public class AddElementState extends State {
         }
 
         String name = ColorFrame.getInstance().getTfIspisanTekst().getText();
+        int numChildern = mindMap.getChildren().size();
         //Moze da se pravi pravi pojam jer ima slobodan prostor da se napravi
-        pojam = new Pojam(name + mindMap.getNumberingChildren(), mindMap, dimension, new Point(Math.abs(x2), Math.abs(y2)));
+        pojam = new Pojam(name, mindMap, dimension, new Point(Math.abs(x2), Math.abs(y2)));
         pojam.addSubs(m);//Dodaje pojmu MindMapView kao sub
         pojam.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor());//uzima selektovanu boju za pojam
         String stroke = ColorFrame.getInstance().getTfDebljinaLinije().getText();
@@ -46,6 +47,11 @@ public class AddElementState extends State {
 
         //Dodaje dete i poziva se update
         mindMap.addChild(pojam);
+        //Vec postoji dete sa tim imenom ako nije dodato
+        if (numChildern == mindMap.getChildren().size()) {
+            pojam.setIme(name + mindMap.getNumberingChildren());
+            mindMap.addChild(pojam);
+        }
         System.out.println("Add");
     }
 
