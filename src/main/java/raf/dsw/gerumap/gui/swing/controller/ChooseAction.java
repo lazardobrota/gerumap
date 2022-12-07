@@ -22,6 +22,10 @@ public class ChooseAction extends AbstractGerumapAction{
         if (stroke.matches("[0-9]") && name.matches("[a-zA-Z 0-9]+")) {
 
             MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
+            if(mindMapView == null) {
+                ColorFrame.getInstance().dispose();
+                return;
+            }
             for (Element element : mindMapView.getMapSelectionModel().getSelectedElements()) {
                 element.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor());
                 element.setStroke(Integer.parseInt(stroke));
