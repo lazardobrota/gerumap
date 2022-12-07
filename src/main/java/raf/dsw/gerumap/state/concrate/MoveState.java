@@ -24,25 +24,38 @@ public class MoveState extends State {
         MoveState.y = MoveState.lastY = y;
     }
 
-    //todo treba da se vrati na originalnu poziciju ako je trenutna zauzeta
+    //vraca na originalnu poziciju ako je trenutna zauzeta ili je van panela
     @Override
     public void released(int x, int y, MindMapView m) {
-        /*
         for (Element element : m.getMapSelectionModel().getSelectedElements()) {
+            //Veze ne treba da uporedjuje jer oni mogu jedna preko druge
             if (element instanceof Veza)
                 continue;
 
             for (ElementPainter elementPainter : m.getElementPainterList()) {
                 Pojam pojam = (Pojam) element;
+
+                //Ne treba pojam sam sa sobom da uporedjuje
+                if (elementPainter.getElement().equals(pojam))
+                    continue;
+
+                //Mora da se vrati na staru poziciju jer je nova zauzeta
                 if (elementPainter instanceof PojamPainter && elementPainter.elementAt(pojam, pojam.getPosition())) {
-                    //Mora da se vrati na staru poziciju jer je nova zauzeta
+                    int px = pojam.getPosition().x - (lastX - MoveState.x);
+                    int py = pojam.getPosition().y - (lastY - MoveState.y);
+                    pojam.setPosition(new Point(px, py));
+
+                }
+
+                //Van panela je pa ga vrati na staro mesto
+                //todo ima bag da moze da se namesti da se elementi postave na isto mesto medjutim odmah se posle popravi ako se ponovo pomeraju elemeti
+                if (pojam.getPosition().x < 0 || pojam.getPosition().y < 0) {
                     int px = pojam.getPosition().x - (lastX - MoveState.x);
                     int py = pojam.getPosition().y - (lastY - MoveState.y);
                     pojam.setPosition(new Point(px, py));
                 }
             }
         }
-         */
     }
 
     @Override
