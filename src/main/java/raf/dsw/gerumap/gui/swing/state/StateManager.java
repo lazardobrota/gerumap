@@ -10,7 +10,7 @@ public class StateManager {
     private EraseState eraseState;
     private MoveState moveState;
     private SelectState selectState;
-    private ZoomState zoomState;
+    private ZoomInState zoomInState;
     private ZoomOutState zoomOutState;
 
     public StateManager() {
@@ -24,7 +24,7 @@ public class StateManager {
         this.eraseState = new EraseState();
         this.moveState = new MoveState();
         this.selectState = new SelectState();
-        this.zoomState = new ZoomState();
+        this.zoomInState = new ZoomInState();
         this.zoomOutState = new ZoomOutState();
 
         this.currentState = addElementState;//Random pocetna vrednost
@@ -54,8 +54,8 @@ public class StateManager {
         this.currentState = selectState;
     }
 
-    public void setZoomState() {
-        this.currentState = zoomState;
+    public void setZoomInState() {
+        this.currentState = zoomInState;
     }
     public void setZoomOutState() {
         this.currentState = zoomOutState;

@@ -5,9 +5,9 @@ import raf.dsw.gerumap.gui.swing.view.MainFrame;
 
 import java.awt.event.ActionEvent;
 
-public class ZoomAction extends AbstractGerumapAction {
+public class ZoomInAction extends AbstractGerumapAction {
 
-    public ZoomAction() {
+    public ZoomInAction() {
         //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_S,ActionEvent.CTRL_MASK));
         putValue(SMALL_ICON,loadIcon("/images/zoom.png"));
         putValue(NAME,"Zoom");
@@ -16,6 +16,6 @@ public class ZoomAction extends AbstractGerumapAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().getProjectView().startZoomState();
+        MainFrame.getInstance().getProjectView().startZoomInState();
     }
 }

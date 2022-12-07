@@ -125,9 +125,10 @@ public class ProjectView extends JPanel implements Subscriber {
         this.stateManager.setSelectState();
     }
 
-    public void startZoomState() {
-        this.stateManager.setZoomState();
+    public void startZoomInState() {
+        this.stateManager.setZoomInState();
     }
+
     public void startZoomOutState() {
         this.stateManager.setZoomOutState();
     }

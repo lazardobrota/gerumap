@@ -1,5 +1,8 @@
 package raf.dsw.gerumap.gui.swing.state.concrate;
 
+import raf.dsw.gerumap.core.ApplicationFramework;
+import raf.dsw.gerumap.gui.swing.error.ErrorType;
+import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.view.ElementPainter;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.gui.swing.view.PojamPainter;
@@ -45,15 +48,18 @@ public class MoveState extends State {
                     int py = pojam.getPosition().y - (lastY - MoveState.y);
                     pojam.setPosition(new Point(px, py));
 
+                    ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.POSITION_TAKEN);
                 }
 
                 //Van panela je pa ga vrati na staro mesto
                 //todo ima bag da moze da se namesti da se elementi postave na isto mesto medjutim odmah se posle popravi ako se ponovo pomeraju elemeti
+                /*
                 if (pojam.getPosition().x < 0 || pojam.getPosition().y < 0) {
                     int px = pojam.getPosition().x - (lastX - MoveState.x);
                     int py = pojam.getPosition().y - (lastY - MoveState.y);
                     pojam.setPosition(new Point(px, py));
                 }
+                 */
             }
         }
     }

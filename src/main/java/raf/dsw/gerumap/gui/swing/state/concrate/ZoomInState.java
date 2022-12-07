@@ -3,7 +3,7 @@ package raf.dsw.gerumap.gui.swing.state.concrate;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.gui.swing.state.State;
 
-public class ZoomState extends State {
+public class ZoomInState extends State {
 
     @Override
     public void pressed(int x, int y, MindMapView m) {

@@ -23,7 +23,7 @@ public class ActionManager {
     private EraseAction eraseAction;
     private MoveAction moveAction;
     private SelectAction selectAction;
-    private ZoomAction zoomAction;
+    private ZoomInAction zoomInAction;
     private ZoomOutAction zoomOutAction;
     private ColorAction colorAction;
 
@@ -46,7 +46,7 @@ public class ActionManager {
         eraseAction = new EraseAction();
         moveAction = new MoveAction();
         selectAction = new SelectAction();
-        zoomAction = new ZoomAction();
+        zoomInAction = new ZoomInAction();
         zoomOutAction = new ZoomOutAction();
         colorAction = new ColorAction();
     }
