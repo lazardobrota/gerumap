@@ -2,6 +2,7 @@ package raf.dsw.gerumap.gui.swing.state.concrate;
 
 import raf.dsw.gerumap.gui.swing.view.ElementPainter;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
+import raf.dsw.gerumap.mapRepository.implementation.Element;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.mapRepository.implementation.Veza;
 import raf.dsw.gerumap.gui.swing.state.State;
@@ -13,7 +14,33 @@ public class EraseState extends State {
 
     @Override
     public void pressed(int x, int y, MindMapView m) {
-        m.getMapSelectionModel().getSelectedElements().clear();//Skloni selekt
+
+        if (!m.getMapSelectionModel().getSelectedElements().isEmpty()) {//Ako nije prazno
+
+            Iterator<ElementPainter> iteratorPainter = m.getElementPainterList().iterator();
+            Iterator<Element> iteratorSelected = m.getMapSelectionModel().getSelectedElements().iterator();
+            Pojam[] brisanje = new Pojam[m.getMapSelectionModel().getSelectedElements().size()];//Pravi niz
+            int i = 0;
+
+            //Prolazi kroz sve Paintere
+            while (iteratorPainter.hasNext()) {
+                Element elementPainter = iteratorPainter.next().getElement();
+                //Ako su im ista imena nasli smo element koji trebamo svuda da uklonimo
+                if (m.getMapSelectionModel().getSelectedElements().contains(elementPainter)) {
+                  brisanje[i++] = (Pojam) elementPainter;//Selektovani mogu samo pojmovi da budu
+
+                  m.getMindMap().deleteChild(elementPainter);//Brise iz mape uma
+                  m.getMapSelectionModel().getSelectedElements().remove(elementPainter);//Brise iz selektovanih
+                  iteratorPainter.remove();//Brise iz paintera
+                }
+            }
+
+            for (int j = 0; j < i; j++) {
+                removeConnections(brisanje[j], m);//Brise svaku vezu koju su imali
+            }
+            return;
+        }
+
 
         //Lazni pojam koji koristimo kao hitbox kursora
         Pojam pojam = new Pojam(new Dimension(10, 10), new Point(x, y));

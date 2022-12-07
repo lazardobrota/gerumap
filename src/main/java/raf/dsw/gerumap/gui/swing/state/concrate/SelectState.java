@@ -32,7 +32,7 @@ public class SelectState extends State {
     public void released(int x, int y, MindMapView m) {
         Pojam pojam = m.getMapSelectionModel().getFakePojam();
         for (ElementPainter elementPainter : m.getElementPainterList()) {
-            //Samo za pojmove da menja boju
+            //Samo za pojmove dodaje u selektovane
             if (elementPainter instanceof PojamPainter && elementPainter.elementAt(pojam, pojam.getPosition())) {
                 m.getMapSelectionModel().getSelectedElements().add(elementPainter.getElement());
             }
