@@ -18,7 +18,6 @@ public class EraseState extends State {
         if (!m.getMapSelectionModel().getSelectedElements().isEmpty()) {//Ako nije prazno
 
             Iterator<ElementPainter> iteratorPainter = m.getElementPainterList().iterator();
-            Iterator<Element> iteratorSelected = m.getMapSelectionModel().getSelectedElements().iterator();
             Pojam[] brisanje = new Pojam[m.getMapSelectionModel().getSelectedElements().size()];//Pravi niz
             int i = 0;
 
