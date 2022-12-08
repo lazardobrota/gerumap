@@ -15,7 +15,7 @@ public class EraseState extends State {
     @Override
     public void pressed(int x, int y, MindMapView m) {
 
-        if (!m.getMapSelectionModel().getSelectedElements().isEmpty()) {//Ako nije prazno
+        if (!m.getMapSelectionModel().getSelectedElements().isEmpty()) {//Ako je nesto selektovano
 
             Iterator<ElementPainter> iteratorPainter = m.getElementPainterList().iterator();
             Pojam[] brisanje = new Pojam[m.getMapSelectionModel().getSelectedElements().size()];//Pravi niz
@@ -37,6 +37,7 @@ public class EraseState extends State {
             for (int j = 0; j < i; j++) {
                 removeConnections(brisanje[j], m);//Brise svaku vezu koju su imali
             }
+
             return;
         }
 
