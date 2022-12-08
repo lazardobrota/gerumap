@@ -24,8 +24,6 @@ public class MindMapView extends JPanel implements Subscriber {
     private List<ElementPainter> elementPainterList = new ArrayList<>();//lista paintera
     private AffineTransform affineTransform;
     private double zoom = 1;
-    private JScrollBar scrollBarV;
-    private JScrollBar scrollBarH;
 
     public MindMapView(MindMap mindMap) {
         this.mindMap = mindMap;
@@ -40,14 +38,6 @@ public class MindMapView extends JPanel implements Subscriber {
         this.addMouseMotionListener(mouseController);
 
         affineTransform = new AffineTransform();
-        /*//todo mora scrollBar nekako da se doda
-        scrollBarV = new JScrollBar(JScrollBar.VERTICAL);
-        scrollBarH = new JScrollBar(JScrollBar.HORIZONTAL);
-        this.add(scrollBarV, BorderLayout.NORTH);
-        this.add(scrollBarH, BorderLayout.EAST);
-         */
-
-
     }
 
     @Override

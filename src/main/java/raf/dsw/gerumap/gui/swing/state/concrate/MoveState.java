@@ -50,22 +50,37 @@ public class MoveState extends State {
 
                     ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.POSITION_TAKEN);
                 }
-
-                //Van panela je pa ga vrati na staro mesto
-                //todo ima bag da moze da se namesti da se elementi postave na isto mesto medjutim odmah se posle popravi ako se ponovo pomeraju elemeti
-                /*
-                if (pojam.getPosition().x < 0 || pojam.getPosition().y < 0) {
-                    int px = pojam.getPosition().x - (lastX - MoveState.x);
-                    int py = pojam.getPosition().y - (lastY - MoveState.y);
-                    pojam.setPosition(new Point(px, py));
-                }
-                 */
             }
         }
     }
 
     @Override
     public void dragged(int x, int y, MindMapView m) {
+        //Ako je zumirano i prazan selekt onda se ponasa kao move za sve komponente da lazira pregled panela
+        if (m.getMapSelectionModel().getSelectedElements().isEmpty() && m.getZoom() > 1) {
+            for (ElementPainter elementPainter : m.getElementPainterList()) {
+                if (elementPainter.getElement() instanceof Veza)
+                    continue;
+                Pojam pojam = (Pojam) elementPainter.getElement();
+
+                int px = pojam.getPosition().x + (x - MoveState.lastX);
+                int py = pojam.getPosition().y + (y - MoveState.lastY);
+
+                pojam.setPosition(new Point(px, py));
+            }
+
+            MoveState.lastX = x;
+            MoveState.lastY = y;
+            return;
+        }
+
+        /*//Baci erro ako nije zumirano
+        if (m.getMapSelectionModel().getSelectedElements().isEmpty() && m.getZoom() <= 1) {
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.HAS_TO_BE_ZOOMED);
+        }
+         */
+
+        //Ako su selektovani da ih pomera
         for (Element element : m.getMapSelectionModel().getSelectedElements()) {
             if (element instanceof Veza)
                 continue;
