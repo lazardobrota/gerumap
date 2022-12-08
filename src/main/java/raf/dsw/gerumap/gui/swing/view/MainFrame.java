@@ -46,7 +46,7 @@ public class MainFrame extends JFrame{
         //bez obzira na rezoluciju
         int screenHeight = (int) screenSize.getHeight();
         int screenWidth = (int) screenSize.getWidth();
-        this.setSize(screenWidth / 2, screenHeight / 2);
+        this.setSize(screenWidth / 2, screenHeight / 2 + 100);
         this.setLocationRelativeTo(null);//postavlja na sredini ekrana aplikaciju
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Close operacija(onaj x desno gore) zatvara aplikaciju skroz
         this.setTitle("GeRuMap");
