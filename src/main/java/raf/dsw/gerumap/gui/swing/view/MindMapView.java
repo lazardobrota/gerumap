@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,8 @@ public class MindMapView extends JPanel implements Subscriber {
     private List<ElementPainter> elementPainterList = new ArrayList<>();//lista paintera
     private AffineTransform affineTransform;
     private double zoom = 1;
+    private double translateX = 1;
+    private double translateY = 1;
 
     public MindMapView(MindMap mindMap) {
         this.mindMap = mindMap;
@@ -45,7 +49,6 @@ public class MindMapView extends JPanel implements Subscriber {
         super.paintComponent(g);//prvo iscrta sve tabove
 
         Graphics2D graphics2D = (Graphics2D) g;
-        graphics2D.scale(this.zoom, this.zoom);
         graphics2D.transform(this.affineTransform);
 
         //sada nove dodate stvari iz paintera crta
@@ -59,6 +62,20 @@ public class MindMapView extends JPanel implements Subscriber {
         if (this.mapSelectionModel.getFakePojam() != null) {
             ElementPainter elementPainter = new PojamPainter(this.mapSelectionModel.getFakePojam());
             elementPainter.selectedDraw((Graphics2D) g, elementPainter.getElement());
+        }
+    }
+
+    public void setupTranformation() {
+        this.affineTransform.setToIdentity();
+        this.affineTransform.scale(this.zoom, this.zoom);
+        this.affineTransform.translate(this.translateX, this.translateY);
+    }
+
+    public void transformToUserSpace(Point2D deviceSpace){
+        try {
+            this.affineTransform.inverseTransform(deviceSpace, deviceSpace);
+        } catch (NoninvertibleTransformException e) {
+            e.printStackTrace();
         }
     }
 

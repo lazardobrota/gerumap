@@ -19,7 +19,7 @@ public class SelectState extends State {
         m.getMapSelectionModel().getSelectedElements().clear();//Obrise sve prethodne selektovane
 
         //Pravimo lazni pojam koji prati mis za selektovanje
-        Pojam pojam = new Pojam(new Dimension(10, 10), new Point(x, y));
+        Pojam pojam = new Pojam(new Dimension(1, 1), new Point(x, y));
         pojam.addSubs(m);
         pojam.setColor(Color.DARK_GRAY);
         pojam.setStroke(2);
