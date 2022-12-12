@@ -22,7 +22,6 @@ public class ColorFrame extends JDialog {
 
     private ColorFrame(){}
 
-    //todo treba na colorpicker da prikaze prethodno ime ako ej samo jedan element selektovan
     private void init(){
         this.setModalityType(ModalityType.APPLICATION_MODAL);//Postavi da ne moze nista drugo da se radi dok se ne zatvori JDialog
         Toolkit kit = Toolkit.getDefaultToolkit();

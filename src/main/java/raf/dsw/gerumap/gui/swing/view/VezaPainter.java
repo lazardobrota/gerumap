@@ -15,7 +15,6 @@ public class VezaPainter extends ElementPainter{
         super(element);
     }
 
-    //todo ovaj uslov za draw ne treba ovde
     @Override
     public void draw(Graphics2D g, Element element) {
         Veza veza = (Veza) element;

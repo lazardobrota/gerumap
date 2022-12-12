@@ -74,7 +74,7 @@ public class MoveState extends State {
             return;
         }
 
-        /*//Baci erro ako nije zumirano
+        /*//Baci error ako nije zumirano
         if (m.getMapSelectionModel().getSelectedElements().isEmpty() && m.getZoom() <= 1) {
             ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.HAS_TO_BE_ZOOMED);
         }

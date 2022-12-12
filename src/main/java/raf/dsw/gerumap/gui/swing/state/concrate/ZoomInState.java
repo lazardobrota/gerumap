@@ -12,7 +12,7 @@ public class ZoomInState extends State {
         if (m.getZoom() > 2)
             return;
 
-        m.setZoom(m.getZoom() * 1.2);
+        m.setZoom(m.getZoom() + 0.2);
         m.repaint();
         System.out.println("Zoom");
     }
