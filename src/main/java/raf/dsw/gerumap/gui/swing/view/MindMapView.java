@@ -63,6 +63,14 @@ public class MindMapView extends JPanel implements Subscriber {
         }
     }
 
+    public void setupTranformation() {
+        this.affineTransform.setToIdentity();
+        this.affineTransform.scale(this.zoom, this.zoom);
+        for (ElementPainter elementPainter : this.getElementPainterList()) {
+            elementPainter.getElement().setZoom(this.zoom);
+        }
+    }
+
     @Override
     public void update(Object notification) {
         //treba da bude if ako je dodat novi element za repaint

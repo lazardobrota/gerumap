@@ -17,8 +17,8 @@ public class ZoomOutState extends State {
         m.setZoom(m.getZoom() * 0.8);
         if (0.9 <= m.getZoom() && m.getZoom() <= 1.1) //Ako je oko 1 da se restartuje na 1
             m.setZoom(1);
-        m.getAffineTransform().setToIdentity();
-        m.getAffineTransform().scale(m.getZoom(), m.getZoom());
+
+        m.setupTranformation();
         m.repaint();
         System.out.println("ZoomOut");
     }

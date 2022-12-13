@@ -12,6 +12,7 @@ public abstract class Element extends MapNode {
 
     private Color color;
     private int stroke = 1;//debljina linije
+    private double zoom = 1;
 
     public Element(String ime, MapNode parent) {
         super(ime, parent);
