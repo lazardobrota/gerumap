@@ -9,7 +9,7 @@ public class ZoomOutAction extends AbstractGerumapAction {
 
     public ZoomOutAction() {
         //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_M,ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON,loadIcon("/images/zoom.png"));
+        putValue(SMALL_ICON,loadIcon("/images/zoomout.png"));
         putValue(NAME,"ZoomOut");
         putValue(SHORT_DESCRIPTION,"Odzumira iz platna");
     }

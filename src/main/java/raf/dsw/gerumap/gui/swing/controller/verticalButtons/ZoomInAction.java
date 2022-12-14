@@ -9,7 +9,7 @@ public class ZoomInAction extends AbstractGerumapAction {
 
     public ZoomInAction() {
         //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_S,ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON,loadIcon("/images/zoom.png"));
+        putValue(SMALL_ICON,loadIcon("/images/zoomin.png"));
         putValue(NAME,"Zoom");
         putValue(SHORT_DESCRIPTION,"Zumiranje po platnu");
     }
