@@ -86,6 +86,14 @@ public class PojamPainter extends ElementPainter{
         if (((x2 <= x && x <= right2) || ((x2 <= right && right <= right2))) && ((y2 <= y && y <= down2) || (y2 <= down && down <= down2)))
             return true;
 
+        //Da li je dodat po sirini veci po visini manji
+        if (((x2 <= x && x <= right2) || ((x2 <= right && right <= right2))) && ((y <= y2 && y2 <= down) || (y <= down2 && down2 <= down)))
+            return true;
+
+        //Da li je dodat po sirini manji po visini veci
+        if (((x <= x2 && x2 <= right) || (x <= right2 && right2 <= right)) && ((y2 <= y && y <= down2) || (y2 <= down && down <= down2)))
+            return true;
+
         return false;
     }
 

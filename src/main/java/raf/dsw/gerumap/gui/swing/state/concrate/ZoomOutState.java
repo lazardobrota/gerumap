@@ -10,7 +10,7 @@ public class ZoomOutState extends State {
     public void pressed(int x, int y, MindMapView m) {
 
         //Ne moze vise od ovoga da odzumira
-        if (m.getZoom() <= 0.25) {
+        if (m.getZoom() <= 0.5) {
             return;
         }
 
