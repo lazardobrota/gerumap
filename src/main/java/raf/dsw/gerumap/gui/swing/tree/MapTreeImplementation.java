@@ -50,9 +50,9 @@ public class MapTreeImplementation implements MapTree{
                 return;
 
             //proverava jel to project explorer npr i dodaje dete
-           // parent.add(new MapTreeItem(child));//ovde dodaje novu decu i to vidimo
-            AbstractCommand command = new AddChildCommand(parent, new MapTreeItem(child));
-            ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
+            parent.add(new MapTreeItem(child));//ovde dodaje novu decu i to vidimo
+            //AbstractCommand command = new AddChildCommand(parent, new MapTreeItem(child));
+            //ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
             mapTreeView.expandPath(mapTreeView.getSelectionPath());//i osvezavamo
             SwingUtilities.updateComponentTreeUI(mapTreeView);
         }

@@ -12,35 +12,32 @@ public class CommandManager {
     private List<AbstractCommand> commands = new ArrayList<>();
     private int counter = 0;
 
+    //dodaje se nova komanda na stek
     public void addCommand(AbstractCommand command){
-        // dodaje se nova komanda na stek
+        //Brise sve redo koji su mogli da idu
         while(counter < commands.size()){
             commands.remove(counter);
         }
         commands.add(command);
         //izvrsavamo komadu
-        this.doCommand();
+        this.doCommandManager();
     }
 
-    public void doCommand(){
+    public void doCommandManager(){
         if(counter < commands.size()){
             commands.get(counter++).doCommand();
-            SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMapTree().getTreeView());
-            ApplicationFramework.getInstance().getGui().enableUndoAction();
+            ApplicationFramework.getInstance().getGui().enableUndoAction();//Undo - unazad
         }
         if(counter == commands.size()){
-            ApplicationFramework.getInstance().getGui().disableRedoAction();
+            ApplicationFramework.getInstance().getGui().disableRedoAction();//Redo - unapred
         }
     }
 
-    /*
-     * Metoda koja poziva redo konkretne komande
-     */
-    public void undoCommand(){
+    //Metoda koja poziva redo konkretne komande
+    public void undoCommandManager(){
         if(counter > 0){
             ApplicationFramework.getInstance().getGui().enableRedoAction();
             commands.get(--counter).undoCommand();
-            SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMapTree().getTreeView());
         }
         if(counter == 0){
             ApplicationFramework.getInstance().getGui().disableUndoAction();

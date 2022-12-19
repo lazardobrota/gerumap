@@ -8,6 +8,8 @@ import raf.dsw.gerumap.gui.swing.view.ColorFrame;
 import raf.dsw.gerumap.gui.swing.view.ElementPainter;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.gui.swing.view.PojamPainter;
+import raf.dsw.gerumap.mapRepository.commands.AbstractCommand;
+import raf.dsw.gerumap.mapRepository.commands.impl.AddElementCommand;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 
@@ -35,23 +37,15 @@ public class AddElementState extends State {
         }
 
         String name = ColorFrame.getInstance().getTfIspisanTekst().getText();
-        int numChildern = mindMap.getChildren().size();
         //Moze da se pravi pravi pojam jer ima slobodan prostor da se napravi
         pojam = new Pojam(name, mindMap, dimension, new Point(Math.abs(x2), Math.abs(y2)));
-        pojam.addSubs(m);//Dodaje pojmu MindMapView kao sub
+        pojam.addSubs(m);//Dodaje pojmu MindMapView kao sub //todo da li je ovo okej addsubs???
         pojam.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor());//uzima selektovanu boju za pojam
         String stroke = ColorFrame.getInstance().getTfDebljinaLinije().getText();
         pojam.setStroke(Integer.parseInt(stroke));
 
-        m.getElementPainterList().add(new PojamPainter(pojam));//u listu paintera za tu mapu uma se dodaje pojam
-
-        //Dodaje dete i poziva se update
-        mindMap.addChild(pojam);
-        //Vec postoji dete sa tim imenom ako nije dodato
-        if (numChildern == mindMap.getChildren().size()) {
-            pojam.setIme(name + mindMap.getNumberingChildren());
-            mindMap.addChild(pojam);
-        }
+        AbstractCommand command = new AddElementCommand(m, pojam);
+        ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
         System.out.println("Add");
     }
 

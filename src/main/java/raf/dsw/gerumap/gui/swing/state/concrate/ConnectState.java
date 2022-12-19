@@ -4,6 +4,8 @@ import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.gui.swing.error.ErrorType;
 import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.view.*;
+import raf.dsw.gerumap.mapRepository.commands.AbstractCommand;
+import raf.dsw.gerumap.mapRepository.commands.impl.AddElementCommand;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.mapRepository.implementation.Veza;
 import raf.dsw.gerumap.gui.swing.state.State;
@@ -98,11 +100,13 @@ public class ConnectState extends State {
         }
 
         veza.setTo(pojam);//poziva observer
+        //CommandManager dodaje dete
         veza = new Veza("Veza" + m.getMindMap().getNumberingChildren(), m.getMindMap(), veza.getFrom(), veza.getTo());
         veza.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor()); //dodajemo vezi boju
         veza.setStroke(Integer.parseInt(ColorFrame.getInstance().getTfDebljinaLinije().getText())); // //dodajemo vezi debljinu linije
-        m.getElementPainterList().get(m.getElementPainterList().size() - 1).setElement(veza);//apdejtuje vezu da zapravo postoji
-        m.getMindMap().addChild(veza);//Dobra je veza i dodaje se u decu mape uma
+        m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
+        AbstractCommand command = new AddElementCommand(m, veza);
+        ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
         System.out.println("Connect");
     }
 

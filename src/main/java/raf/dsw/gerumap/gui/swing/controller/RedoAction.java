@@ -17,6 +17,6 @@ public class RedoAction extends AbstractGerumapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ApplicationFramework.getInstance().getGui().getCommandManager().doCommand();
+        ApplicationFramework.getInstance().getGui().getCommandManager().doCommandManager();
     }
 }

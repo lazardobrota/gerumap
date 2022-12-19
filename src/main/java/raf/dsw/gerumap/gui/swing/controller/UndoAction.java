@@ -16,6 +16,6 @@ public class UndoAction extends AbstractGerumapAction{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        ApplicationFramework.getInstance().getGui().getCommandManager().undoCommand();
+        ApplicationFramework.getInstance().getGui().getCommandManager().undoCommandManager();
     }
 }
