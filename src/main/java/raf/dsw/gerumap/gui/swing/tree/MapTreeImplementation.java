@@ -11,6 +11,7 @@ import raf.dsw.gerumap.mapRepository.commands.impl.AddChildCommand;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 import raf.dsw.gerumap.mapRepository.factory.FactoryUtils;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
