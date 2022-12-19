@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.mapRepository;
 
 import raf.dsw.gerumap.core.MapRepository;
+import raf.dsw.gerumap.mapRepository.commands.CommandManager;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
 /**
@@ -9,9 +10,11 @@ import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 public class MapRepositoryImpl implements MapRepository {
 
     private ProjectExplorer projectExplorer;
+    private CommandManager commandManager;
 
     public MapRepositoryImpl() {
         this.projectExplorer = new ProjectExplorer("My Project Explorer");
+        this.commandManager = new CommandManager();
     }
 
     @Override

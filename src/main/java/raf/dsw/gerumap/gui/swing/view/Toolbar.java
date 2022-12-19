@@ -12,7 +12,9 @@ public class Toolbar extends JToolBar {
         this.add(MainFrame.getInstance().getActionManager().getDeleteChildAction());
         this.add(MainFrame.getInstance().getActionManager().getEditAction());
         this.add(MainFrame.getInstance().getActionManager().getInfoAction());
-
-
+        this.add(MainFrame.getInstance().getActionManager().getUndoAction());
+        this.add(MainFrame.getInstance().getActionManager().getRedoAction());
+        this.add(MainFrame.getInstance().getActionManager().getOpenAction());
+        this.add(MainFrame.getInstance().getActionManager().getSaveFileAction());
     }
 }

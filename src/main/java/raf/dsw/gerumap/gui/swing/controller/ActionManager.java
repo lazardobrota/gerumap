@@ -16,6 +16,11 @@ public class ActionManager {
     private SaveAction autorAction;
     private ChooseAction chooseAction;
     private ClosingColorAction closingColorAction;
+    private UndoAction undoAction;
+    private RedoAction redoAction;
+    private OpenAction openAction;
+    private SaveFileAction saveFileAction;
+
 
     //Vertikalni dugmici
     private AddElementAction addElementAction;
@@ -49,6 +54,10 @@ public class ActionManager {
         zoomInAction = new ZoomInAction();
         zoomOutAction = new ZoomOutAction();
         colorAction = new ColorAction();
+        undoAction = new UndoAction();
+        redoAction = new RedoAction();
+        openAction = new OpenAction();
+        saveFileAction = new SaveFileAction();
     }
 
 }

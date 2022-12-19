@@ -6,14 +6,11 @@ import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeModel;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
-import raf.dsw.gerumap.gui.swing.view.MainFrame;
-import raf.dsw.gerumap.gui.swing.view.ProjectView;
+import raf.dsw.gerumap.mapRepository.commands.AbstractCommand;
+import raf.dsw.gerumap.mapRepository.commands.impl.AddChildCommand;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 import raf.dsw.gerumap.mapRepository.factory.FactoryUtils;
-import raf.dsw.gerumap.mapRepository.factory.NodeFactory;
-import raf.dsw.gerumap.mapRepository.implementation.Element;
-import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
@@ -53,7 +50,9 @@ public class MapTreeImplementation implements MapTree{
                 return;
 
             //proverava jel to project explorer npr i dodaje dete
-            parent.add(new MapTreeItem(child));//ovde dodaje novu decu i to vidimo
+           // parent.add(new MapTreeItem(child));//ovde dodaje novu decu i to vidimo
+            AbstractCommand command = new AddChildCommand(parent, new MapTreeItem(child));
+            ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
             mapTreeView.expandPath(mapTreeView.getSelectionPath());//i osvezavamo
             SwingUtilities.updateComponentTreeUI(mapTreeView);
         }
@@ -78,10 +77,27 @@ public class MapTreeImplementation implements MapTree{
         parent.deleteChild(child.getMapNode());
         treeModel.removeNodeFromParent(child);
     }
+    @Override
+    public void loadProject(Project node) {
+        //ucitavamo vec sacuvan projekat u aplikaciju
+        MapTreeItem loadedProject = new MapTreeItem(node);
+        treeModel.getRoot().add(loadedProject);
 
+        MapNodeComposite mapNode = (MapNodeComposite) treeModel.getRoot().getMapNode();
+        mapNode.addChild(node);
+
+        mapTreeView.expandPath(mapTreeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(mapTreeView);
+    }
 
     @Override
     public MapTreeItem getSelectedNode(){
         return (MapTreeItem) mapTreeView.getLastSelectedPathComponent();
     }
+
+    @Override
+    public MapTreeView getTreeView() {
+        return mapTreeView;
+    }
+
 }

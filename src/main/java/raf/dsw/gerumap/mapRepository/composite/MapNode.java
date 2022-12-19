@@ -2,6 +2,7 @@ package raf.dsw.gerumap.mapRepository.composite;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import raf.dsw.gerumap.gui.swing.observer.Publisher;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
 
@@ -16,7 +17,8 @@ import java.util.List;
 public abstract class MapNode implements Publisher {
 
     private String ime;
-    private MapNode parent;//svaki mapNode ima svog roditelja
+    @ToString.Exclude
+    private transient MapNode parent;//svaki mapNode ima svog roditelja
 
     private List<Subscriber> subscribers;
 
