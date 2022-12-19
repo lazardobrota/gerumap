@@ -25,8 +25,12 @@ public class EraseElementCommand extends AbstractCommand {
 
 
 
+    //todo postoji neki bag da nekad redo i undo apsolutno nista ne urade u nekom kliku
     @Override
     public void doCommand() {//Brise element
+        if(elements == null || mindMapView == null ||  mindMapView.getMindMap() == null)
+            return;
+
         Iterator<ElementPainter> iteratorPainter = mindMapView.getElementPainterList().iterator();
 
         //Prolazi kroz sve Paintere
@@ -43,6 +47,8 @@ public class EraseElementCommand extends AbstractCommand {
 
     @Override
     public void undoCommand() {//Dodaje element
+        if(elements == null || mindMapView == null ||  mindMapView.getMindMap() == null)
+            return;
 
         for (Element element : elements) {
 

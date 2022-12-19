@@ -25,7 +25,7 @@ public class AddElementCommand extends AbstractCommand {
 
     @Override
     public void doCommand() {
-        if(element == null ||  mindMapView.getMindMap() == null)
+        if(element == null || mindMapView == null ||  mindMapView.getMindMap() == null)
             return;
 
         if (element instanceof Veza) {
@@ -53,7 +53,7 @@ public class AddElementCommand extends AbstractCommand {
 
     @Override
     public void undoCommand() {
-        if(element == null ||  mindMapView.getMindMap() == null)
+        if(element == null || mindMapView == null ||  mindMapView.getMindMap() == null)
             return;
 
         //Brise iz selektovanih ako postoji tamo

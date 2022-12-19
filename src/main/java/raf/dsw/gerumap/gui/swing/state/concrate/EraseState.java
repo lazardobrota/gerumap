@@ -61,8 +61,8 @@ public class EraseState extends State {
 
             if (elementPainter.getElement() instanceof Pojam) {//Ako je pojam moramo da proverimo da li moramo i njegove veze da brisemo
                 brisanje.add((Pojam) elementPainter.getElement());
-                elements.add(elementPainter.getElement());//Dodaje u listu svih elementata za undo i redo
             }
+            elements.add(elementPainter.getElement());//Dodaje u listu svih elementata za undo i redo
             System.out.println("Erase");
             break;
         }
@@ -86,7 +86,8 @@ public class EraseState extends State {
                 Veza veza = (Veza) elementPainter.getElement();
                 //Ako veza ima taj pojam koji se brise kao pocetni ili krajni onda se i ta veza brise
                 if (veza.getFrom().equals(pojam) || veza.getTo().equals(pojam)) {
-                    elements.add(veza);
+                    if (!elements.contains(veza))//Da se ne bi dva puta dodavala ista veza ako je dva pojma koji se brisu imaju
+                        elements.add(veza);
                 }
             }
         }
