@@ -1,14 +1,17 @@
 package raf.dsw.gerumap.mapRepository.commands;
 
+import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.gerumap.core.ApplicationFramework;
-import raf.dsw.gerumap.gui.swing.view.MainFrame;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class CommandManager {
 
+    //todo da li treba da se cuva redo i undo ako se promeni mapa uma na tabu
     private List<AbstractCommand> commands = new ArrayList<>();
     private int counter = 0;
 
@@ -21,6 +24,14 @@ public class CommandManager {
         commands.add(command);
         //izvrsavamo komadu
         this.doCommandManager();
+    }
+
+    public void restartCommands() {
+        commands.clear();
+        counter = 0;
+        ApplicationFramework.getInstance().getGui().disableRedoAction();
+        ApplicationFramework.getInstance().getGui().disableUndoAction();
+
     }
 
     public void doCommandManager(){

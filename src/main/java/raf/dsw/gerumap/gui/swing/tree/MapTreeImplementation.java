@@ -6,12 +6,11 @@ import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeModel;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
-import raf.dsw.gerumap.mapRepository.commands.AbstractCommand;
-import raf.dsw.gerumap.mapRepository.commands.impl.AddChildCommand;
+import raf.dsw.gerumap.gui.swing.view.MainPanel;
+import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 import raf.dsw.gerumap.mapRepository.factory.FactoryUtils;
-import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
@@ -75,6 +74,16 @@ public class MapTreeImplementation implements MapTree{
             return;
         }
 
+        MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
+
+        //Ako je instanca projecta i neko dete tog projekta je selektovano desno znaci da je on observer
+        if (child.getMapNode() instanceof Project && ((Project) child.getMapNode()).getChildren().contains(mindMapView.getMindMap())) {
+            ApplicationFramework.getInstance().getGui().getCommandManager().restartCommands();//Skloni sve komande
+        }
+        //Ako je selektovana mapa uma bas ona koja je u observeru
+        if (mindMapView != null && mindMapView.getMindMap().equals(child.getMapNode())) {
+            ApplicationFramework.getInstance().getGui().getCommandManager().restartCommands();//Skloni sve komande
+        }
         parent.deleteChild(child.getMapNode());
         treeModel.removeNodeFromParent(child);
     }
