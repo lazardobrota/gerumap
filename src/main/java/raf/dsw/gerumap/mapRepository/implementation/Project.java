@@ -10,12 +10,13 @@ import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 public class Project extends MapNodeComposite {
 
     private String autor = "";   //osoba koja je napravila projekat
-    private String putanja;
+    protected String filePath;
+    protected boolean changed = true;
 
-    public Project(String ime, MapNode parent, String autor, String putanja) {
+    public Project(String ime, MapNode parent, String autor, String filePath) {
         super(ime, parent);
         this.autor = autor;
-        this.putanja = putanja;
+        this.filePath = filePath;
     }
     public Project(String ime, MapNode parent){
         super(ime,parent);
@@ -47,5 +48,6 @@ public class Project extends MapNodeComposite {
     public void setAutor(String autor) {
         this.autor = autor;
         this.notifySubs(this);
+        this.changed = true;
     }
 }

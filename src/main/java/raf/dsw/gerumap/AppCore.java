@@ -6,6 +6,7 @@ import raf.dsw.gerumap.gui.swing.error.LoggerType;
 import raf.dsw.gerumap.gui.swing.error.LoggerFactory;
 import raf.dsw.gerumap.mapRepository.MapRepositoryImpl;
 import raf.dsw.gerumap.gui.swing.messageGen.MessageGenImpl;
+import raf.dsw.gerumap.serializer.GsonSerializer;
 
 public class AppCore {
 
@@ -18,7 +19,8 @@ public class AppCore {
         MessageGenerator messageGenerator = new MessageGenImpl();
         messageGenerator.addSubs(errorLogger);
         messageGenerator.addSubs(gui);
-        applicationFramework.initialise(gui,mapRepository, errorLogger, messageGenerator);
+        Serializer serializer = new GsonSerializer();
+        applicationFramework.initialise(gui,mapRepository, errorLogger, messageGenerator, serializer);
         applicationFramework.run();
     }
 

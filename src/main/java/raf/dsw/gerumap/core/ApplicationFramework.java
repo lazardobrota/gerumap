@@ -12,6 +12,7 @@ public class ApplicationFramework {
     protected MapRepository mapRepository;
     protected ErrorLogger errorLogger;
     protected MessageGenerator messageGenerator;
+    protected Serializer serializer;
 
     private ApplicationFramework() {
     }
@@ -20,11 +21,12 @@ public class ApplicationFramework {
         this.gui.start();
     }
 
-    public void initialise(Gui gui, MapRepository mapRepository, ErrorLogger errorLogger, MessageGenerator messageGenerator) {
+    public void initialise(Gui gui, MapRepository mapRepository, ErrorLogger errorLogger, MessageGenerator messageGenerator, Serializer serializer) {
         this.gui = gui;
         this.mapRepository = mapRepository;
         this.errorLogger = errorLogger;
         this.messageGenerator = messageGenerator;
+        this.serializer = serializer;
     }
 
     public static ApplicationFramework getInstance(){
