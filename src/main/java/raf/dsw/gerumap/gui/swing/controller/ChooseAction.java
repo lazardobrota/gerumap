@@ -16,7 +16,7 @@ public class ChooseAction extends AbstractGerumapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        //todo treba redo i undo ovde da se uvede
         String stroke = ColorFrame.getInstance().getTfDebljinaLinije().getText();
         String name = ColorFrame.getInstance().getTfIspisanTekst().getText();
         if (stroke.matches("[0-9]") && name.matches("[a-zA-Z 0-9]+")) {

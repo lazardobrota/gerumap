@@ -11,6 +11,7 @@ public class MindMap extends MapNodeComposite {
 
     private boolean sablon;
     //todo umesto applicationFramework treba svaka mindmapa da ima Command prkeo koje se pristupa
+    //todo kako ovde da ubacimo command kada moram da zovemo onda MainFrame a to narusava arhitekturu
 
     public MindMap(String ime, MapNode parent, boolean sablon) {
         super(ime, parent);

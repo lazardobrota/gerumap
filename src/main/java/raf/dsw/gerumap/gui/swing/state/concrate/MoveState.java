@@ -6,12 +6,16 @@ import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.view.ElementPainter;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.gui.swing.view.PojamPainter;
+import raf.dsw.gerumap.mapRepository.commands.AbstractCommand;
+import raf.dsw.gerumap.mapRepository.commands.impl.MoveElementCommand;
 import raf.dsw.gerumap.mapRepository.implementation.Element;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.mapRepository.implementation.Veza;
 import raf.dsw.gerumap.gui.swing.state.State;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MoveState extends State {
     //Originalne koordinate gde je prvi put pritisnut kursor
@@ -20,6 +24,8 @@ public class MoveState extends State {
     //Cuva prethodne koordinate
     static int lastX;
     static int lastY;
+
+
     @Override
     public void pressed(int x, int y, MindMapView m) {
         //Pocetne koordinate
@@ -30,6 +36,8 @@ public class MoveState extends State {
     //vraca na originalnu poziciju ako je trenutna zauzeta ili je van panela
     @Override
     public void released(int x, int y, MindMapView m) {
+
+        List<Pojam> pojamList = new ArrayList<>();
         for (Element element : m.getMapSelectionModel().getSelectedElements()) {
             //Veze ne treba da uporedjuje jer oni mogu jedna preko druge
             if (element instanceof Veza)
@@ -49,15 +57,20 @@ public class MoveState extends State {
                     pojam.setPosition(new Point(px, py));
 
                     ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.POSITION_TAKEN);
-                    continue;
+                    break;//Pronasao je da se na tom mestu vec nalazi nekim postavljenim pojmom pa tu zavrsava sa tim pojmom koji se pomera
                 }
 
-                //Ovde dodaje u MoveElementCommand
-
+                //Znamo da se pomera taj pojam pa ga dodamo u listu pomeranih za redo i undo
+                if (!pojamList.contains(pojam))
+                    pojamList.add(pojam);
             }
         }
 
-
+        Point originalPoint = new Point(MoveState.x, MoveState.y);
+        Point lastPoint = new Point(lastX, lastY);
+        //Ovde dodaje u MoveElementCommand
+        AbstractCommand command = new MoveElementCommand(m.getMindMap(), pojamList, originalPoint, lastPoint);
+        ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
     }
 
     @Override
