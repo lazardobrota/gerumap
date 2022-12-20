@@ -10,6 +10,7 @@ import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 public class MindMap extends MapNodeComposite {
 
     private boolean sablon;
+    //todo umesto applicationFramework treba svaka mindmapa da ima Command prkeo koje se pristupa
 
     public MindMap(String ime, MapNode parent, boolean sablon) {
         super(ime, parent);

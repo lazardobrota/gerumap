@@ -49,9 +49,15 @@ public class MoveState extends State {
                     pojam.setPosition(new Point(px, py));
 
                     ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.POSITION_TAKEN);
+                    continue;
                 }
+
+                //Ovde dodaje u MoveElementCommand
+
             }
         }
+
+
     }
 
     @Override

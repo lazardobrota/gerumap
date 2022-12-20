@@ -7,7 +7,7 @@ import raf.dsw.gerumap.mapRepository.commands.CommandManager;
 
 public class SwingGui implements Gui {
 
-    private CommandManager commandManager;
+    private CommandManager commandManager;//todo prebaci ovo i njene metode u mindMap
 
     public SwingGui() {
     }

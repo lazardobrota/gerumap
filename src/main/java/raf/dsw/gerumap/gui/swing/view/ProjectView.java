@@ -2,6 +2,7 @@ package raf.dsw.gerumap.gui.swing.view;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
@@ -40,6 +41,7 @@ public class ProjectView extends JPanel implements Subscriber {
 
     private void setViewUI() {
         this.lblProjectName.setText(this.project.toString());
+        ApplicationFramework.getInstance().getGui().getCommandManager().restartCommands();
         MainPanel.getInstance().changeMindMaps(this.project);
     }
 
