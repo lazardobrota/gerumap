@@ -39,7 +39,7 @@ public class AddElementState extends State {
         String name = ColorFrame.getInstance().getTfIspisanTekst().getText();
         //Moze da se pravi pravi pojam jer ima slobodan prostor da se napravi
         pojam = new Pojam(name, mindMap, dimension, new Point(Math.abs(x2), Math.abs(y2)));
-        pojam.addSubs(m);//Dodaje pojmu MindMapView kao sub //todo da li je ovo okej addsubs???
+        pojam.addSubs(m);//Dodaje pojmu MindMapView kao sub
         pojam.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor());//uzima selektovanu boju za pojam
         String stroke = ColorFrame.getInstance().getTfDebljinaLinije().getText();
         pojam.setStroke(Integer.parseInt(stroke));

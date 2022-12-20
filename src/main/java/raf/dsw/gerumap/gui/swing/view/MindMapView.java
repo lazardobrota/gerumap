@@ -72,7 +72,7 @@ public class MindMapView extends JPanel implements Subscriber {
     }
 
     @Override
-    public void update(Object notification) {
+    public void update(Object notification) {//todo salji element koa notification da se ovde uradi addsubs za njega
         //treba da bude if ako je dodat novi element za repaint
         repaint();//poziva paintComponent
     }

@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class EraseElementCommand extends AbstractCommand {
+public class EraseElementCommand implements AbstractCommand {
 
-    MindMapView mindMapView;
+    MindMapView mindMapView; //todo uzima mindmap umesto mindmapview
     List<Element> elements = new ArrayList<>();
 
     public EraseElementCommand(MindMapView mindMapView, List<Element> elements) {

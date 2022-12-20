@@ -4,7 +4,7 @@ import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.mapRepository.commands.AbstractCommand;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 
-public class AddChildCommand extends AbstractCommand {
+public class AddChildCommand implements AbstractCommand {
 
     private MapTreeItem parent;
     private MapTreeItem child;

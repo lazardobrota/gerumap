@@ -13,7 +13,7 @@ import raf.dsw.gerumap.mapRepository.implementation.Veza;
 
 import java.util.Iterator;
 
-public class AddElementCommand extends AbstractCommand {
+public class AddElementCommand implements AbstractCommand {
 
     private MindMapView mindMapView;
     private Element element;
