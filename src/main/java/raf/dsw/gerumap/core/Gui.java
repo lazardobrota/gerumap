@@ -12,5 +12,4 @@ public interface Gui extends Subscriber {
 
     void disableUndoAction();
     void disableRedoAction();
-    CommandManager getCommandManager();
 }

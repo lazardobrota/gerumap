@@ -76,6 +76,7 @@ public class MapTreeImplementation implements MapTree{
 
         MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
 
+        /*
         //Ako je instanca projecta i neko dete tog projekta je selektovano desno znaci da je on observer
         if (child.getMapNode() instanceof Project && ((Project) child.getMapNode()).getChildren().contains(mindMapView.getMindMap())) {
             ApplicationFramework.getInstance().getGui().getCommandManager().restartCommands();//Skloni sve komande
@@ -84,6 +85,7 @@ public class MapTreeImplementation implements MapTree{
         if (mindMapView != null && mindMapView.getMindMap().equals(child.getMapNode())) {
             ApplicationFramework.getInstance().getGui().getCommandManager().restartCommands();//Skloni sve komande
         }
+         */
         parent.deleteChild(child.getMapNode());
         treeModel.removeNodeFromParent(child);
     }

@@ -44,7 +44,7 @@ public class EraseState extends State {
             }
 
             AbstractCommand command = new EraseElementCommand(m, elements);
-            ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
+            m.getMindMap().getCommandManager().addCommand(command);
             return;
         }
 
@@ -73,7 +73,7 @@ public class EraseState extends State {
         }
 
         AbstractCommand command = new EraseElementCommand(m, elements);
-        ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
+        m.getMindMap().getCommandManager().addCommand(command);
     }
 
     //Ako nije pojam sam onda treba i njegove vezu da se obrisu

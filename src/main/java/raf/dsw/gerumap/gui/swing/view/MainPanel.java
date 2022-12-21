@@ -36,7 +36,7 @@ public class MainPanel extends JPanel{
         this.add(tabsPanel, BorderLayout.CENTER);
         this.add(toolBarVertical, BorderLayout.EAST);
     }
-
+    //todo painteri se ne menjaju na redo i undo ako je promenjen projekat pa se vrati na originalni
     public void changeMindMaps(Project project) {
         tabsPanel.removeAll();
         for (MapNode mapNode : project.getChildren()) {
@@ -59,6 +59,13 @@ public class MainPanel extends JPanel{
 
             tabsPanel.add(mindMapView.getMindMap().getIme(), mindMapView);
         }
+        //todo ovo mozda vise nije potrebno
+        /*
+        MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
+        if (mindMapView == null)
+            return;
+        mindMapView.getMindMap().getCommandManager().changeCommandManager();
+         */
     }
 
     //Menja ime mape uma na tabu

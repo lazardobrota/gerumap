@@ -18,7 +18,7 @@ public abstract class MapNode implements Publisher {
 
     private String ime;
     @ToString.Exclude
-    private transient MapNode parent;//svaki mapNode ima svog roditelja
+    private transient MapNode parent;//da ga ne ucita pri otvaranju fajla nego mi rucno da ga postavimo kako se novi ID ne bi postavio
 
     private List<Subscriber> subscribers;
 

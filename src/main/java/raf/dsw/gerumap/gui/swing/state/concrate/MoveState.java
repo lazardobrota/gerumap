@@ -77,7 +77,7 @@ public class MoveState extends State {
         Point lastPoint = new Point(lastX, lastY);
         //Ovde dodaje u MoveElementCommand
         AbstractCommand command = new MoveElementCommand(m.getMindMap(), pojamList, originalPoint, lastPoint);
-        ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
+        m.getMindMap().getCommandManager().addCommand(command);
     }
 
     @Override

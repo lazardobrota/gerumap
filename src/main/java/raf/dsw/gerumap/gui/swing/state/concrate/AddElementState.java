@@ -45,7 +45,7 @@ public class AddElementState extends State {
         pojam.setStroke(Integer.parseInt(stroke));
 
         AbstractCommand command = new AddElementCommand(m, pojam);
-        ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
+        m.getMindMap().getCommandManager().addCommand(command);
         System.out.println("Add");
     }
 

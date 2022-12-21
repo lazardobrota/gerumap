@@ -2,6 +2,8 @@ package raf.dsw.gerumap.mapRepository.implementation;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.gerumap.core.ApplicationFramework;
+import raf.dsw.gerumap.mapRepository.commands.CommandManager;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 
@@ -10,8 +12,7 @@ import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 public class MindMap extends MapNodeComposite {
 
     private boolean sablon;
-    //todo umesto applicationFramework treba svaka mindmapa da ima Command prkeo koje se pristupa
-    //todo kako ovde da ubacimo command kada moram da zovemo onda MainFrame a to narusava arhitekturu
+    private CommandManager commandManager;
 
     public MindMap(String ime, MapNode parent, boolean sablon) {
         super(ime, parent);
@@ -20,6 +21,7 @@ public class MindMap extends MapNodeComposite {
     public MindMap(){
         this.setStartingName("MindMap");
         sablon = false;
+        commandManager = new CommandManager();
     }
 
     //Dodaje element u MindMap
@@ -38,4 +40,7 @@ public class MindMap extends MapNodeComposite {
         return true;
     }
 
+    public CommandManager getCommandManager() {
+        return commandManager;
+    }
 }

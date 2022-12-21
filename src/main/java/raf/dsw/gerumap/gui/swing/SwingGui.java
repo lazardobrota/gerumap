@@ -7,15 +7,12 @@ import raf.dsw.gerumap.mapRepository.commands.CommandManager;
 
 public class SwingGui implements Gui {
 
-    private CommandManager commandManager;//todo prebaci ovo i njene metode u mindMap
-
     public SwingGui() {
     }
 
     @Override
     public void start() {
         MainFrame.getInstance().setVisible(true);
-        commandManager = new CommandManager();
 
         //hocemo da zabranimo korisniku da pritisne undo i redo posto nije jos nista uradio
         this.disableUndoAction();
@@ -40,11 +37,6 @@ public class SwingGui implements Gui {
     @Override
     public void disableRedoAction() {
         MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
-    }
-
-    @Override
-    public CommandManager getCommandManager() {
-        return commandManager;
     }
 
     @Override
