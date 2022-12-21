@@ -41,7 +41,10 @@ public class ProjectView extends JPanel implements Subscriber {
 
     private void setViewUI() {
         this.lblProjectName.setText(this.project.toString());
-        ApplicationFramework.getInstance().getGui().getCommandManager().restartCommands();
+        if (this.project.getChildren().isEmpty()) {//Ako nema mape uma u projektu treba za se iskljuce redo i undo
+            ApplicationFramework.getInstance().getGui().disableUndoAction();
+            ApplicationFramework.getInstance().getGui().disableRedoAction();
+        }
         MainPanel.getInstance().changeMindMaps(this.project);
     }
 
