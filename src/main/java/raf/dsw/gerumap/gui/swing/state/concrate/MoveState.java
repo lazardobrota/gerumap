@@ -66,6 +66,9 @@ public class MoveState extends State {
             }
         }
 
+        if (pojamList.isEmpty())//Ne treba da doda commandu ako nista nije selektovano
+            return;
+
         Point originalPoint = new Point(MoveState.x, MoveState.y);
         Point lastPoint = new Point(lastX, lastY);
         //Ovde dodaje u MoveElementCommand

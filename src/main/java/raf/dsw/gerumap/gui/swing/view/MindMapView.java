@@ -3,7 +3,9 @@ package raf.dsw.gerumap.gui.swing.view;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
+import raf.dsw.gerumap.mapRepository.implementation.Element;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
+import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.workspace.MapSelectionModel;
 
@@ -73,7 +75,24 @@ public class MindMapView extends JPanel implements Subscriber {
 
     @Override
     public void update(Object notification) {//todo salji element koa notification da se ovde uradi addsubs za njega
-        //treba da bude if ako je dodat novi element za repaint
+        //dodaj je novi element u mindmap pa da se doda i u painter, mora i uslov ako vec dodat
+        /*
+        if (notification instanceof Element) {
+            boolean flag = false;
+            for (ElementPainter elementPainter : this.getElementPainterList()) {
+                if (elementPainter.getElement().equals(notification)) {//Vecc postoji taj element u listi painter
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                if (notification instanceof Pojam)
+                    this.getElementPainterList().add(new PojamPainter((Element) notification));
+                else
+                    this.getElementPainterList().add(new VezaPainter((Element) notification));
+            }
+        }
+         */
         repaint();//poziva paintComponent
     }
 

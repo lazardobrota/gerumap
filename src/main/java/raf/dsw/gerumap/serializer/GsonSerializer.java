@@ -12,6 +12,7 @@ import java.io.IOException;
 public class GsonSerializer implements Serializer {
 
     private final Gson gson = new Gson();
+
     @Override
     public Project loadProject(File file) {
         try (FileReader fileReader = new FileReader(file)) {
