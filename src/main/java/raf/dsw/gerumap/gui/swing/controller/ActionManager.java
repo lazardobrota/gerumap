@@ -21,6 +21,8 @@ public class ActionManager {
     private OpenAction openAction;
     private SaveFileAction saveFileAction;
 
+    private TabChangeListener tabChangeListener;//Listener za tab
+
 
     //Vertikalni dugmici
     private AddElementAction addElementAction;
@@ -45,6 +47,8 @@ public class ActionManager {
         autorAction = new SaveAction();
         chooseAction = new ChooseAction();
         closingColorAction = new ClosingColorAction();
+
+        tabChangeListener = new TabChangeListener();
 
         addElementAction = new AddElementAction();
         connectAction = new ConnectAction();
