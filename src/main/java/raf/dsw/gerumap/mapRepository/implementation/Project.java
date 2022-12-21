@@ -50,4 +50,10 @@ public class Project extends MapNodeComposite {
         this.notifySubs(this);
         this.changed = true;
     }
+
+    @Override
+    public void setIme(String ime) {
+        super.setIme(ime);
+        this.changed = true;
+    }
 }
