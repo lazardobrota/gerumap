@@ -43,6 +43,7 @@ public class MoveState extends State {
             if (element instanceof Veza)
                 continue;
 
+            boolean flag = false;
             for (ElementPainter elementPainter : m.getElementPainterList()) {
                 Pojam pojam = (Pojam) element;
 
@@ -57,18 +58,21 @@ public class MoveState extends State {
                     pojam.setPosition(new Point(px, py));
 
                     ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.POSITION_TAKEN);
+                    flag = true;
                     break;//Pronasao je da se na tom mestu vec nalazi nekim postavljenim pojmom pa tu zavrsava sa tim pojmom koji se pomera
                 }
 
-                //Znamo da se pomera taj pojam pa ga dodamo u listu pomeranih za redo i undo
-                if (!pojamList.contains(pojam))
-                    pojamList.add(pojam);
             }
+
+            //Znamo da se pomera taj pojam pa ga dodamo u listu pomeranih za redo i undo
+            if (!flag && !pojamList.contains(element))
+                pojamList.add((Pojam) element);
         }
 
-        if (pojamList.isEmpty())//Ne treba da doda commandu ako nista nije selektovano
+        if (pojamList.isEmpty()) //Ne treba da doda commandu ako nista nije selektovano
             return;
 
+        //todo postoji neki bag da nekad redo i undo apsolutno nista ne urade u nekom kliku
         Point originalPoint = new Point(MoveState.x, MoveState.y);
         Point lastPoint = new Point(lastX, lastY);
         //Ovde dodaje u MoveElementCommand
