@@ -1,7 +1,10 @@
 package raf.dsw.gerumap.serializer;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.w3c.dom.Node;
 import raf.dsw.gerumap.core.Serializer;
+import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 
 import java.io.File;
@@ -11,7 +14,7 @@ import java.io.IOException;
 
 public class GsonSerializer implements Serializer {
 
-    private final Gson gson = new Gson();
+    private final Gson gson = new GsonBuilder().registerTypeAdapter(MapNode.class, new MapNodeAdapter()).create();
 
     @Override
     public Project loadProject(File file) {
