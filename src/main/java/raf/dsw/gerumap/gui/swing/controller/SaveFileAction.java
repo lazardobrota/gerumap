@@ -1,8 +1,14 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.core.ApplicationFramework;
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
+import raf.dsw.gerumap.mapRepository.implementation.Project;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 public class SaveFileAction extends AbstractGerumapAction {
 
@@ -14,6 +20,41 @@ public class SaveFileAction extends AbstractGerumapAction {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        JFileChooser jfc = new JFileChooser();
+        Project project = null;
 
+        if (MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project) { //Projekat je selektovan
+            project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
+        }
+        else if (MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().getParent() instanceof Project) { //MindMap je selektovan
+            project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().getParent().getParent();
+        }
+        else if (MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().getParent().getParent() instanceof Project) { //Element je selektovan
+            project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().getParent().getParent();
+        }
+
+        if (project ==null)//Nije selektovano ono sto moze da se sacuva
+            return;
+
+        File projectFile = null;
+
+        if (!project.isChanged()) {
+            return;
+        }
+
+        if (project.getFilePath() == null || project.getFilePath().isEmpty()) {
+            if (jfc.showSaveDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
+                projectFile = jfc.getSelectedFile();
+                project.setFilePath(projectFile.getPath());
+            } else {
+                return;
+            }
+
+        }
+
+
+        ApplicationFramework.getInstance().getSerializer().saveProject(project);
+
+        project.setChanged(false);
     }
 }
