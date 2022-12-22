@@ -23,11 +23,16 @@ public class SaveFileAction extends AbstractGerumapAction {
         JFileChooser jfc = new JFileChooser();
         Project project = null;
 
+        //todo nekad ne hvata null iako treba
+        if (MainFrame.getInstance().getMapTree().getSelectedNode() == null) {//Ako nista nije selektovano
+            return;
+        }
+
         if (MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project) { //Projekat je selektovan
             project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
         }
         else if (MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().getParent() instanceof Project) { //MindMap je selektovan
-            project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().getParent().getParent();
+            project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().getParent();
         }
         else if (MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().getParent().getParent() instanceof Project) { //Element je selektovan
             project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().getParent().getParent();
