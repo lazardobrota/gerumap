@@ -20,7 +20,7 @@ public abstract class MapNode implements Publisher {
     @ToString.Exclude
     private transient MapNode parent;//da ga ne ucita pri otvaranju fajla nego mi rucno da ga postavimo kako se novi ID ne bi postavio
 
-    private List<Subscriber> subscribers;
+    private transient List<Subscriber> subscribers;//da ne bi bacao exception kad se ukljuci observer, mora da bude transient
 
     public MapNode(String ime, MapNode parent) {
         this.ime = ime;
