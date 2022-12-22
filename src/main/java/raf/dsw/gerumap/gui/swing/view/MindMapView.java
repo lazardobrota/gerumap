@@ -3,6 +3,7 @@ package raf.dsw.gerumap.gui.swing.view;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.gui.swing.observer.Subscriber;
+import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.implementation.Element;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
@@ -74,26 +75,50 @@ public class MindMapView extends JPanel implements Subscriber {
     }
 
     @Override
-    public void update(Object notification) {//todo salji element koa notification da se ovde uradi addsubs za njega
+    public void update(Object notification) {
         //dodaj je novi element u mindmap pa da se doda i u painter, mora i uslov ako vec dodat
-        /*
-        if (notification instanceof Element) {
-            boolean flag = false;
-            for (ElementPainter elementPainter : this.getElementPainterList()) {
-                if (elementPainter.getElement().equals(notification)) {//Vecc postoji taj element u listi painter
-                    flag = true;
-                    break;
-                }
+        if (notification instanceof MindMap) {
+            MindMap mindMap = (MindMap) notification;
+            if (mindMap.getChildren().size() > this.getElementPainterList().size()) {//Za dodavanje elemnta u paintere
+                addElement(mindMap);
             }
-            if (flag) {
-                if (notification instanceof Pojam)
-                    this.getElementPainterList().add(new PojamPainter((Element) notification));
-                else
-                    this.getElementPainterList().add(new VezaPainter((Element) notification));
+            else if (mindMap.getChildren().size() < this.getElementPainterList().size()) {//Za brisanje elementa iz paintera
+                removeElement(mindMap);
             }
         }
-         */
         repaint();//poziva paintComponent
+    }
+
+    public void addElement(MindMap mindMap) {
+        //Uzimamo poslednji mindMap koji je dodat
+        Element element = (Element) mindMap.getChildren().get(mindMap.getChildren().size() - 1);
+
+        if (element instanceof Pojam)
+            this.getElementPainterList().add(new PojamPainter(element));
+        else
+            this.getElementPainterList().add(new VezaPainter(element));
+    }
+
+
+    private void removeElement(MindMap mindMap) {
+        boolean t;
+        //Prolazimo kroz sve painter
+        for (int i = 0; i < this.getElementPainterList().size(); i++) {
+            t = false;
+            //Prolazimo kroz sve elemente u notify mapi uma
+            for (MapNode mapNode : mindMap.getChildren()) {
+                Element element = (Element) mapNode;
+                if (this.getElementPainterList().get(i).getElement().equals(element))
+                    t = true;
+            }
+            if (t)
+                continue;
+
+            this.getElementPainterList().remove(i);
+            this.getMapSelectionModel().getSelectedElements().clear();//Brise iz selektovanih elementa ako postoji tamo
+
+            return;
+        }
     }
 
     //Kad se klikne negde na mindMap prozor

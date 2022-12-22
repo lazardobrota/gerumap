@@ -15,6 +15,8 @@ public class MyMenuBar extends JMenuBar {
         filemenu.setMnemonic(KeyEvent.VK_F);//Koristi ALT i jos neki key(taster) da otvori File, u nasem slucaju ALT+F
         filemenu.add(MainFrame.getInstance().getActionManager().getNewProjectAction());
         filemenu.add(MainFrame.getInstance().getActionManager().getDeleteChildAction());
+        filemenu.add(MainFrame.getInstance().getActionManager().getUndoAction());
+        filemenu.add(MainFrame.getInstance().getActionManager().getRedoAction());
         filemenu.add(MainFrame.getInstance().getActionManager().getInfoAction());
 
         this.add(filemenu);

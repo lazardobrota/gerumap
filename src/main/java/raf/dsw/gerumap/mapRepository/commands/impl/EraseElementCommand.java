@@ -6,6 +6,7 @@ import raf.dsw.gerumap.gui.swing.view.PojamPainter;
 import raf.dsw.gerumap.gui.swing.view.VezaPainter;
 import raf.dsw.gerumap.mapRepository.commands.AbstractCommand;
 import raf.dsw.gerumap.mapRepository.implementation.Element;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 import raf.dsw.gerumap.mapRepository.implementation.Veza;
 
@@ -15,50 +16,33 @@ import java.util.List;
 
 public class EraseElementCommand implements AbstractCommand {
 
-    MindMapView mindMapView; //todo uzima mindmap umesto mindmapview
-    List<Element> elements = new ArrayList<>();
+    private MindMap mindMap;
+    private List<Element> elements = new ArrayList<>();
+    private List<Element> selected;
 
-    public EraseElementCommand(MindMapView mindMapView, List<Element> elements) {
-        this.mindMapView = mindMapView;
+    public EraseElementCommand(MindMap mindMap, List<Element> elements, List<Element> selected) {
+        this.mindMap = mindMap;
         this.elements.addAll(elements);//Ovako su dodati elementi kako bi izbegli pokazivace izmejdu this.elements i elements jer se elements restartuje na svako pozivanje brisanja
+        this.selected = selected;
     }
 
-
-
-    //todo postoji neki bag da nekad redo i undo apsolutno nista ne urade u nekom kliku
     @Override
     public void doCommand() {//Brise element
-        if(elements == null || mindMapView == null ||  mindMapView.getMindMap() == null)
+        if(elements == null || selected == null || mindMap == null)
             return;
 
-        Iterator<ElementPainter> iteratorPainter = mindMapView.getElementPainterList().iterator();
-
-        //Prolazi kroz sve Paintere
-        while (iteratorPainter.hasNext()) {
-            Element elementPainter = iteratorPainter.next().getElement();
-            //Ako su im ista imena nasli smo element koji trebamo svuda da uklonimo
-            if (elements.contains(elementPainter)) {
-                mindMapView.getMindMap().deleteChild(elementPainter);//Brise iz mape uma
-                mindMapView.getMapSelectionModel().getSelectedElements().remove(elementPainter);//Brise iz selektovanih
-                iteratorPainter.remove();//Brise iz paintera
-            }
+        for (Element element : elements) {
+            mindMap.deleteChild(element);
         }
     }
 
     @Override
     public void undoCommand() {//Dodaje element
-        if(elements == null || mindMapView == null ||  mindMapView.getMindMap() == null)
+        if(elements == null || selected == null || mindMap == null)
             return;
 
         for (Element element : elements) {
-
-            //Vraca u listu paintera
-            if (element instanceof Pojam)
-                mindMapView.getElementPainterList().add(new PojamPainter(element));
-            else
-                mindMapView.getElementPainterList().add(new VezaPainter(element));
-
-            mindMapView.getMindMap().addChild(element);
+            mindMap.addChild(element);
         }
     }
 }
