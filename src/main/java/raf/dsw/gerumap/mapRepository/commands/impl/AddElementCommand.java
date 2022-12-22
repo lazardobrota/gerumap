@@ -18,17 +18,15 @@ public class AddElementCommand implements AbstractCommand {
 
     private MindMap mindMap;
     private Element element;
-    private List<Element> selected;
 
-    public AddElementCommand(MindMap mindMap, Element element, List<Element> selected) {
+    public AddElementCommand(MindMap mindMap, Element element) {
         this.mindMap = mindMap;
         this.element = element;
-        this.selected = selected;
     }
 
     @Override
     public void doCommand() {
-        if(element == null || selected == null ||  mindMap == null)
+        if(element == null ||  mindMap == null)
             return;
 
         if (element instanceof Veza) {
@@ -55,11 +53,8 @@ public class AddElementCommand implements AbstractCommand {
 
     @Override
     public void undoCommand() {
-        if(element == null || selected == null ||  mindMap == null)
+        if(element == null || mindMap == null)
             return;
-
-        //Brise iz selektovanih ako postoji tamo
-        selected.remove(element);
 
         mindMap.deleteChild(element);//Brise iz liste dece
         System.out.println(mindMap.getChildren().size());

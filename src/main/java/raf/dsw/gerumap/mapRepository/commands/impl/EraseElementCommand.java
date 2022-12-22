@@ -18,17 +18,15 @@ public class EraseElementCommand implements AbstractCommand {
 
     private MindMap mindMap;
     private List<Element> elements = new ArrayList<>();
-    private List<Element> selected;
 
-    public EraseElementCommand(MindMap mindMap, List<Element> elements, List<Element> selected) {
+    public EraseElementCommand(MindMap mindMap, List<Element> elements) {
         this.mindMap = mindMap;
         this.elements.addAll(elements);//Ovako su dodati elementi kako bi izbegli pokazivace izmejdu this.elements i elements jer se elements restartuje na svako pozivanje brisanja
-        this.selected = selected;
     }
 
     @Override
     public void doCommand() {//Brise element
-        if(elements == null || selected == null || mindMap == null)
+        if(elements == null || mindMap == null)
             return;
 
         for (Element element : elements) {
@@ -38,7 +36,7 @@ public class EraseElementCommand implements AbstractCommand {
 
     @Override
     public void undoCommand() {//Dodaje element
-        if(elements == null || selected == null || mindMap == null)
+        if(elements == null || mindMap == null)
             return;
 
         for (Element element : elements) {

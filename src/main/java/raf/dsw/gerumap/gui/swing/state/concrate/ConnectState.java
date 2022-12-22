@@ -105,7 +105,7 @@ public class ConnectState extends State {
         veza.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor()); //dodajemo vezi boju
         veza.setStroke(Integer.parseInt(ColorFrame.getInstance().getTfDebljinaLinije().getText())); // //dodajemo vezi debljinu linije
         m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
-        AbstractCommand command = new AddElementCommand(m.getMindMap(), veza, m.getMapSelectionModel().getSelectedElements());
+        AbstractCommand command = new AddElementCommand(m.getMindMap(), veza);
         m.getMindMap().getCommandManager().addCommand(command);
         System.out.println("Connect");
     }

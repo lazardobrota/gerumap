@@ -44,7 +44,7 @@ public class AddElementState extends State {
         String stroke = ColorFrame.getInstance().getTfDebljinaLinije().getText();
         pojam.setStroke(Integer.parseInt(stroke));
 
-        AbstractCommand command = new AddElementCommand(m.getMindMap(), pojam, m.getMapSelectionModel().getSelectedElements());
+        AbstractCommand command = new AddElementCommand(m.getMindMap(), pojam);
         m.getMindMap().getCommandManager().addCommand(command);
         System.out.println("Add");
     }

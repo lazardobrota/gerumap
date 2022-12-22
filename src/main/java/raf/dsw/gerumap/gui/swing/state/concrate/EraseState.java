@@ -43,7 +43,7 @@ public class EraseState extends State {
                 removeConnections(pojam, m);//Brise svaku vezu koju su imali
             }
 
-            AbstractCommand command = new EraseElementCommand(m.getMindMap(), elements, m.getMapSelectionModel().getSelectedElements());
+            AbstractCommand command = new EraseElementCommand(m.getMindMap(), elements);
             m.getMindMap().getCommandManager().addCommand(command);
             return;
         }
@@ -72,7 +72,7 @@ public class EraseState extends State {
             removeConnections(p, m);//mora van jer ne moze iterator unutar iteratora da prolazi
         }
 
-        AbstractCommand command = new EraseElementCommand(m.getMindMap(), elements, m.getMapSelectionModel().getSelectedElements());
+        AbstractCommand command = new EraseElementCommand(m.getMindMap(), elements);
         m.getMindMap().getCommandManager().addCommand(command);
     }
 
