@@ -6,11 +6,13 @@ import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeModel;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.gui.swing.view.MainPanel;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 import raf.dsw.gerumap.mapRepository.factory.FactoryUtils;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
@@ -51,8 +53,6 @@ public class MapTreeImplementation implements MapTree{
 
             //proverava jel to project explorer npr i dodaje dete
             parent.add(new MapTreeItem(child));//ovde dodaje novu decu i to vidimo
-            //AbstractCommand command = new AddChildCommand(parent, new MapTreeItem(child));
-            //ApplicationFramework.getInstance().getGui().getCommandManager().addCommand(command);
             mapTreeView.expandPath(mapTreeView.getSelectionPath());//i osvezavamo
             SwingUtilities.updateComponentTreeUI(mapTreeView);
         }
@@ -74,18 +74,6 @@ public class MapTreeImplementation implements MapTree{
             return;
         }
 
-        MindMapView mindMapView = (MindMapView) MainPanel.getInstance().getTabsPanel().getSelectedComponent();
-
-        /*
-        //Ako je instanca projecta i neko dete tog projekta je selektovano desno znaci da je on observer
-        if (child.getMapNode() instanceof Project && ((Project) child.getMapNode()).getChildren().contains(mindMapView.getMindMap())) {
-            ApplicationFramework.getInstance().getGui().getCommandManager().restartCommands();//Skloni sve komande
-        }
-        //Ako je selektovana mapa uma bas ona koja je u observeru
-        if (mindMapView != null && mindMapView.getMindMap().equals(child.getMapNode())) {
-            ApplicationFramework.getInstance().getGui().getCommandManager().restartCommands();//Skloni sve komande
-        }
-         */
         parent.deleteChild(child.getMapNode());
         treeModel.removeNodeFromParent(child);
     }
@@ -97,6 +85,34 @@ public class MapTreeImplementation implements MapTree{
 
         MapNodeComposite mapNode = (MapNodeComposite) treeModel.getRoot().getMapNode();
         mapNode.addChild(node);
+
+        for (MapNode mindMap : node.getChildren()) {
+            mindMap.setParent(node);//Uvek je na pocetku roditelj null pa mora ponovo da se doda
+            loadMindMap((MindMap) mindMap);
+        }
+
+        mapTreeView.expandPath(mapTreeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(mapTreeView);
+    }
+
+    @Override
+    public void loadMindMap(MindMap mindMap) {
+        MapNodeComposite projectExplorer = (MapNodeComposite) treeModel.getRoot().getMapNode();
+        MapTreeItem mapTreeItemProject = null;
+        int i = 0;
+        for (MapNode mapNode : projectExplorer.getChildren()) {
+            if (mapNode.equals(mindMap.getParent())) {//Ako roditelj mindMape koju upisujemo ima istog parenta kao neko dete projectExplorera onda smo nasli taj projekat
+                mapTreeItemProject = (MapTreeItem) treeModel.getRoot().getChildAt(i);
+                break;
+            }
+            i++;
+        }
+
+        if (mapTreeItemProject == null)
+            return;
+
+        MapTreeItem loadedMindMap = new MapTreeItem(mindMap);//pravi TreeItem od mindmape
+        mapTreeItemProject.add(loadedMindMap);//Dodaje ga Projetku kao TreeItem
 
         mapTreeView.expandPath(mapTreeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(mapTreeView);
