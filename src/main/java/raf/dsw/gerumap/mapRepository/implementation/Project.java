@@ -36,6 +36,7 @@ public class Project extends MapNodeComposite {
             return false;
 
         this.getChildren().add(mindMap);
+        mapNode.setParent(this);
         this.notifySubs(this);//prosledjujemo ovaj minMap jer treba od njega novi tab da se napravi i treba da obavesti njegove subove da se apdejtaju
         return true;
     }

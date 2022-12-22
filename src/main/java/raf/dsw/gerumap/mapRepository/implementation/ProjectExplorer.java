@@ -24,6 +24,7 @@ public class ProjectExplorer extends MapNodeComposite {
             return false;
 
         this.getChildren().add(p);
+        mapNode.setParent(this);
         return true;
     }
 }

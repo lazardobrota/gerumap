@@ -36,6 +36,7 @@ public class MindMap extends MapNodeComposite {
 
         this.getChildren().add(element);
         System.out.println(this.getChildren().size());
+        element.setParent(this);
         this.notifySubs(this);
         return true;
     }
