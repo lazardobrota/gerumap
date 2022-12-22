@@ -102,7 +102,7 @@ public class ConnectState extends State {
         veza.setTo(pojam);//poziva observer
         //CommandManager dodaje dete
         veza = new Veza("Veza" + m.getMindMap().getNumberingChildren(), m.getMindMap(), veza.getFrom(), veza.getTo());
-        veza.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor()); //dodajemo vezi boju
+        veza.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor().getRGB()); //dodajemo vezi boju
         veza.setStroke(Integer.parseInt(ColorFrame.getInstance().getTfDebljinaLinije().getText())); // //dodajemo vezi debljinu linije
         m.getElementPainterList().remove(m.getElementPainterList().size() - 1);
         AbstractCommand command = new AddElementCommand(m.getMindMap(), veza);
@@ -128,7 +128,7 @@ public class ConnectState extends State {
         veza.setTo(new Pojam(new Dimension(hitbox, hitbox), new Point(x, y)));
 
         //poziva observer
-        veza.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor()); //dodajemo vezi boju
+        veza.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor().getRGB()); //dodajemo vezi boju
         veza.setStroke(Integer.parseInt(ColorFrame.getInstance().getTfDebljinaLinije().getText())); // //dodajemo vezi debljinu linije
     }
 }

@@ -17,7 +17,8 @@ public class PojamPainter extends ElementPainter{
     @Override
     public void draw(Graphics2D g, Element element) {
         Pojam p = (Pojam) element;
-        g.setPaint(p.getColor());
+        String hexColor = String.format("#%06X", (0xFFFFFF & p.getColor()));
+        g.setPaint(Color.decode(hexColor));
         g.setStroke(new BasicStroke(p.getStroke()));
         int x = p.getPosition().x;
         int y = p.getPosition().y;

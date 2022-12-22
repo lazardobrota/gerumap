@@ -26,7 +26,7 @@ public class ChooseAction extends AbstractGerumapAction{
                 return;
             }
             for (Element element : mindMapView.getMapSelectionModel().getSelectedElements()) {
-                element.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor());
+                element.setColor(ColorFrame.getInstance().getChBiranjeBoje().getColor().getRGB());
                 element.setStroke(Integer.parseInt(stroke));
             }
 

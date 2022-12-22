@@ -10,7 +10,7 @@ import java.awt.*;
 @Setter
 public abstract class Element extends MapNode {
 
-    private Color color;
+    private int color;
     private int stroke = 1;//debljina linije
     private double zoom = 1;
 
@@ -21,7 +21,7 @@ public abstract class Element extends MapNode {
         this.setStartingName("Element");
     }
 
-    public void setColor(Color color) {
+    public void setColor(int color) {
         this.color = color;
         this.notifySubs(this);
     }
@@ -30,4 +30,5 @@ public abstract class Element extends MapNode {
         this.stroke = stroke;
         this.notifySubs(this);
     }
+
 }

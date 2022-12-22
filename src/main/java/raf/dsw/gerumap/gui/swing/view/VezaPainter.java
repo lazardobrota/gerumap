@@ -69,7 +69,8 @@ public class VezaPainter extends ElementPainter{
         veza.setKraj(new Point(xx2, yy2));
 
         shape = new Line2D.Float(xx, yy, xx2, yy2);
-        g.setPaint(veza.getColor());
+        String hexColor = String.format("#%06X", (0xFFFFFF & veza.getColor()));
+        g.setPaint(Color.decode(hexColor));
         g.setStroke(new BasicStroke(veza.getStroke()));
         g.draw(shape);
     }

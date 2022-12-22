@@ -21,7 +21,7 @@ public class SelectState extends State {
         //Pravimo lazni pojam koji prati mis za selektovanje
         Pojam pojam = new Pojam(new Dimension(1, 1), new Point(x, y));
         pojam.addSubs(m);
-        pojam.setColor(Color.DARK_GRAY);
+        pojam.setColor(Color.DARK_GRAY.getRGB());
         pojam.setStroke(2);
         m.getMapSelectionModel().setFakePojam(pojam);
         SelectState.x = x;
