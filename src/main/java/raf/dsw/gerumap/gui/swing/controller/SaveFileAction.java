@@ -24,6 +24,7 @@ public class SaveFileAction extends AbstractGerumapAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser jfc = new JFileChooser();
+        jfc.setCurrentDirectory(new File(  "src\\main\\resources\\projectJsonFiles"));
         Project project = null;
 
         if (MainFrame.getInstance().getMapTree().getSelectedNode() == null) {//Ako nista nije selektovano

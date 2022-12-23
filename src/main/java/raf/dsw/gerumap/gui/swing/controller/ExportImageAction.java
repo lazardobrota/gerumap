@@ -22,8 +22,8 @@ public class ExportImageAction extends AbstractGerumapAction{
     public ExportImageAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
         putValue(SMALL_ICON,loadIcon("/images/export.png"));
-        putValue(NAME,"Delete");
-        putValue(SHORT_DESCRIPTION,"Izbrisi dete u stablu");
+        putValue(NAME,"Export");
+        putValue(SHORT_DESCRIPTION,"Eksportuje mapu uma kao png");
     }
 
     @Override

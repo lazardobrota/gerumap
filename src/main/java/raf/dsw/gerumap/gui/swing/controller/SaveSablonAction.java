@@ -26,7 +26,7 @@ public class SaveSablonAction extends AbstractGerumapAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser jfc = new JFileChooser();
-        //jfc.setCurrentDirectory(new File("/src/main/resources/sablonJsonFiles"));
+        jfc.setCurrentDirectory(new File(  "src\\main\\resources\\sablonJsonFiles"));
         MindMap mindmap = null;
 
         if (MainPanel.getInstance().getTabsPanel().getSelectedComponent() == null) {//Ako nista nije selektovano
