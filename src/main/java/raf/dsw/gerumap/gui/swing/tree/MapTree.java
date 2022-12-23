@@ -17,4 +17,5 @@ public interface MapTree {
     MapTreeView getTreeView();
     void loadProject(Project project);
     void loadMindMap(MindMap mindMap);
+    void loadSablon(MindMap sablon, MindMap mindMap);
 }

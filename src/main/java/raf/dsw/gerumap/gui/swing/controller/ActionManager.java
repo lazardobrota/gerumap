@@ -20,6 +20,7 @@ public class ActionManager {
     private RedoAction redoAction;
     private OpenAction openAction;
     private SaveFileAction saveFileAction;
+    private SaveSablonAction saveSablonAction;
 
     private TabChangeListener tabChangeListener;//Listener za tab
 
@@ -47,6 +48,7 @@ public class ActionManager {
         autorAction = new SaveAction();
         chooseAction = new ChooseAction();
         closingColorAction = new ClosingColorAction();
+        saveSablonAction = new SaveSablonAction();
 
         tabChangeListener = new TabChangeListener();
 
