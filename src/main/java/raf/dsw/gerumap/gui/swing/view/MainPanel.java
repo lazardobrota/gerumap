@@ -49,6 +49,8 @@ public class MainPanel extends JPanel{
             //Prolazimo kroz svu decu mape uma
             for (MapNode mn : map.getChildren()) {
                 Element element = (Element) mn;
+                if (element.getSubscribers() == null || element.getSubscribers().isEmpty())
+                    element.addSubs(mindMapView);
                 if (element instanceof Pojam) {
                     mindMapView.getElementPainterList().add(new PojamPainter(element));//Za pojam painter
                 }
