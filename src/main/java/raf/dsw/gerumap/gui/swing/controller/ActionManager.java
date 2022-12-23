@@ -21,6 +21,7 @@ public class ActionManager {
     private OpenAction openAction;
     private SaveFileAction saveFileAction;
     private SaveSablonAction saveSablonAction;
+    private ExportImageAction exportImageAction;
 
     private TabChangeListener tabChangeListener;//Listener za tab
 
@@ -49,6 +50,7 @@ public class ActionManager {
         chooseAction = new ChooseAction();
         closingColorAction = new ClosingColorAction();
         saveSablonAction = new SaveSablonAction();
+        exportImageAction = new ExportImageAction();
 
         tabChangeListener = new TabChangeListener();
 
