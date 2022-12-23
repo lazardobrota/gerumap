@@ -128,6 +128,7 @@ public class MapTreeImplementation implements MapTree{
 
     private void openSablon(MindMap mindMap) {
         JFileChooser jfc = new JFileChooser();
+        jfc.setCurrentDirectory(new File("src\\main\\resources\\sablonJsonFiles"));
 
         jfc.setFileFilter(new FileFilter() {
             public String getDescription() {

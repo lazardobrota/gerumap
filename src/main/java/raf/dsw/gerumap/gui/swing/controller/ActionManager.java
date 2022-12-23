@@ -18,7 +18,7 @@ public class ActionManager {
     private ClosingColorAction closingColorAction;
     private UndoAction undoAction;
     private RedoAction redoAction;
-    private OpenAction openAction;
+    private OpenProjectAction openProjectAction;
     private SaveFileAction saveFileAction;
     private SaveSablonAction saveSablonAction;
     private ExportImageAction exportImageAction;
@@ -64,7 +64,7 @@ public class ActionManager {
         colorAction = new ColorAction();
         undoAction = new UndoAction();
         redoAction = new RedoAction();
-        openAction = new OpenAction();
+        openProjectAction = new OpenProjectAction();
         saveFileAction = new SaveFileAction();
     }
 
