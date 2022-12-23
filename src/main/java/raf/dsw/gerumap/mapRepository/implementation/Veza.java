@@ -23,13 +23,21 @@ public class Veza extends Element{
         this.to = to;
     }
 
-    public Veza(Pojam from, Pojam to) {
-        this.from = from;
-        this.to = to;
-    }
-
     public Veza(Pojam from) {
         this.from = from;
+    }
+
+    //Za sablon
+    public Veza() {
+    }
+
+    public void sablonVeza(Veza sablon, Pojam from, Pojam to) {
+        this.setFrom(from);
+        this.setTo(to);
+        this.setPocetak(sablon.getPocetak());
+        this.setKraj(sablon.getKraj());
+        this.setStroke(sablon.getStroke());
+        this.setColor(sablon.getColor());
     }
 
     public void setTo(Pojam to) {

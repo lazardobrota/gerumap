@@ -2,7 +2,6 @@ package raf.dsw.gerumap.mapRepository.implementation;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.mapRepository.commands.CommandManager;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
@@ -12,6 +11,8 @@ import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 public class MindMap extends MapNodeComposite {
 
     private boolean sablon;
+    private String sablonFilePath;//Koristi se samo za cuvanje sablona
+    private boolean sablonChanged = true;//Koristi se samo za cuvanje sablona
     private transient CommandManager commandManager;
 
     public MindMap(String ime, MapNode parent, boolean sablon) {

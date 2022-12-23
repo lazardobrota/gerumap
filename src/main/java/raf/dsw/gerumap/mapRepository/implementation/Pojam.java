@@ -25,6 +25,18 @@ public class Pojam extends Element{
         this.position = position;
     }
 
+    //Kada se ucitava sablon
+    public Pojam() {
+    }
+
+    public void sablonPojam(Pojam pojam) {
+        this.setIme(pojam.getIme());
+        this.setDimension(pojam.getDimension());
+        this.setPosition(pojam.getPosition());
+        this.setStroke(pojam.getStroke());
+        this.setColor(pojam.getColor());
+    }
+
     public void setPosition(Point position) {
         this.position = position;
         this.notifySubs(this);
