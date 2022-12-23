@@ -7,16 +7,14 @@ import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeModel;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
-import raf.dsw.gerumap.gui.swing.view.MainPanel;
-import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 import raf.dsw.gerumap.mapRepository.factory.FactoryUtils;
-import raf.dsw.gerumap.mapRepository.implementation.MindMap;
-import raf.dsw.gerumap.mapRepository.implementation.Project;
-import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
+import raf.dsw.gerumap.mapRepository.implementation.*;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import java.io.File;
 
 public class MapTreeImplementation implements MapTree{
 
@@ -36,6 +34,9 @@ public class MapTreeImplementation implements MapTree{
 
         MapNode child = FactoryUtils.getFactory(parent).getNode();
         parent.addChild(child);
+
+        if (parent instanceof Project)
+            openSablon((MindMap) child);
         return child;
     }
 
@@ -123,6 +124,74 @@ public class MapTreeImplementation implements MapTree{
 
         mapTreeView.expandPath(mapTreeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(mapTreeView);
+    }
+
+    private void openSablon(MindMap mindMap) {
+        JFileChooser jfc = new JFileChooser();
+
+        jfc.setFileFilter(new FileFilter() {
+            public String getDescription() {
+                return "JSON Documents (*.json)";
+            }
+
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                } else {
+                    return f.getName().toLowerCase().endsWith(".json");
+                }
+            }
+        });
+
+        if (jfc.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
+            try {
+                File file = jfc.getSelectedFile();
+                MindMap m = ApplicationFramework.getInstance().getSerializer().loadSablon(file);
+                MainFrame.getInstance().getMapTree().loadSablon(m, mindMap);
+
+            } catch (Exception en) {
+                en.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void loadSablon(MindMap sablon, MindMap mindMap) {
+        for (MapNode mapNode : sablon.getChildren()) {
+            if (mapNode instanceof Pojam) {
+                //Uzima sve stvari od deteta sablona, mora ovako jer ne mogu da imaju iste adrese
+                Pojam pojam = new Pojam();
+                pojam.sablonPojam((Pojam) mapNode);
+                mindMap.addChild(pojam);
+            }
+        }
+
+        for (MapNode mapNode : sablon.getChildren()) {
+            if (!(mapNode instanceof Veza))//Nije istanca veze pa nam ne treba
+                continue;
+
+            //Instanca veze
+            Veza veza = new Veza();
+            Pojam from = null;
+            Pojam to = null;
+
+            for (MapNode pojam : mindMap.getChildren()) {//Trazi pojmove koji se podudaraju sa pojmovima veze
+
+                if (pojam instanceof Veza)
+                    continue;
+
+                if (((Veza) mapNode).getFrom().equals(pojam))//Pojam iz mape uma i pojam iz veze imaju isto ime pa smo nasli from
+                    from = (Pojam) pojam;
+                else if (((Veza) mapNode).getTo().equals(pojam))//Pronasli smo krajni pojam
+                    to = (Pojam) pojam;
+
+                if (from != null && to != null)//Pronadjeno je ono sto se trazi pa moze break
+                    break;
+            }
+
+            veza.sablonVeza((Veza) mapNode, from, to);
+            mindMap.addChild(veza);
+        }
     }
 
     @Override
