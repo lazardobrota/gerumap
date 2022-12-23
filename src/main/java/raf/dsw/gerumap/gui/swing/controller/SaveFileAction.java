@@ -1,9 +1,12 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.core.ApplicationFramework;
+import raf.dsw.gerumap.gui.swing.error.ErrorType;
+import raf.dsw.gerumap.gui.swing.error.ProblemType;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
+import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,8 +26,13 @@ public class SaveFileAction extends AbstractGerumapAction {
         JFileChooser jfc = new JFileChooser();
         Project project = null;
 
-        //todo nekad ne hvata null iako treba
         if (MainFrame.getInstance().getMapTree().getSelectedNode() == null) {//Ako nista nije selektovano
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.NOTHING_IS_SELECTED);
+            return;
+        }
+
+        if (MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof ProjectExplorer) {//ProjectExplorer je selektovan
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.CANNOT_SAVE_PROJECT_EXPLORER);
             return;
         }
 

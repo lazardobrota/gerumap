@@ -84,7 +84,14 @@ public class MapTreeImplementation implements MapTree{
         treeModel.getRoot().add(loadedProject);
 
         MapNodeComposite mapNode = (MapNodeComposite) treeModel.getRoot().getMapNode();
+        int numChildren = mapNode.getChildren().size();//Koliko dece ima
         mapNode.addChild(node);
+        String name = node.getIme();
+        while (numChildren == mapNode.getChildren().size()) {//Nije mu dodao dete jer vec takvo postoji pa mu menja ime
+            node.setIme(name + mapNode.getNumberingChildren());
+            mapNode.addChild(node);
+        }
+
 
         for (MapNode mindMap : node.getChildren()) {
             mindMap.setParent(node);//Uvek je na pocetku roditelj null pa mora ponovo da se doda
