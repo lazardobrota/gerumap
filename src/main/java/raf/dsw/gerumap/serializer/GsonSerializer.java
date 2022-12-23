@@ -18,20 +18,40 @@ public class GsonSerializer implements Serializer {
 
     @Override
     public Project loadProject(File file) {
-        try (FileReader fileReader = new FileReader(file)) {
+        FileReader fileReader = null;
+        try{
+            fileReader = new FileReader(file);
             return gson.fromJson(fileReader, Project.class);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+        finally {
+            try {
+                fileReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public void saveProject(Project project) {
-        try (FileWriter writer = new FileWriter(project.getFilePath())) {
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(project.getFilePath());
             gson.toJson(project, writer);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
+        }
+        finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

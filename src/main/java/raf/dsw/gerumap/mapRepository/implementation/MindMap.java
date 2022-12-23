@@ -12,7 +12,7 @@ import raf.dsw.gerumap.mapRepository.composite.MapNodeComposite;
 public class MindMap extends MapNodeComposite {
 
     private boolean sablon;
-    private CommandManager commandManager;
+    private transient CommandManager commandManager;
 
     public MindMap(String ime, MapNode parent, boolean sablon) {
         super(ime, parent);
@@ -37,6 +37,8 @@ public class MindMap extends MapNodeComposite {
         this.getChildren().add(element);
         System.out.println(this.getChildren().size());
         element.setParent(this);
+        Project project = (Project) this.getParent();
+        project.setChanged(true);//Doslo je do promene
         this.notifySubs(this);
         return true;
     }

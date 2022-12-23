@@ -11,7 +11,7 @@ public class Project extends MapNodeComposite {
 
     private String autor = "";   //osoba koja je napravila projekat
     protected String filePath;
-    protected boolean changed = true;
+    protected boolean changed = true; // true - ima promena, false - nema promena
 
     public Project(String ime, MapNode parent, String autor, String filePath) {
         super(ime, parent);
@@ -37,6 +37,7 @@ public class Project extends MapNodeComposite {
 
         this.getChildren().add(mindMap);
         mapNode.setParent(this);
+        setChanged(true);//Doslo je do promene
         this.notifySubs(this);//prosledjujemo ovaj minMap jer treba od njega novi tab da se napravi i treba da obavesti njegove subove da se apdejtaju
         return true;
     }

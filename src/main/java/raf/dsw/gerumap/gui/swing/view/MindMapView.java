@@ -26,7 +26,7 @@ public class MindMapView extends JPanel implements Subscriber {
 
     private MindMap mindMap;
     private MapSelectionModel mapSelectionModel;
-    private List<ElementPainter> elementPainterList = new ArrayList<>();//lista paintera
+    private transient List<ElementPainter> elementPainterList = new ArrayList<>();//lista paintera
     private AffineTransform affineTransform;
     private double zoom = 1;
 
