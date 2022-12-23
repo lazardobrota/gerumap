@@ -170,6 +170,8 @@ public class MapTreeImplementation implements MapTree{
             if (!(mapNode instanceof Veza))//Nije istanca veze pa nam ne treba
                 continue;
 
+            Veza sablonVeza = (Veza) mapNode;
+
             //Instanca veze
             Veza veza = new Veza();
             Pojam from = null;
@@ -180,16 +182,16 @@ public class MapTreeImplementation implements MapTree{
                 if (pojam instanceof Veza)
                     continue;
 
-                if (((Veza) mapNode).getFrom().equals(pojam))//Pojam iz mape uma i pojam iz veze imaju isto ime pa smo nasli from
+                if (sablonVeza.getFrom().equals(pojam))//Pojam iz mape uma i pojam iz veze imaju isto ime pa smo nasli from
                     from = (Pojam) pojam;
-                else if (((Veza) mapNode).getTo().equals(pojam))//Pronasli smo krajni pojam
+                else if (sablonVeza.getTo().equals(pojam))//Pronasli smo krajni pojam
                     to = (Pojam) pojam;
 
                 if (from != null && to != null)//Pronadjeno je ono sto se trazi pa moze break
                     break;
             }
 
-            veza.sablonVeza((Veza) mapNode, from, to);
+            veza.sablonVeza((Veza) sablonVeza, from, to);
             mindMap.addChild(veza);
         }
     }

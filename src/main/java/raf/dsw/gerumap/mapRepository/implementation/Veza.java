@@ -32,6 +32,7 @@ public class Veza extends Element{
     }
 
     public void sablonVeza(Veza sablon, Pojam from, Pojam to) {
+        this.setIme(sablon.getIme());
         this.setFrom(from);
         this.setTo(to);
         this.setPocetak(sablon.getPocetak());
