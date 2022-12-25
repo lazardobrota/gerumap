@@ -85,6 +85,7 @@ public class MainPanel extends JPanel{
         }
     }
 
+    //todo ne radi dobro za sablon
     public void addMap(Project project) {
         //Uzimamo poslednji mindMap koji je dodat
         MindMap mindMap = (MindMap) project.getChildren().get(project.getChildren().size() - 1);

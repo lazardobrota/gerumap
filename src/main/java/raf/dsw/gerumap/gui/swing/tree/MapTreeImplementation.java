@@ -126,6 +126,7 @@ public class MapTreeImplementation implements MapTree{
         SwingUtilities.updateComponentTreeUI(mapTreeView);
     }
 
+    //todo ne poziva se odmah observer kada se color picker koristi za sablone
     private void openSablon(MindMap mindMap) {
         JFileChooser jfc = new JFileChooser();
         jfc.setCurrentDirectory(new File("src\\main\\resources\\sablonJsonFiles"));
@@ -195,6 +196,8 @@ public class MapTreeImplementation implements MapTree{
             veza.sablonVeza((Veza) sablonVeza, from, to);
             mindMap.addChild(veza);
         }
+
+       MainFrame.getInstance().getProjectView().setProject((Project) mindMap.getParent());//Observer stavi ovaj mindmap
     }
 
     @Override
