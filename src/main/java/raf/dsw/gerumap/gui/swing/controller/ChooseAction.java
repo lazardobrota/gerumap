@@ -43,7 +43,8 @@ public class ChooseAction extends AbstractGerumapAction{
                 }
 
                 if (t) {//Ako vec postoji element sa tim nazivom onda dodaj i broj imenu
-                    mindMapView.getMapSelectionModel().getSelectedElements().get(0).setIme(name + mindMapView.getMindMap().getNumberingChildren());
+                    String newName = name + mindMapView.getMindMap().getNumberingChildren();
+                    nameRecursive(mindMapView, name, newName);
                 }
                 else {//Ako ne postoji element sa tim imenom onda nema potrebe za brojem
                     mindMapView.getMapSelectionModel().getSelectedElements().get(0).setIme(name);
@@ -55,5 +56,27 @@ public class ChooseAction extends AbstractGerumapAction{
         }
 
         ApplicationFramework.getInstance().getMessageGenerator().generateMessage(ErrorType.ERROR, ProblemType.INVALID_TEXT);
+    }
+
+    //rekurzivno postavlja ime dok ne nadje neko koje niko nema
+    private void nameRecursive(MindMapView mindMapView, String name, String newName) {
+        boolean t = false;
+        //Ako vec postoji element sa tim imenom
+        for (MapNode mapNode : mindMapView.getMindMap().getChildren()) {
+            Element element = (Element) mapNode;
+            //Ako vec ima neki element sa tim imenom
+            if (element.getIme().equals(newName)) {
+                t = true;
+                break;
+            }
+        }
+
+        if (t) {//Ako vec postoji element sa tim nazivom onda dodaj i broj imenu
+            newName = name + mindMapView.getMindMap().getNumberingChildren();
+            nameRecursive(mindMapView, name, newName);
+        }
+        else {//Postavlja to ime
+            mindMapView.getMapSelectionModel().getSelectedElements().get(0).setIme(name + mindMapView.getMindMap().getNumberingChildren());
+        }
     }
 }
