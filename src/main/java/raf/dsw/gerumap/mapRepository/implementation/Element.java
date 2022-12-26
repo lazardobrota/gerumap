@@ -23,12 +23,20 @@ public abstract class Element extends MapNode {
 
     public void setColor(int color) {
         this.color = color;
+        projectChanged();
         this.notifySubs(this);
     }
 
     public void setStroke(int stroke) {
         this.stroke = stroke;
+        projectChanged();
         this.notifySubs(this);
     }
 
+    public void projectChanged() {
+        if (this.getParent() == null)//Mora da ima roditelja da bi mogla promena da se izvrsi
+            return;
+        Project project = (Project) this.getParent().getParent();
+        project.setChanged(true);
+    }
 }

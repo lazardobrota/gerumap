@@ -39,6 +39,7 @@ public class Pojam extends Element{
 
     public void setPosition(Point position) {
         this.position = position;
+        projectChanged();
         this.notifySubs(this);
     }
 }

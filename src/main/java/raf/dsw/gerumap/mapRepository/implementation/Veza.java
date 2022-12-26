@@ -43,6 +43,7 @@ public class Veza extends Element{
 
     public void setTo(Pojam to) {
         this.to = to;
+        projectChanged();
         this.notifySubs(this);
     }
 
