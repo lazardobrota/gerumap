@@ -126,7 +126,6 @@ public class MapTreeImplementation implements MapTree{
         SwingUtilities.updateComponentTreeUI(mapTreeView);
     }
 
-    //todo ne poziva se odmah observer kada se color picker koristi za sablone
     private void openSablon(MindMap mindMap) {
         JFileChooser jfc = new JFileChooser();
         jfc.setCurrentDirectory(new File("src\\main\\resources\\sablonJsonFiles"));
@@ -160,6 +159,7 @@ public class MapTreeImplementation implements MapTree{
     @Override
     public void loadSablon(MindMap sablon, MindMap mindMap) {
         for (MapNode mapNode : sablon.getChildren()) {
+            mindMap.getNumberingChildren();//Povecava brojac za svaki dodati element
             if (mapNode instanceof Pojam) {
                 //Uzima sve stvari od deteta sablona, mora ovako jer ne mogu da imaju iste adrese
                 Pojam pojam = new Pojam();
@@ -193,11 +193,9 @@ public class MapTreeImplementation implements MapTree{
                     break;
             }
 
-            veza.sablonVeza((Veza) sablonVeza, from, to);
+            veza.sablonVeza(sablonVeza, from, to);
             mindMap.addChild(veza);
         }
-
-       MainFrame.getInstance().getProjectView().setProject((Project) mindMap.getParent());//Observer stavi ovaj mindmap
     }
 
     @Override

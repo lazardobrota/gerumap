@@ -46,19 +46,7 @@ public class MainPanel extends JPanel{
             MindMapView mindMapView = new MindMapView(map);
             map.addSubs(mindMapView);
             mindMapView.getMapSelectionModel().addSubs(mindMapView);
-            //Prolazimo kroz svu decu mape uma
-            for (MapNode mn : map.getChildren()) {
-                Element element = (Element) mn;
-                if (element.getSubscribers() != null)
-                    element.getSubscribers().clear();//Obrise sve prethodne subove ako ih ima
-                element.addSubs(mindMapView);
-                if (element instanceof Pojam) {
-                    mindMapView.getElementPainterList().add(new PojamPainter(element));//Za pojam painter
-                }
-                else {
-                    mindMapView.getElementPainterList().add(new VezaPainter(element));//Za vezu painter
-                }
-            }
+            mindMapView.addAllElements(map);
 
             tabsPanel.add(mindMapView.getMindMap().getIme(), mindMapView);
         }
@@ -85,7 +73,6 @@ public class MainPanel extends JPanel{
         }
     }
 
-    //todo ne radi dobro za sablon
     public void addMap(Project project) {
         //Uzimamo poslednji mindMap koji je dodat
         MindMap mindMap = (MindMap) project.getChildren().get(project.getChildren().size() - 1);

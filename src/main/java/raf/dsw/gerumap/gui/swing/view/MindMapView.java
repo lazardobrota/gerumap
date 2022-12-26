@@ -79,19 +79,38 @@ public class MindMapView extends JPanel implements Subscriber {
         //dodaj je novi element u mindmap pa da se doda i u painter, mora i uslov ako vec dodat
         if (notification instanceof MindMap) {
             MindMap mindMap = (MindMap) notification;
+
             if (mindMap.getChildren().size() > this.getElementPainterList().size()) {//Za dodavanje elemnta u paintere
                 addElement(mindMap);
             }
             else if (mindMap.getChildren().size() < this.getElementPainterList().size()) {//Za brisanje elementa iz paintera
                 removeElement(mindMap);
+                System.out.println(mindMap.getChildren().size() + " " + getElementPainterList().size());
             }
         }
         repaint();//poziva paintComponent
     }
 
+    public void addAllElements(MindMap mindMap) {
+        //Prolazimo kroz svu decu mape uma
+        for (MapNode mn : mindMap.getChildren()) {
+            Element element = (Element) mn;
+            if (element.getSubscribers() != null)
+                element.getSubscribers().clear();//Obrise sve prethodne subove ako ih ima
+            element.addSubs(this);
+            if (element instanceof Pojam) {
+                this.getElementPainterList().add(new PojamPainter(element));//Za pojam painter
+            }
+            else {
+                this.getElementPainterList().add(new VezaPainter(element));//Za vezu painter
+            }
+        }
+    }
+
     public void addElement(MindMap mindMap) {
         //Uzimamo poslednji mindMap koji je dodat
         Element element = (Element) mindMap.getChildren().get(mindMap.getChildren().size() - 1);
+        element.addSubs(this);
 
         if (element instanceof Pojam)
             this.getElementPainterList().add(new PojamPainter(element));

@@ -12,7 +12,6 @@ public class MindMap extends MapNodeComposite {
 
     private boolean sablon;
     private String sablonFilePath;//Koristi se samo za cuvanje sablona
-    private boolean sablonChanged = true;//Koristi se samo za cuvanje sablona
     private transient CommandManager commandManager;
 
     public MindMap(String ime, MapNode parent, boolean sablon) {
