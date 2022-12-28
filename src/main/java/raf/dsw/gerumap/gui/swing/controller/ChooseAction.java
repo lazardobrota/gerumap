@@ -9,7 +9,9 @@ import raf.dsw.gerumap.gui.swing.view.MainPanel;
 import raf.dsw.gerumap.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.mapRepository.composite.MapNode;
 import raf.dsw.gerumap.mapRepository.implementation.Element;
+import raf.dsw.gerumap.mapRepository.implementation.Pojam;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ChooseAction extends AbstractGerumapAction{
@@ -47,7 +49,9 @@ public class ChooseAction extends AbstractGerumapAction{
                     nameRecursive(mindMapView, name, newName);
                 }
                 else {//Ako ne postoji element sa tim imenom onda nema potrebe za brojem
-                    mindMapView.getMapSelectionModel().getSelectedElements().get(0).setIme(name);
+                    Pojam pojam = (Pojam) mindMapView.getMapSelectionModel().getSelectedElements().get(0);
+                    pojam.setIme(name);
+                    pojam.setDimension(new Dimension(50 + ColorFrame.getInstance().getTfIspisanTekst().getText().length() * 10, 50));
                 }
             }
 
@@ -76,7 +80,9 @@ public class ChooseAction extends AbstractGerumapAction{
             nameRecursive(mindMapView, name, newName);
         }
         else {//Postavlja to ime
-            mindMapView.getMapSelectionModel().getSelectedElements().get(0).setIme(name + mindMapView.getMindMap().getNumberingChildren());
+            Pojam pojam = (Pojam) mindMapView.getMapSelectionModel().getSelectedElements().get(0);
+            pojam.setIme(name + mindMapView.getMindMap().getNumberingChildren());
+            pojam.setDimension(new Dimension(50 + ColorFrame.getInstance().getTfIspisanTekst().getText().length() * 10, 50));
         }
     }
 }

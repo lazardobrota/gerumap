@@ -79,13 +79,11 @@ public class MindMapView extends JPanel implements Subscriber {
         //dodaj je novi element u mindmap pa da se doda i u painter, mora i uslov ako vec dodat
         if (notification instanceof MindMap) {
             MindMap mindMap = (MindMap) notification;
-
             if (mindMap.getChildren().size() > this.getElementPainterList().size()) {//Za dodavanje elemnta u paintere
                 addElement(mindMap);
             }
             else if (mindMap.getChildren().size() < this.getElementPainterList().size()) {//Za brisanje elementa iz paintera
                 removeElement(mindMap);
-                System.out.println(mindMap.getChildren().size() + " " + getElementPainterList().size());
             }
         }
         repaint();//poziva paintComponent
