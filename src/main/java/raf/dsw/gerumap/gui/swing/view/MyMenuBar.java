@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 public class MyMenuBar extends JMenuBar {
 
     public MyMenuBar() {
-        //todo ne verujem da bi ovde trebao taj listener da se zove
+        //dodajemo listener tabovima
         MainPanel.getInstance().getTabsPanel().addChangeListener(MainFrame.getInstance().getActionManager().getTabChangeListener());
 
         JMenu filemenu = new JMenu("File");//ono sto se pojavljuje gore

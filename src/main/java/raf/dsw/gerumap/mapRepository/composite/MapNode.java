@@ -67,7 +67,6 @@ public abstract class MapNode implements Publisher {
         }
     }
 
-    //todo da li da se ovde zove notifySubs odmah da bi se odmah MindMapView za paintere pozvao
     @Override
     public void addSubs(Subscriber sub) {
         if(sub == null)
