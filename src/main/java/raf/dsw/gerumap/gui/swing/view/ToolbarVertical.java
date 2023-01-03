@@ -22,6 +22,8 @@ public class ToolbarVertical extends JToolBar {
         this.addSeparator();
         this.add(MainFrame.getInstance().getActionManager().getZoomOutAction());
         this.addSeparator();
+        this.add(MainFrame.getInstance().getActionManager().getCentralPojamAction());
+        this.addSeparator();
         this.add(MainFrame.getInstance().getActionManager().getColorAction());
     }
 }

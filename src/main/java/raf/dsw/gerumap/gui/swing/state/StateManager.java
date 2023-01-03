@@ -6,6 +6,7 @@ public class StateManager {
 
     private State currentState;
     private AddElementState addElementState;
+    private CentralPojamState centralPojamState;
     private ConnectState connectState;
     private EraseState eraseState;
     private MoveState moveState;
@@ -20,6 +21,7 @@ public class StateManager {
     private void initStates() {
 
         this.addElementState = new AddElementState();
+        this.centralPojamState = new CentralPojamState();
         this.connectState = new ConnectState();
         this.eraseState = new EraseState();
         this.moveState = new MoveState();
@@ -36,6 +38,10 @@ public class StateManager {
 
     public void setAddElementState() {
         this.currentState = addElementState;
+    }
+
+    public void setCentralPojamState() {
+        this.currentState = centralPojamState;
     }
 
     public void setConnectState() {

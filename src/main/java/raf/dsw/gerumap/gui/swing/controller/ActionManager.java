@@ -28,6 +28,7 @@ public class ActionManager {
 
     //Vertikalni dugmici
     private AddElementAction addElementAction;
+    private CentralPojamAction centralPojamAction;
     private ConnectAction connectAction;
     private EraseAction eraseAction;
     private MoveAction moveAction;
@@ -55,6 +56,7 @@ public class ActionManager {
         tabChangeListener = new TabChangeListener();
 
         addElementAction = new AddElementAction();
+        centralPojamAction = new CentralPojamAction();
         connectAction = new ConnectAction();
         eraseAction = new EraseAction();
         moveAction = new MoveAction();

@@ -114,6 +114,8 @@ public class ProjectView extends JPanel implements Subscriber {
         this.stateManager.setAddElementState();
     }
 
+    public void startCentralPojamState() { this.stateManager.setCentralPojamState();}
+
     public void startConnectState() {
         this.stateManager.setConnectState();
     }
