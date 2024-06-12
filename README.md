@@ -10,5 +10,5 @@ Notion UML -https://www.notion.so/UML-f91fdc19993744d9806fa540367ba01f <br/>
 Notion DIN - https://www.notion.so/DIN-8a89b7be1c9b4cdfa89c3631c349b7b9 <br/>
 
 # Created by
-Lazar Dobrota RN 74/21 <br/> 
-Ana Sakotic RN 68/21
+Lazar Dobrota <br/> 
+Ana Sakotic
