@@ -24,9 +24,9 @@
 ## Specification
 <p>
   
-  - Notion - https://www.notion.so/GeRuMap-3e2a31b3b5304a00bd02df40b62e32b8 
-  - Notion UML -https://www.notion.so/UML-f91fdc19993744d9806fa540367ba01f 
-  - Notion DIN - https://www.notion.so/DIN-8a89b7be1c9b4cdfa89c3631c349b7b9 
+   Notion - https://www.notion.so/GeRuMap-3e2a31b3b5304a00bd02df40b62e32b8 <br/> <br/>
+   ![UML](https://github.com/user-attachments/assets/d5ec4e58-d970-4c48-945a-b56181ac071f) <br/> <br/>
+   ![DIN](https://github.com/user-attachments/assets/442cff4f-116b-4f27-81fb-515fb536b13e)
 </p>
 
 ## Features & Technologies 
